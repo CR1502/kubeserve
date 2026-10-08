@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: baseline
+  namespace: kubeserve
+  labels:
+    app.kubernetes.io/name: baseline
+    app.kubernetes.io/part-of: kubeserve
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: baseline
+  template:
+    metadata:
+      labels:
+        app: baseline
+        app.kubernetes.io/name: baseline
+        app.kubernetes.io/part-of: kubeserve
+    spec:
+      containers:
+        - name: baseline
+          image: kubeserve-baseline:v1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MODEL_PATH
+              value: /models/Qwen2.5-0.5B-Instruct
+            - name: SERVED_MODEL_NAME
+              value: qwen2.5-0.5b-instruct
+          ports:
+            - name: http
+              containerPort: 8000
+          resources:
+            # Same CPU allocation as one vLLM pod (3 exclusive cores) so the comparison
+            # is engine vs engine on identical hardware.
+            requests:
+              cpu: "3"
+              memory: 2Gi
+            limits:
+              cpu: "3"
+              memory: 2Gi
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 5
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+      volumes:
+        - name: models
+          hostPath:
+            path: /models
+            type: Directory

@@ -1,0 +1,16 @@
+# metrics-server provides the resource-metrics API that the HPA reads CPU usage from
+# (v0.9.0 already scrapes at a 15s resolution).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.9.0/components.yaml
+patches:
+  # kind's kubelet serving certificates are self-signed.
+  - target:
+      kind: Deployment
+      name: metrics-server
+      namespace: kube-system
+    patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --kubelet-insecure-tls

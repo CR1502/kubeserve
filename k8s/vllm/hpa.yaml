@@ -1,0 +1,38 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: vllm
+  namespace: kubeserve
+  labels:
+    app.kubernetes.io/part-of: kubeserve
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: vllm
+  minReplicas: 1
+  # The single 9-vCPU node fits two 3-core vLLM pods next to the control plane.
+  maxReplicas: 2
+  metrics:
+    # CPU utilisation relative to the pod's 3-core request. Measured: an idle vLLM pod
+    # sits around 1-2%, a pod serving traffic at 65-75% (2 compute threads + scheduler).
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 30
+    scaleDown:
+      # Shorter than the 300s default so the demo can show scale-down too.
+      stabilizationWindowSeconds: 120
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60

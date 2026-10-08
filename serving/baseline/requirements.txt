@@ -1,0 +1,12 @@
+# Same library versions as the vLLM image (vllm/vllm-openai-cpu:v0.31.0-arm64), so the
+# serving engine is the only variable between the two deployments.
+# torch 2.13.0 (CPU build) is installed separately in the Dockerfile.
+transformers==5.17.0
+tokenizers==0.23.2
+safetensors==0.8.0
+huggingface-hub==1.33.0
+jinja2==3.1.6
+numpy==2.3.5
+fastapi==0.136.3
+pydantic==2.13.5
+uvicorn==0.54.0

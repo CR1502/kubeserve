@@ -1,0 +1,8 @@
+# Model weights are downloaded with `make model`, never committed.
+models/
+# Rendered from cluster/kind-config.yaml.tpl (contains an absolute host path).
+cluster/kind-config.yaml
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

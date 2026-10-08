@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm
+  namespace: kubeserve
+  labels:
+    app.kubernetes.io/name: vllm
+    app.kubernetes.io/part-of: kubeserve
+spec:
+  # No `replicas` field: the HorizontalPodAutoscaler owns the replica count
+  # (a Deployment starts at 1 when the field is omitted).
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: vllm
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      # Bring the new pod up and wait for it to pass readiness before removing an old
+      # one, so serving capacity never drops below the current replica count.
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: vllm
+        app.kubernetes.io/name: vllm
+        app.kubernetes.io/part-of: kubeserve
+    spec:
+      # Without this, the Service named "vllm" makes Kubernetes inject VLLM_PORT=tcp://...
+      # into the pod, which collides with vLLM's own VLLM_PORT setting and crashes it.
+      enableServiceLinks: false
+      # preStop sleep (10s) + vLLM drain (--shutdown-timeout=60) must fit inside this.
+      terminationGracePeriodSeconds: 90
+      containers:
+        - name: vllm
+          image: kubeserve-vllm:v1
+          imagePullPolicy: IfNotPresent
+          args:
+            - /models/Qwen2.5-0.5B-Instruct
+            - --served-model-name=qwen2.5-0.5b-instruct
+            - --host=0.0.0.0
+            - --port=8000
+            - --dtype=bfloat16
+            - --max-model-len=2048
+            - --max-num-seqs=32
+            # 256 MiB of KV cache = ~21k tokens, far more than 32 sequences x ~200 tokens.
+            - --kv-cache-memory-bytes=268435456
+            # Eager mode: on this CPU it was as fast as torch.compile and started in 34s
+            # instead of 66s.
+            - --enforce-eager
+            # Use vLLM's neutral sampling defaults instead of the model's
+            # generation_config.json, so requests are pure greedy like the baseline.
+            - --generation-config=vllm
+            # On SIGTERM, finish in-flight requests (up to 60s) instead of aborting them
+            # (the default, 0, aborts) -- needed for zero-drop rolling updates.
+            - --shutdown-timeout=60
+          env:
+            # Bind OpenMP threads to the pod's exclusive cpuset (given by the static CPU
+            # manager). vLLM keeps one of the pod's cores for the scheduler/API server.
+            - name: VLLM_CPU_OMP_THREADS_BIND
+              value: auto
+          ports:
+            - name: http
+              containerPort: 8000
+          resources:
+            # requests == limits with integer CPUs -> Guaranteed QoS -> exclusive cores.
+            requests:
+              cpu: "3"
+              memory: 3840Mi
+            limits:
+              cpu: "3"
+              memory: 3840Mi
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 2
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              # Keep serving while the endpoint removal propagates to kube-proxy, so no
+              # new connection is routed to a pod that is about to stop.
+              exec:
+                command: ["sleep", "10"]
+          securityContext:
+            # Recommended by the vLLM CPU docs: lets vLLM apply NUMA memory binding.
+            capabilities:
+              add: ["SYS_NICE"]
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+            - name: dshm
+              mountPath: /dev/shm
+      volumes:
+        - name: models
+          hostPath:
+            path: /models
+            type: Directory
+        # vLLM needs more than the 64 MiB /dev/shm a container gets by default.
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 512Mi
