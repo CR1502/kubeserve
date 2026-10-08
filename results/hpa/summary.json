@@ -1,0 +1,29 @@
+{
+  "concurrency": 16,
+  "load_duration_s": 492.1,
+  "hpa_target_cpu_utilization_pct": 50,
+  "peak_hpa_cpu_utilization_pct": 74,
+  "scale_up_decided_at_s": 35.9,
+  "second_replica_ready_at_s": 76.9,
+  "load_stopped_at_s": 492.1,
+  "scale_down_decided_at_s": 634.2,
+  "back_to_one_replica_at_s": 654.7,
+  "max_ready_replicas": 2,
+  "tokens_per_s_one_replica": 74.3,
+  "tokens_per_s_two_replicas": 101.1,
+  "requests": {
+    "requests": 369,
+    "succeeded": 369,
+    "failed": 0,
+    "wall_time_s": 492.01,
+    "throughput_req_per_s": 0.75,
+    "output_tokens_per_s": 96.0,
+    "latency_p50_s": 21.884,
+    "latency_p95_s": 27.908,
+    "latency_p99_s": 28.789,
+    "latency_mean_s": 21.113,
+    "latency_max_s": 28.791,
+    "mean_prompt_tokens": 42.602,
+    "mean_completion_tokens": 128.0
+  }
+}

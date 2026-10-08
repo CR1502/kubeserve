@@ -1,0 +1,18 @@
+[vllm] warm-up
+[vllm] repeat 1/1  concurrency=1  requests=16 ...
+    0.081 req/s  10.3 tok/s  p50=12.31s  p95=14.13s  failed=0  cpu=1.88 cores
+[vllm] repeat 1/1  concurrency=4  requests=16 ...
+    0.317 req/s  40.5 tok/s  p50=12.71s  p95=13.06s  failed=0  cpu=2.00 cores
+[vllm] repeat 1/1  concurrency=8  requests=32 ...
+    0.545 req/s  69.7 tok/s  p50=14.65s  p95=15.29s  failed=0  cpu=2.09 cores
+[vllm] repeat 1/1  concurrency=16  requests=64 ...
+    0.603 req/s  77.2 tok/s  p50=26.49s  p95=29.02s  failed=0  cpu=2.21 cores
+[vllm] wrote results/raw/vllm-run2.json
+[baseline] warm-up
+[baseline] repeat 1/1  concurrency=1  requests=16 ...
+    attempt 1 rejected: the host was asleep for ~118s during this run, so its numbers are invalid; keep the machine awake (lid open, `caffeinate -is`) and re-run
+    attempt 2 rejected: the host was asleep for ~93s during this run, so its numbers are invalid; keep the machine awake (lid open, `caffeinate -is`) and re-run
+    attempt 3 rejected: the host was asleep for ~338s during this run, so its numbers are invalid; keep the machine awake (lid open, `caffeinate -is`) and re-run
+    attempt 4 rejected: the host was asleep for ~125s during this run, so its numbers are invalid; keep the machine awake (lid open, `caffeinate -is`) and re-run
+    attempt 5 rejected: the host was asleep for ~67s during this run, so its numbers are invalid; keep the machine awake (lid open, `caffeinate -is`) and re-run
+concurrency=1: host slept during all 5 attempts

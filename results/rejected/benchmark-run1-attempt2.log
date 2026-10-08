@@ -1,0 +1,33 @@
+[vllm] warm-up
+[vllm] repeat 1/1  concurrency=1  requests=16 ...
+    0.085 req/s  10.9 tok/s  p50=11.06s  p95=14.33s  failed=0  cpu=1.91 cores
+[vllm] repeat 1/1  concurrency=4  requests=16 ...
+    0.338 req/s  43.2 tok/s  p50=11.74s  p95=12.30s  failed=0  cpu=2.00 cores
+[vllm] repeat 1/1  concurrency=8  requests=32 ...
+    0.561 req/s  71.9 tok/s  p50=14.22s  p95=14.36s  failed=0  cpu=2.08 cores
+[vllm] repeat 1/1  concurrency=16  requests=64 ...
+    0.643 req/s  82.4 tok/s  p50=24.85s  p95=25.09s  failed=0  cpu=2.20 cores
+[baseline] warm-up
+[baseline] repeat 1/1  concurrency=1  requests=16 ...
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/cr15/Documents/Main/Coding/InferScale/bench/run_benchmark.py", line 160, in <module>
+    main()
+  File "/Users/cr15/Documents/Main/Coding/InferScale/bench/run_benchmark.py", line 156, in main
+    asyncio.run(benchmark(args.target, levels, args.repeats, args.max_tokens, out))
+  File "/Users/cr15/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/cr15/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cr15/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/cr15/Documents/Main/Coding/InferScale/bench/run_benchmark.py", line 122, in benchmark
+    records = await run_load(url, concurrency=concurrency, num_requests=n, max_tokens=max_tokens)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/cr15/Documents/Main/Coding/InferScale/bench/loadgen.py", line 148, in run_load
+    raise HostSleptError(
+bench.loadgen.HostSleptError: the host was asleep for ~25s during this run, so its numbers are invalid; keep the machine awake (lid open, `caffeinate -i`) and re-run

@@ -1,0 +1,6 @@
+deployment.apps/vllm 
+REVISION  CHANGE-CAUSE
+1         <none>
+3         roll out kubeserve-vllm:v2
+4         rollback to kubeserve-vllm:v1
+

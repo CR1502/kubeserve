@@ -1,0 +1,11 @@
+t_rel_s,pod,event
+-2.0,vllm-5d5d879597-xm2r9,running (kubeserve-vllm:v1)
+-2.0,vllm-5d5d879597-xm2r9,ready -> receives traffic
+31.6,vllm-56f88769b-7c6gx,running (kubeserve-vllm:v2)
+85.8,vllm-56f88769b-7c6gx,ready -> receives traffic
+85.8,vllm-5d5d879597-xm2r9,"terminating (preStop sleep, then drain)"
+109.0,vllm-5d5d879597-xm2r9,gone
+140.4,vllm-5d5d879597-frhpm,running (kubeserve-vllm:v1)
+185.2,vllm-56f88769b-7c6gx,"terminating (preStop sleep, then drain)"
+185.2,vllm-5d5d879597-frhpm,ready -> receives traffic
+200.2,vllm-56f88769b-7c6gx,gone

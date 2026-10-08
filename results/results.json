@@ -1,0 +1,513 @@
+{
+  "generated_utc": "2026-10-08T04:48:44+00:00",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct (bfloat16)",
+  "hardware": {
+    "accelerator": "none -- CPU only (no GPU was used)",
+    "host": {
+      "machine": "Apple M3 Pro",
+      "os": "Darwin 27.0.0"
+    },
+    "cluster": {
+      "nodes": 1,
+      "node_cpu_capacity": "9",
+      "node_memory_capacity": "9130396Ki",
+      "kubelet_version": "v1.37.0"
+    },
+    "per_pod_resources": {
+      "baseline": {
+        "limits": {
+          "cpu": "3",
+          "memory": "2Gi"
+        },
+        "requests": {
+          "cpu": "3",
+          "memory": "2Gi"
+        }
+      },
+      "vllm": {
+        "limits": {
+          "cpu": "3",
+          "memory": "3840Mi"
+        },
+        "requests": {
+          "cpu": "3",
+          "memory": "3840Mi"
+        }
+      }
+    },
+    "images": {
+      "baseline": "kubeserve-baseline:v1",
+      "vllm": "kubeserve-vllm:v1"
+    }
+  },
+  "workload": {
+    "max_tokens": 128,
+    "ignore_eos": true,
+    "temperature": 0.0,
+    "concurrency_levels": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "requests_per_level": {
+      "1": 16,
+      "4": 16,
+      "8": 32,
+      "16": 64
+    },
+    "repeats": 1,
+    "pattern": "closed loop: c workers, each sends its next request as soon as the previous returns"
+  },
+  "runs_per_target": {
+    "baseline": 1,
+    "vllm": 2
+  },
+  "raw_files": {
+    "baseline": [
+      "raw/baseline-run1.json"
+    ],
+    "vllm": [
+      "raw/vllm-run1.json",
+      "raw/vllm-run2.json"
+    ]
+  },
+  "levels": [
+    {
+      "concurrency": 1,
+      "baseline": {
+        "runs": 1,
+        "requests": 16,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.075,
+          "min": 0.075,
+          "max": 0.075
+        },
+        "output_tokens_per_s": {
+          "mean": 9.6,
+          "min": 9.6,
+          "max": 9.6
+        },
+        "latency_p50_s": {
+          "mean": 13.243,
+          "min": 13.243,
+          "max": 13.243
+        },
+        "latency_p95_s": {
+          "mean": 14.135,
+          "min": 14.135,
+          "max": 14.135
+        },
+        "latency_p99_s": {
+          "mean": 14.187,
+          "min": 14.187,
+          "max": 14.187
+        },
+        "avg_cores_used": {
+          "mean": 2.858,
+          "min": 2.858,
+          "max": 2.858
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 95.3,
+          "min": 95.3,
+          "max": 95.3
+        },
+        "peak_working_set_mib": {
+          "mean": 1620,
+          "min": 1620,
+          "max": 1620
+        },
+        "tokens_per_core_second": {
+          "mean": 3.359,
+          "min": 3.359,
+          "max": 3.359
+        }
+      },
+      "vllm": {
+        "runs": 2,
+        "requests": 32,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.083,
+          "min": 0.081,
+          "max": 0.085
+        },
+        "output_tokens_per_s": {
+          "mean": 10.605,
+          "min": 10.34,
+          "max": 10.87
+        },
+        "latency_p50_s": {
+          "mean": 11.689,
+          "min": 11.064,
+          "max": 12.315
+        },
+        "latency_p95_s": {
+          "mean": 14.232,
+          "min": 14.133,
+          "max": 14.331
+        },
+        "latency_p99_s": {
+          "mean": 15.186,
+          "min": 14.593,
+          "max": 15.78
+        },
+        "avg_cores_used": {
+          "mean": 1.893,
+          "min": 1.881,
+          "max": 1.905
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 63.1,
+          "min": 62.7,
+          "max": 63.5
+        },
+        "peak_working_set_mib": {
+          "mean": 3337.5,
+          "min": 3337,
+          "max": 3338
+        },
+        "tokens_per_core_second": {
+          "mean": 5.602,
+          "min": 5.497,
+          "max": 5.706
+        }
+      },
+      "vllm_vs_baseline": {
+        "throughput_x": 1.1,
+        "p50_latency_reduction_x": 1.13,
+        "p95_latency_reduction_x": 0.99,
+        "tokens_per_core_second_x": 1.67
+      }
+    },
+    {
+      "concurrency": 4,
+      "baseline": {
+        "runs": 1,
+        "requests": 16,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.075,
+          "min": 0.075,
+          "max": 0.075
+        },
+        "output_tokens_per_s": {
+          "mean": 9.6,
+          "min": 9.6,
+          "max": 9.6
+        },
+        "latency_p50_s": {
+          "mean": 53.522,
+          "min": 53.522,
+          "max": 53.522
+        },
+        "latency_p95_s": {
+          "mean": 53.817,
+          "min": 53.817,
+          "max": 53.817
+        },
+        "latency_p99_s": {
+          "mean": 53.888,
+          "min": 53.888,
+          "max": 53.888
+        },
+        "avg_cores_used": {
+          "mean": 2.857,
+          "min": 2.857,
+          "max": 2.857
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 95.2,
+          "min": 95.2,
+          "max": 95.2
+        },
+        "peak_working_set_mib": {
+          "mean": 1619,
+          "min": 1619,
+          "max": 1619
+        },
+        "tokens_per_core_second": {
+          "mean": 3.36,
+          "min": 3.36,
+          "max": 3.36
+        }
+      },
+      "vllm": {
+        "runs": 2,
+        "requests": 32,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.327,
+          "min": 0.317,
+          "max": 0.338
+        },
+        "output_tokens_per_s": {
+          "mean": 41.865,
+          "min": 40.51,
+          "max": 43.22
+        },
+        "latency_p50_s": {
+          "mean": 12.229,
+          "min": 11.745,
+          "max": 12.713
+        },
+        "latency_p95_s": {
+          "mean": 12.681,
+          "min": 12.298,
+          "max": 13.063
+        },
+        "latency_p99_s": {
+          "mean": 12.681,
+          "min": 12.298,
+          "max": 13.065
+        },
+        "avg_cores_used": {
+          "mean": 1.999,
+          "min": 1.997,
+          "max": 2.001
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 66.65,
+          "min": 66.6,
+          "max": 66.7
+        },
+        "peak_working_set_mib": {
+          "mean": 3339.5,
+          "min": 3339,
+          "max": 3340
+        },
+        "tokens_per_core_second": {
+          "mean": 20.942,
+          "min": 20.285,
+          "max": 21.599
+        }
+      },
+      "vllm_vs_baseline": {
+        "throughput_x": 4.36,
+        "p50_latency_reduction_x": 4.38,
+        "p95_latency_reduction_x": 4.24,
+        "tokens_per_core_second_x": 6.23
+      }
+    },
+    {
+      "concurrency": 8,
+      "baseline": {
+        "runs": 1,
+        "requests": 32,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.072,
+          "min": 0.072,
+          "max": 0.072
+        },
+        "output_tokens_per_s": {
+          "mean": 9.18,
+          "min": 9.18,
+          "max": 9.18
+        },
+        "latency_p50_s": {
+          "mean": 110.532,
+          "min": 110.532,
+          "max": 110.532
+        },
+        "latency_p95_s": {
+          "mean": 116.792,
+          "min": 116.792,
+          "max": 116.792
+        },
+        "latency_p99_s": {
+          "mean": 117.189,
+          "min": 117.189,
+          "max": 117.189
+        },
+        "avg_cores_used": {
+          "mean": 2.839,
+          "min": 2.839,
+          "max": 2.839
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 94.6,
+          "min": 94.6,
+          "max": 94.6
+        },
+        "peak_working_set_mib": {
+          "mean": 1619,
+          "min": 1619,
+          "max": 1619
+        },
+        "tokens_per_core_second": {
+          "mean": 3.234,
+          "min": 3.234,
+          "max": 3.234
+        }
+      },
+      "vllm": {
+        "runs": 2,
+        "requests": 64,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.553,
+          "min": 0.545,
+          "max": 0.561
+        },
+        "output_tokens_per_s": {
+          "mean": 70.795,
+          "min": 69.71,
+          "max": 71.88
+        },
+        "latency_p50_s": {
+          "mean": 14.437,
+          "min": 14.223,
+          "max": 14.65
+        },
+        "latency_p95_s": {
+          "mean": 14.828,
+          "min": 14.364,
+          "max": 15.292
+        },
+        "latency_p99_s": {
+          "mean": 14.829,
+          "min": 14.365,
+          "max": 15.293
+        },
+        "avg_cores_used": {
+          "mean": 2.085,
+          "min": 2.082,
+          "max": 2.089
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 69.5,
+          "min": 69.4,
+          "max": 69.6
+        },
+        "peak_working_set_mib": {
+          "mean": 3347,
+          "min": 3345,
+          "max": 3349
+        },
+        "tokens_per_core_second": {
+          "mean": 33.947,
+          "min": 33.37,
+          "max": 34.524
+        }
+      },
+      "vllm_vs_baseline": {
+        "throughput_x": 7.71,
+        "p50_latency_reduction_x": 7.66,
+        "p95_latency_reduction_x": 7.88,
+        "tokens_per_core_second_x": 10.5
+      }
+    },
+    {
+      "concurrency": 16,
+      "baseline": {
+        "runs": 1,
+        "requests": 64,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.074,
+          "min": 0.074,
+          "max": 0.074
+        },
+        "output_tokens_per_s": {
+          "mean": 9.48,
+          "min": 9.48,
+          "max": 9.48
+        },
+        "latency_p50_s": {
+          "mean": 211.191,
+          "min": 211.191,
+          "max": 211.191
+        },
+        "latency_p95_s": {
+          "mean": 221.576,
+          "min": 221.576,
+          "max": 221.576
+        },
+        "latency_p99_s": {
+          "mean": 222.569,
+          "min": 222.569,
+          "max": 222.569
+        },
+        "avg_cores_used": {
+          "mean": 2.849,
+          "min": 2.849,
+          "max": 2.849
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 95.0,
+          "min": 95.0,
+          "max": 95.0
+        },
+        "peak_working_set_mib": {
+          "mean": 1619,
+          "min": 1619,
+          "max": 1619
+        },
+        "tokens_per_core_second": {
+          "mean": 3.327,
+          "min": 3.327,
+          "max": 3.327
+        }
+      },
+      "vllm": {
+        "runs": 2,
+        "requests": 128,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.623,
+          "min": 0.603,
+          "max": 0.643
+        },
+        "output_tokens_per_s": {
+          "mean": 79.8,
+          "min": 77.24,
+          "max": 82.36
+        },
+        "latency_p50_s": {
+          "mean": 25.666,
+          "min": 24.846,
+          "max": 26.486
+        },
+        "latency_p95_s": {
+          "mean": 27.053,
+          "min": 25.09,
+          "max": 29.016
+        },
+        "latency_p99_s": {
+          "mean": 27.054,
+          "min": 25.091,
+          "max": 29.017
+        },
+        "avg_cores_used": {
+          "mean": 2.207,
+          "min": 2.2,
+          "max": 2.214
+        },
+        "avg_cpu_utilization_pct": {
+          "mean": 73.55,
+          "min": 73.3,
+          "max": 73.8
+        },
+        "peak_working_set_mib": {
+          "mean": 3362.5,
+          "min": 3362,
+          "max": 3363
+        },
+        "tokens_per_core_second": {
+          "mean": 36.162,
+          "min": 34.887,
+          "max": 37.436
+        }
+      },
+      "vllm_vs_baseline": {
+        "throughput_x": 8.42,
+        "p50_latency_reduction_x": 8.23,
+        "p95_latency_reduction_x": 8.19,
+        "tokens_per_core_second_x": 10.87
+      }
+    }
+  ]
+}
