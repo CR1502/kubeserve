@@ -155,8 +155,15 @@ flowchart LR
 manager**. Both deployments are Guaranteed QoS (requests = limits, integer CPUs), so each pod
 gets **3 exclusive cores**: its own cpuset, which no other pod can run on. The
 benchmark compares engine against engine on the same hardware. The baseline uses all 3
-cores for PyTorch. vLLM binds 2 OpenMP compute threads and keeps 1 core for its
-scheduler and API server (its default CPU policy).
+cores for PyTorch (3 threads). vLLM's compute is confined to the same 3 cores but is
+**oversubscribed**: in the in-process engine mode used here (`VLLM_ENABLE_V1_MULTIPROCESSING=0`)
+vLLM's OpenMP auto-binding is not applied, so PyTorch keeps one intra-op thread per VM CPU
+(9 threads in this VM) on the pod's 3 cores, and a loaded pod uses about 2–2.2 of them. If
+anything this handicaps vLLM in the comparison. *(Corrected later: an earlier version said vLLM
+binds 2 OpenMP threads and keeps a core for its scheduler. That came from a test in multiprocessing
+mode, not the deployed configuration. The log line `CPU backend doesn't allow to use
+torch.set_num_threads after the thread binding, skip it` and per-thread `top -H` in a pod with the
+same image and settings show what actually runs.)*
 
 **Same model, same work per request.** Both serve the same weights in bfloat16 (the VM's CPU
 exposes `bf16`/`i8mm`). Both use greedy decoding with no repetition penalty (vLLM runs with
