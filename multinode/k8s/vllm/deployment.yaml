@@ -1,0 +1,161 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm
+  namespace: kubeserve
+  labels:
+    app.kubernetes.io/name: vllm
+    app.kubernetes.io/part-of: kubeserve
+spec:
+  # Starts at one replica. The multi-node benchmark harness sets the replica count
+  # explicitly (kubectl scale) for the scaling curve; there is no HPA in this setup.
+  # Note: re-applying this manifest resets the count to 1.
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: vllm
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      # The anti-affinity below allows at most one vLLM pod per worker. When every
+      # worker already hosts a replica, a surge pod could never schedule and the rollout
+      # would hang, so replace pods one at a time instead (capacity drops by one replica
+      # while each new pod starts).
+      maxSurge: 0
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: vllm
+        app.kubernetes.io/name: vllm
+        app.kubernetes.io/part-of: kubeserve
+    spec:
+      # Without this, the Service named "vllm" makes Kubernetes inject VLLM_PORT=tcp://...
+      # into the pod, which collides with vLLM's own VLLM_PORT setting and crashes it.
+      enableServiceLinks: false
+      # preStop sleep (10s) + vLLM drain (--shutdown-timeout=60) must fit inside this.
+      terminationGracePeriodSeconds: 90
+      # Only the inference workers (each pinned to its own 3 CPUs) run vLLM.
+      nodeSelector:
+        kubeserve.io/role: inference
+      affinity:
+        podAntiAffinity:
+          # Required, not preferred: one replica per node, guaranteed. Each replica gets
+          # a whole worker's cpuset; an extra replica stays Pending rather than sharing.
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: vllm
+              topologyKey: kubernetes.io/hostname
+      tolerations:
+        # Deliberately shorter than the 300s Kubernetes adds by default: evict pods from
+        # a NotReady/unreachable node after 30s so the ReplicaSet recreates them on a
+        # healthy worker sooner (the node-failure test measures this).
+        - key: node.kubernetes.io/unreachable
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 30
+        - key: node.kubernetes.io/not-ready
+          operator: Exists
+          effect: NoExecute
+          tolerationSeconds: 30
+      containers:
+        - name: vllm
+          image: kubeserve-vllm:v1
+          imagePullPolicy: IfNotPresent
+          args:
+            - /models/Qwen2.5-0.5B-Instruct
+            - --served-model-name=qwen2.5-0.5b-instruct
+            - --host=0.0.0.0
+            - --port=8000
+            - --dtype=bfloat16
+            - --max-model-len=2048
+            - --max-num-seqs=32
+            # 256 MiB of KV cache = ~21k tokens, far more than 32 sequences x ~200 tokens.
+            - --kv-cache-memory-bytes=268435456
+            # Eager mode: on this CPU it was as fast as torch.compile and started in 34s
+            # instead of 66s.
+            - --enforce-eager
+            # Use vLLM's neutral sampling defaults instead of the model's
+            # generation_config.json, so requests are pure greedy like the baseline.
+            - --generation-config=vllm
+            # On SIGTERM, finish in-flight requests (up to 60s) instead of aborting them
+            # (the default, 0, aborts) -- needed for zero-drop rolling updates.
+            - --shutdown-timeout=60
+          env:
+            # Same setting as the single-node spec. The pod's cpuset here is the node's
+            # (docker update --cpuset-cpus on the node container). As in the single-node
+            # deployment, vLLM does not apply this binding when the worker runs inside the
+            # engine-core process (VLLM_ENABLE_V1_MULTIPROCESSING=0), so
+            # torch runs one thread per VM CPU (10) on the node's 3 CPUs (measured, top -H).
+            - name: VLLM_CPU_OMP_THREADS_BIND
+              value: auto
+            # The ONLY difference from the single-node container spec. Without it, the
+            # first sampled request (temperature > 0) or logprobs request makes vLLM's CPU
+            # sampler torch.compile a kernel at runtime (inductor + g++ with a precompiled
+            # header in /tmp). That burst peaked at ~4.4 GiB and OOM-killed the pod at its
+            # 3840Mi limit. Greedy requests (temperature 0, as the benchmarks send) never
+            # reach torch.compile, so this changes nothing on the benchmarked path; sampled
+            # requests just run the same ops eagerly.
+            - name: TORCH_COMPILE_DISABLE
+              value: "1"
+          ports:
+            - name: http
+              containerPort: 8000
+          resources:
+            # Same as the single-node setup (Guaranteed QoS). The CFS quota caps the pod
+            # at 3 CPUs; the node's 3-CPU cpuset decides which cores those are.
+            requests:
+              cpu: "3"
+              memory: 3840Mi
+            limits:
+              cpu: "3"
+              memory: 3840Mi
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 2
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          lifecycle:
+            preStop:
+              # Keep serving while the endpoint removal propagates to kube-proxy, so no
+              # new connection is routed to a pod that is about to stop.
+              exec:
+                command: ["sleep", "10"]
+          securityContext:
+            # Recommended by the vLLM CPU docs: lets vLLM apply NUMA memory binding.
+            capabilities:
+              add: ["SYS_NICE"]
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              readOnly: true
+            - name: dshm
+              mountPath: /dev/shm
+      volumes:
+        # Each worker mounts the host's ./models at /models (kind extraMounts).
+        - name: models
+          hostPath:
+            path: /models
+            type: Directory
+        # vLLM needs more than the 64 MiB /dev/shm a container gets by default.
+        - name: dshm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 512Mi

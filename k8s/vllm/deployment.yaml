@@ -56,8 +56,9 @@ spec:
             # (the default, 0, aborts) -- needed for zero-drop rolling updates.
             - --shutdown-timeout=60
           env:
-            # Bind OpenMP threads to the pod's exclusive cpuset (given by the static CPU
-            # manager). vLLM keeps one of the pod's cores for the scheduler/API server.
+            # Intended to bind OpenMP threads inside the pod's exclusive cpuset. Note: with
+            # VLLM_ENABLE_V1_MULTIPROCESSING=0 (set in the image) vLLM does not apply this
+            # binding, so torch runs one thread per VM CPU on the pod's 3 cores (see README).
             - name: VLLM_CPU_OMP_THREADS_BIND
               value: auto
           ports:

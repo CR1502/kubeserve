@@ -1,0 +1,44 @@
+precondition: scaling deployment/vllm to 2 and waiting for 2 Ready pods on distinct workers
+  ok: pods {'vllm-5b6f494778-47h62': 'kubeserve-mn-worker2', 'vllm-5b6f494778-7l7rx': 'kubeserve-mn-worker3'}; victim vllm-5b6f494778-47h62 on kubeserve-mn-worker2; spare ['kubeserve-mn-worker']
+  crash target (pkill): {'method': 'pkill', 'matched_processes': ['11489 /opt/venv/bin/python /opt/venv/bin/vllm serve /models/Qwen2.5-0.5B-Instruct --served-model-name=qwen2.5-0.5b-instruct --host=0.0.0.0 --port=8000 --dtype=bfloat16 --max-model-len=2048 --max-num-seqs=32 --kv-cache-memory-bytes=268435456 --enforce-eager --generation-config=vllm --shutdown-timeout=60']}
+  19:00:44  node     kubeserve-mn-control-plane  exists: - -> yes
+  19:00:44  node     kubeserve-mn-control-plane  ready: - -> True
+  19:00:44  node     kubeserve-mn-control-plane  taints: - -> node-role.kubernetes.io/control-plane:NoSchedule
+  19:00:44  node     kubeserve-mn-worker  exists: - -> yes
+  19:00:44  node     kubeserve-mn-worker  ready: - -> True
+  19:00:44  node     kubeserve-mn-worker2  exists: - -> yes
+  19:00:44  node     kubeserve-mn-worker2  ready: - -> True
+  19:00:44  node     kubeserve-mn-worker3  exists: - -> yes
+  19:00:44  node     kubeserve-mn-worker3  ready: - -> True
+  19:00:44  pod      vllm-5b6f494778-47h62  exists: - -> yes
+  19:00:44  pod      vllm-5b6f494778-47h62  node: - -> kubeserve-mn-worker2
+  19:00:44  pod      vllm-5b6f494778-47h62  phase: - -> Running
+  19:00:44  pod      vllm-5b6f494778-47h62  ready: - -> True
+  19:00:44  pod      vllm-5b6f494778-47h62  restarts: - -> 0
+  19:00:44  pod      vllm-5b6f494778-47h62  container: - -> running since 2026-11-02T23:57:36Z
+  19:00:44  pod      vllm-5b6f494778-7l7rx  exists: - -> yes
+  19:00:44  pod      vllm-5b6f494778-7l7rx  node: - -> kubeserve-mn-worker3
+  19:00:44  pod      vllm-5b6f494778-7l7rx  phase: - -> Running
+  19:00:44  pod      vllm-5b6f494778-7l7rx  ready: - -> True
+  19:00:44  pod      vllm-5b6f494778-7l7rx  restarts: - -> 0
+  19:00:44  pod      vllm-5b6f494778-7l7rx  container: - -> running since 2026-11-02T22:55:20Z
+  19:00:44  endpoint vllm-5b6f494778-47h62  state: - -> ready
+  19:00:44  endpoint vllm-5b6f494778-7l7rx  state: - -> ready
+  19:00:44  service  vllm  ready_count: - -> 2
+load: 8 closed-loop clients, timeout 60s, retry=no
+fault: process-crash on kubeserve-mn-worker2 (pod vllm-5b6f494778-47h62)
+waiting for recovery (cap 600s)
+  19:01:48  pod      vllm-5b6f494778-47h62  ready: True -> False
+  19:01:48  pod      vllm-5b6f494778-47h62  restarts: 0 -> 1
+  19:01:48  pod      vllm-5b6f494778-47h62  container: running since 2026-11-02T23:57:36Z -> running since 2026-11-03T00:01:47Z
+  19:01:48  endpoint vllm-5b6f494778-47h62  state: ready -> not-ready
+  19:01:48  service  vllm  ready_count: 2 -> 1
+  19:02:19  pod      vllm-5b6f494778-47h62  ready: False -> True
+  19:02:19  endpoint vllm-5b6f494778-47h62  state: not-ready -> ready
+  19:02:19  service  vllm  ready_count: 1 -> 2
+  recovered after 33.1s; 90s more of load
+load: stopping, waiting for in-flight requests
+restore: waiting for exactly 2 Ready vLLM pods
+
+7 of 115 requests failed; recovered: True (33.1 s)
+wrote multinode/results/failure/process-crash/

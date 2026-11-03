@@ -15,7 +15,7 @@ spec:
   maxReplicas: 2
   metrics:
     # CPU utilisation relative to the pod's 3-core request. Measured: an idle vLLM pod
-    # sits around 1-2%, a pod serving traffic at 65-75% (2 compute threads + scheduler).
+    # sits around 1-2%, a pod serving traffic at 65-75% (its oversubscribed torch threads use ~2 of 3 cores).
     - type: Resource
       resource:
         name: cpu

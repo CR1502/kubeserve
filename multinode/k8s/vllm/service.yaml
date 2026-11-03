@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vllm
+  namespace: kubeserve
+  labels:
+    app.kubernetes.io/name: vllm
+    app.kubernetes.io/part-of: kubeserve
+spec:
+  # NodePort so the client on the host reaches it via kind's port mapping, which exists
+  # on the control-plane node only (host :30080 -> control-plane :30080).
+  type: NodePort
+  # Cluster (the default, set explicitly): the ingress node (control-plane, which runs
+  # no vLLM pod) forwards each new connection to a ready vLLM pod on ANY node. `Local`
+  # would drop everything, because the ingress node has no local endpoint.
+  externalTrafficPolicy: Cluster
+  selector:
+    app: vllm
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
+      nodePort: 30080

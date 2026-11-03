@@ -8,7 +8,8 @@ ARG KUBESERVE_VERSION=v1
 LABEL org.opencontainers.image.title="kubeserve-vllm" \
       org.opencontainers.image.version="${KUBESERVE_VERSION}"
 
-# Run the engine core inside the API-server process instead of a separate process.
+# Run the model worker inside the engine-core process instead of as a separate worker process
+# (2 processes per pod instead of 3; the API server stays its own process).
 # Measured on this machine: ~3.4 GiB vs ~3.9 GiB RSS per replica with equal throughput,
 # which is what lets two replicas fit on the single 9 GiB kind node.
 ENV KUBESERVE_VERSION=${KUBESERVE_VERSION} \

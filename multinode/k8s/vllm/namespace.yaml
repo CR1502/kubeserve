@@ -1,0 +1,6 @@
+# Same namespace as the root project's k8s/namespace.yaml (copied, because kustomize
+# does not load files from outside a kustomization's directory).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubeserve

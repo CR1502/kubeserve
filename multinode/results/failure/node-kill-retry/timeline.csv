@@ -1,0 +1,75 @@
+t,t_rel_fault_s,t_prev_poll,kind,name,field,old,new
+1793664386.364738,-62.02,,node,kubeserve-mn-control-plane,exists,,yes
+1793664386.364738,-62.02,,node,kubeserve-mn-control-plane,ready,,True
+1793664386.364738,-62.02,,node,kubeserve-mn-control-plane,taints,,node-role.kubernetes.io/control-plane:NoSchedule
+1793664386.364738,-62.02,,node,kubeserve-mn-control-plane,ready_reason,,KubeletReady
+1793664386.364738,-62.02,,node,kubeserve-mn-control-plane,ready_since,,2026-11-02T22:25:28Z
+1793664386.364738,-62.02,,node,kubeserve-mn-worker,exists,,yes
+1793664386.364738,-62.02,,node,kubeserve-mn-worker,ready,,True
+1793664386.364738,-62.02,,node,kubeserve-mn-worker,ready_reason,,KubeletReady
+1793664386.364738,-62.02,,node,kubeserve-mn-worker,ready_since,,2026-11-02T23:59:53Z
+1793664386.364738,-62.02,,node,kubeserve-mn-worker2,exists,,yes
+1793664386.364738,-62.02,,node,kubeserve-mn-worker2,ready,,True
+1793664386.364738,-62.02,,node,kubeserve-mn-worker2,ready_reason,,KubeletReady
+1793664386.364738,-62.02,,node,kubeserve-mn-worker2,ready_since,,2026-11-02T23:02:56Z
+1793664386.364738,-62.02,,node,kubeserve-mn-worker3,exists,,yes
+1793664386.364738,-62.02,,node,kubeserve-mn-worker3,ready,,True
+1793664386.364738,-62.02,,node,kubeserve-mn-worker3,ready_reason,,KubeletReady
+1793664386.364738,-62.02,,node,kubeserve-mn-worker3,ready_since,,2026-11-02T22:25:35Z
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,exists,,yes
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,node,,kubeserve-mn-worker2
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,phase,,Running
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,ready,,True
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,restarts,,1
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,container,,running since 2026-11-03T00:01:47Z
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,last_terminated,,terminated: Error exit 137 at 2026-11-03T00:01:46Z
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,ready_since,,2026-11-03T00:02:19Z
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-47h62,created,,2026-11-02T23:57:36Z
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,exists,,yes
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,node,,kubeserve-mn-worker3
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,phase,,Running
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,ready,,True
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,restarts,,0
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,container,,running since 2026-11-02T22:55:20Z
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,ready_since,,2026-11-02T22:55:55Z
+1793664386.364738,-62.02,,pod,vllm-5b6f494778-7l7rx,created,,2026-11-02T22:55:19Z
+1793664386.364738,-62.02,,endpoint,vllm-5b6f494778-47h62,state,,ready
+1793664386.364738,-62.02,,endpoint,vllm-5b6f494778-7l7rx,state,,ready
+1793664386.364738,-62.02,,service,vllm,ready_count,,2
+1793664386.364738,-62.02,,service,vllm,ready_pods,,vllm-5b6f494778-47h62;vllm-5b6f494778-7l7rx
+1793664493.563798,45.17,1793664492.5203211,node,kubeserve-mn-worker2,ready,True,Unknown
+1793664493.563798,45.17,1793664492.5203211,node,kubeserve-mn-worker2,taints,,"node.kubernetes.io/unreachable:NoExecute,node.kubernetes.io/unreachable:NoSchedule"
+1793664493.563798,45.17,1793664492.5203211,node,kubeserve-mn-worker2,ready_reason,KubeletReady,NodeStatusUnknown
+1793664493.563798,45.17,1793664492.5203211,node,kubeserve-mn-worker2,ready_since,2026-11-02T23:02:56Z,2026-11-03T00:08:13Z
+1793664493.563798,45.17,1793664492.5203211,pod,vllm-5b6f494778-47h62,ready,True,False
+1793664493.563798,45.17,1793664492.5203211,pod,vllm-5b6f494778-47h62,ready_since,2026-11-03T00:02:19Z,2026-11-03T00:08:13Z
+1793664493.563798,45.17,1793664492.5203211,endpoint,vllm-5b6f494778-47h62,state,ready,not-ready
+1793664493.563798,45.17,1793664492.5203211,service,vllm,ready_count,2,1
+1793664493.563798,45.17,1793664492.5203211,service,vllm,ready_pods,vllm-5b6f494778-47h62;vllm-5b6f494778-7l7rx,vllm-5b6f494778-7l7rx
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-47h62,deleting,,2026-11-03T00:10:13Z
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,exists,,yes
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,node,,kubeserve-mn-worker
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,phase,,Pending
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,ready,,False
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,restarts,,0
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,container,,waiting: ContainerCreating
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,ready_since,,2026-11-03T00:08:43Z
+1793664523.5935922,75.2,1793664522.548218,pod,vllm-5b6f494778-4n8zl,created,,2026-11-03T00:08:43Z
+1793664523.5935922,75.2,1793664522.548218,endpoint,vllm-5b6f494778-47h62,state,not-ready,terminating
+1793664524.629138,76.24,1793664523.549331,pod,vllm-5b6f494778-4n8zl,phase,Pending,Running
+1793664524.629138,76.24,1793664523.549331,pod,vllm-5b6f494778-4n8zl,container,waiting: ContainerCreating,running since 2026-11-03T00:08:43Z
+1793664524.629138,76.24,1793664523.549331,endpoint,vllm-5b6f494778-4n8zl,state,,not-ready
+1793664554.6480682,106.26,1793664553.5797162,pod,vllm-5b6f494778-4n8zl,ready,False,True
+1793664554.6480682,106.26,1793664553.5797162,pod,vllm-5b6f494778-4n8zl,ready_since,2026-11-03T00:08:43Z,2026-11-03T00:09:13Z
+1793664554.6480682,106.26,1793664553.5797162,endpoint,vllm-5b6f494778-4n8zl,state,not-ready,ready
+1793664554.6480682,106.26,1793664553.5797162,service,vllm,ready_count,1,2
+1793664554.6480682,106.26,1793664553.5797162,service,vllm,ready_pods,vllm-5b6f494778-7l7rx,vllm-5b6f494778-4n8zl;vllm-5b6f494778-7l7rx
+1793664657.7764952,209.39,1793664656.675756,node,kubeserve-mn-worker2,ready,Unknown,True
+1793664657.7764952,209.39,1793664656.675756,node,kubeserve-mn-worker2,taints,"node.kubernetes.io/unreachable:NoExecute,node.kubernetes.io/unreachable:NoSchedule",node.kubernetes.io/unreachable:NoExecute
+1793664657.7764952,209.39,1793664656.675756,node,kubeserve-mn-worker2,ready_reason,NodeStatusUnknown,KubeletReady
+1793664657.7764952,209.39,1793664656.675756,node,kubeserve-mn-worker2,ready_since,2026-11-03T00:08:13Z,2026-11-03T00:10:56Z
+1793664657.7764952,209.39,1793664656.675756,pod,vllm-5b6f494778-47h62,container,running since 2026-11-03T00:01:47Z,terminated: Unknown exit 255 at 2026-11-03T00:10:55Z
+1793664657.7764952,209.39,1793664656.675756,endpoint,vllm-5b6f494778-47h62,state,terminating,absent
+1793664658.731331,210.34,1793664657.6769311,node,kubeserve-mn-worker2,taints,node.kubernetes.io/unreachable:NoExecute,
+1793664658.731331,210.34,1793664657.6769311,pod,vllm-5b6f494778-47h62,phase,Running,Failed
+1793664659.7451148,211.36,1793664658.677691,pod,vllm-5b6f494778-47h62,exists,yes,gone
