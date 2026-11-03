@@ -1,0 +1,5973 @@
+{
+  "generated_utc": "2026-11-03T01:11:27+00:00",
+  "generator": "multinode/bench/report.py",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct (bfloat16)",
+  "accelerator": "none -- CPU only (no GPU was used)",
+  "sources": {
+    "scaling_runs": [
+      {
+        "file": "multinode/results/raw/scaling-run1.json",
+        "run": 1,
+        "repeat": 1,
+        "status": "complete",
+        "error": null,
+        "started_utc": "2026-11-02T23:08:43+00:00",
+        "finished_utc": "2026-11-02T23:54:32+00:00",
+        "replica_order": [
+          1,
+          2,
+          3
+        ],
+        "concurrency_levels": [
+          1,
+          4,
+          8,
+          16,
+          32,
+          48
+        ],
+        "levels_planned": 18,
+        "levels_measured": 18,
+        "measured": [
+          {
+            "replicas": 1,
+            "concurrency": [
+              1,
+              4,
+              8,
+              16,
+              32,
+              48
+            ]
+          },
+          {
+            "replicas": 2,
+            "concurrency": [
+              1,
+              4,
+              8,
+              16,
+              32,
+              48
+            ]
+          },
+          {
+            "replicas": 3,
+            "concurrency": [
+              1,
+              4,
+              8,
+              16,
+              32,
+              48
+            ]
+          }
+        ],
+        "rejected_attempts": 2,
+        "used": true
+      },
+      {
+        "file": "multinode/results/raw/scaling-run2.json",
+        "run": 2,
+        "repeat": 2,
+        "status": "complete",
+        "error": null,
+        "started_utc": "2026-11-03T00:11:18+00:00",
+        "finished_utc": "2026-11-03T00:54:27+00:00",
+        "replica_order": [
+          3,
+          2,
+          1
+        ],
+        "concurrency_levels": [
+          1,
+          4,
+          8,
+          16,
+          32,
+          48
+        ],
+        "levels_planned": 18,
+        "levels_measured": 18,
+        "measured": [
+          {
+            "replicas": 3,
+            "concurrency": [
+              1,
+              4,
+              8,
+              16,
+              32,
+              48
+            ]
+          },
+          {
+            "replicas": 2,
+            "concurrency": [
+              1,
+              4,
+              8,
+              16,
+              32,
+              48
+            ]
+          },
+          {
+            "replicas": 1,
+            "concurrency": [
+              1,
+              4,
+              8,
+              16,
+              32,
+              48
+            ]
+          }
+        ],
+        "rejected_attempts": 2,
+        "used": true
+      }
+    ],
+    "planned_runs": [
+      1,
+      2
+    ],
+    "missing_runs": [],
+    "original": {
+      "file": "results/results.json",
+      "generated_utc": "2026-10-08T04:48:44+00:00",
+      "vllm_runs": 2
+    },
+    "failure_dir": "multinode/results/failure"
+  },
+  "environment": {
+    "timestamp_utc": "2026-11-02T23:08:44+00:00",
+    "host": {
+      "machine": "Apple M3 Pro",
+      "os": "Darwin 27.0.0",
+      "logical_cpus": 11,
+      "memory_gib": 18.0,
+      "docker_vm": {
+        "cpus": 10,
+        "memory_gib": 12.64
+      }
+    },
+    "cluster": {
+      "kube_context": "kind-kubeserve-mn",
+      "nodes": 4,
+      "workers": 3,
+      "kubelet_version": "v1.37.0",
+      "kube_proxy_mode": "iptables",
+      "node_details": [
+        {
+          "name": "kubeserve-mn-control-plane",
+          "roles": [
+            "control-plane"
+          ],
+          "kubelet_version": "v1.37.0",
+          "container_runtime": "containerd://2.3.4",
+          "kernel": "6.8.0-117-generic",
+          "os_image": "Debian GNU/Linux 13 (trixie)",
+          "capacity": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "allocatable": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "labels": {
+            "beta.kubernetes.io/arch": "arm64",
+            "beta.kubernetes.io/os": "linux",
+            "kubernetes.io/arch": "arm64",
+            "kubernetes.io/hostname": "kubeserve-mn-control-plane",
+            "kubernetes.io/os": "linux",
+            "node-role.kubernetes.io/control-plane": "",
+            "node.kubernetes.io/exclude-from-external-load-balancers": ""
+          },
+          "docker": {
+            "cpuset_cpus": "0",
+            "nano_cpus": 0,
+            "memory_bytes": 0
+          }
+        },
+        {
+          "name": "kubeserve-mn-worker",
+          "roles": [
+            "worker"
+          ],
+          "kubelet_version": "v1.37.0",
+          "container_runtime": "containerd://2.3.4",
+          "kernel": "6.8.0-117-generic",
+          "os_image": "Debian GNU/Linux 13 (trixie)",
+          "capacity": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "allocatable": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "labels": {
+            "beta.kubernetes.io/arch": "arm64",
+            "beta.kubernetes.io/os": "linux",
+            "kubernetes.io/arch": "arm64",
+            "kubernetes.io/hostname": "kubeserve-mn-worker",
+            "kubernetes.io/os": "linux",
+            "kubeserve.io/role": "inference"
+          },
+          "docker": {
+            "cpuset_cpus": "1-3",
+            "nano_cpus": 0,
+            "memory_bytes": 0
+          }
+        },
+        {
+          "name": "kubeserve-mn-worker2",
+          "roles": [
+            "worker"
+          ],
+          "kubelet_version": "v1.37.0",
+          "container_runtime": "containerd://2.3.4",
+          "kernel": "6.8.0-117-generic",
+          "os_image": "Debian GNU/Linux 13 (trixie)",
+          "capacity": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "allocatable": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "labels": {
+            "beta.kubernetes.io/arch": "arm64",
+            "beta.kubernetes.io/os": "linux",
+            "kubernetes.io/arch": "arm64",
+            "kubernetes.io/hostname": "kubeserve-mn-worker2",
+            "kubernetes.io/os": "linux",
+            "kubeserve.io/role": "inference"
+          },
+          "docker": {
+            "cpuset_cpus": "4-6",
+            "nano_cpus": 0,
+            "memory_bytes": 0
+          }
+        },
+        {
+          "name": "kubeserve-mn-worker3",
+          "roles": [
+            "worker"
+          ],
+          "kubelet_version": "v1.37.0",
+          "container_runtime": "containerd://2.3.4",
+          "kernel": "6.8.0-117-generic",
+          "os_image": "Debian GNU/Linux 13 (trixie)",
+          "capacity": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "allocatable": {
+            "cpu": "10",
+            "memory": "13250740Ki"
+          },
+          "labels": {
+            "beta.kubernetes.io/arch": "arm64",
+            "beta.kubernetes.io/os": "linux",
+            "kubernetes.io/arch": "arm64",
+            "kubernetes.io/hostname": "kubeserve-mn-worker3",
+            "kubernetes.io/os": "linux",
+            "kubeserve.io/role": "inference"
+          },
+          "docker": {
+            "cpuset_cpus": "7-9",
+            "nano_cpus": 0,
+            "memory_bytes": 0
+          }
+        }
+      ]
+    },
+    "deployment": {
+      "name": "vllm",
+      "image": "kubeserve-vllm:v1",
+      "args": [
+        "/models/Qwen2.5-0.5B-Instruct",
+        "--served-model-name=qwen2.5-0.5b-instruct",
+        "--host=0.0.0.0",
+        "--port=8000",
+        "--dtype=bfloat16",
+        "--max-model-len=2048",
+        "--max-num-seqs=32",
+        "--kv-cache-memory-bytes=268435456",
+        "--enforce-eager",
+        "--generation-config=vllm",
+        "--shutdown-timeout=60"
+      ],
+      "env": [
+        {
+          "name": "VLLM_CPU_OMP_THREADS_BIND",
+          "value": "auto"
+        },
+        {
+          "name": "TORCH_COMPILE_DISABLE",
+          "value": "1"
+        }
+      ],
+      "resources": {
+        "limits": {
+          "cpu": "3",
+          "memory": "3840Mi"
+        },
+        "requests": {
+          "cpu": "3",
+          "memory": "3840Mi"
+        }
+      },
+      "node_selector": {
+        "kubeserve.io/role": "inference"
+      },
+      "affinity": {
+        "podAntiAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": [
+            {
+              "labelSelector": {
+                "matchLabels": {
+                  "app": "vllm"
+                }
+              },
+              "topologyKey": "kubernetes.io/hostname"
+            }
+          ]
+        }
+      },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": 0,
+          "maxUnavailable": 1
+        },
+        "type": "RollingUpdate"
+      }
+    },
+    "service": {
+      "name": "vllm",
+      "type": "NodePort",
+      "external_traffic_policy": "Cluster",
+      "internal_traffic_policy": "Cluster",
+      "session_affinity": "None",
+      "selector": {
+        "app": "vllm"
+      },
+      "ports": [
+        {
+          "port": 8000,
+          "targetPort": "http",
+          "nodePort": 30080
+        }
+      ]
+    }
+  },
+  "workload": {
+    "max_tokens": 128,
+    "ignore_eos": true,
+    "temperature": 0.0,
+    "concurrency_levels": [
+      1,
+      4,
+      8,
+      16,
+      32,
+      48
+    ],
+    "requests_per_level": {
+      "1": 16,
+      "4": 16,
+      "8": 32,
+      "16": 64,
+      "32": 128,
+      "48": 192
+    },
+    "repeats": 1,
+    "pattern": "closed loop: c workers, each sends its next request as soon as the previous returns",
+    "replica_counts": [
+      1,
+      2,
+      3
+    ],
+    "warmup": "after each scale: 2R requests at concurrency R, topped up until every pod has served >= 2; not recorded",
+    "keepalive": false,
+    "level_pause_s": 5.0,
+    "max_attempts_per_level": 5,
+    "host_max_sleep_s": 5.0,
+    "host_swap_limit_mib": 64.0
+  },
+  "planned_concurrency_levels": [
+    1,
+    4,
+    8,
+    16,
+    32,
+    48
+  ],
+  "planned_replica_counts": [
+    1,
+    2,
+    3
+  ],
+  "replica_setups": [
+    {
+      "run": 1,
+      "replicas": 1,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      },
+      "cpusets_disjoint": true,
+      "qos_class": {
+        "vllm-5b6f494778-7l7rx": "Guaranteed"
+      },
+      "settle_s": 0.2,
+      "served_models": [
+        "qwen2.5-0.5b-instruct"
+      ],
+      "warmup": {
+        "requests": 2,
+        "failed": 0,
+        "top_up_rounds": 0,
+        "served_lifetime_per_pod": {
+          "vllm-5b6f494778-7l7rx": 30
+        },
+        "cold_pods": []
+      }
+    },
+    {
+      "run": 1,
+      "replicas": 2,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      },
+      "cpusets_disjoint": true,
+      "qos_class": {
+        "vllm-5b6f494778-7l7rx": "Guaranteed",
+        "vllm-5b6f494778-vchkf": "Guaranteed"
+      },
+      "settle_s": 30.9,
+      "served_models": [
+        "qwen2.5-0.5b-instruct"
+      ],
+      "warmup": {
+        "requests": 10,
+        "failed": 0,
+        "top_up_rounds": 3,
+        "served_lifetime_per_pod": {
+          "vllm-5b6f494778-vchkf": 3,
+          "vllm-5b6f494778-7l7rx": 485
+        },
+        "cold_pods": []
+      }
+    },
+    {
+      "run": 1,
+      "replicas": 3,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-l55vl": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-l55vl": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      },
+      "cpusets_disjoint": true,
+      "qos_class": {
+        "vllm-5b6f494778-7l7rx": "Guaranteed",
+        "vllm-5b6f494778-l55vl": "Guaranteed",
+        "vllm-5b6f494778-vchkf": "Guaranteed"
+      },
+      "settle_s": 31.0,
+      "served_models": [
+        "qwen2.5-0.5b-instruct"
+      ],
+      "warmup": {
+        "requests": 6,
+        "failed": 0,
+        "top_up_rounds": 0,
+        "served_lifetime_per_pod": {
+          "vllm-5b6f494778-vchkf": 233,
+          "vllm-5b6f494778-l55vl": 2,
+          "vllm-5b6f494778-7l7rx": 723
+        },
+        "cold_pods": []
+      }
+    },
+    {
+      "run": 2,
+      "replicas": 3,
+      "placement": {
+        "vllm-5b6f494778-4n8zl": "kubeserve-mn-worker",
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-4n8zl": "1-3",
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      },
+      "cpusets_disjoint": true,
+      "qos_class": {
+        "vllm-5b6f494778-4n8zl": "Guaranteed",
+        "vllm-5b6f494778-7l7rx": "Guaranteed",
+        "vllm-5b6f494778-8nkqs": "Guaranteed"
+      },
+      "settle_s": 30.9,
+      "served_models": [
+        "qwen2.5-0.5b-instruct"
+      ],
+      "warmup": {
+        "requests": 6,
+        "failed": 0,
+        "top_up_rounds": 0,
+        "served_lifetime_per_pod": {
+          "vllm-5b6f494778-4n8zl": 28,
+          "vllm-5b6f494778-8nkqs": 3,
+          "vllm-5b6f494778-7l7rx": 1117
+        },
+        "cold_pods": []
+      }
+    },
+    {
+      "run": 2,
+      "replicas": 2,
+      "placement": {
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      },
+      "cpusets_disjoint": true,
+      "qos_class": {
+        "vllm-5b6f494778-7l7rx": "Guaranteed",
+        "vllm-5b6f494778-8nkqs": "Guaranteed"
+      },
+      "settle_s": 15.7,
+      "served_models": [
+        "qwen2.5-0.5b-instruct"
+      ],
+      "warmup": {
+        "requests": 4,
+        "failed": 0,
+        "top_up_rounds": 0,
+        "served_lifetime_per_pod": {
+          "vllm-5b6f494778-8nkqs": 157,
+          "vllm-5b6f494778-7l7rx": 1274
+        },
+        "cold_pods": []
+      }
+    },
+    {
+      "run": 2,
+      "replicas": 1,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      },
+      "cpusets_disjoint": true,
+      "qos_class": {
+        "vllm-5b6f494778-7l7rx": "Guaranteed"
+      },
+      "settle_s": 15.6,
+      "served_models": [
+        "qwen2.5-0.5b-instruct"
+      ],
+      "warmup": {
+        "requests": 2,
+        "failed": 0,
+        "top_up_rounds": 0,
+        "served_lifetime_per_pod": {
+          "vllm-5b6f494778-7l7rx": 1510
+        },
+        "cold_pods": []
+      }
+    }
+  ],
+  "levels": [
+    {
+      "replicas": 1,
+      "concurrency": 1,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 32,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.09651,
+        "min": 0.095762,
+        "max": 0.097258,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 12.353263,
+        "min": 12.257475,
+        "max": 12.449051,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 10.311856,
+        "min": 10.259104,
+        "max": 10.364608,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 10.676666,
+        "min": 10.606778,
+        "max": 10.746554,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 10.70596,
+        "min": 10.611544,
+        "max": 10.800376,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 1.98,
+        "min": 1.97,
+        "max": 1.99,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.98,
+        "min": 1.97,
+        "max": 1.99,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 66.0,
+        "min": 65.7,
+        "max": 66.3,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3316.5,
+        "min": 3310,
+        "max": 3323,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 6.238937,
+        "min": 6.222068,
+        "max": 6.255805,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.97,
+      "cores_per_pod_highest": 1.99,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.0,
+      "scaling_efficiency": 1.0
+    },
+    {
+      "replicas": 1,
+      "concurrency": 4,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 32,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.359754,
+        "min": 0.35769,
+        "max": 0.361819,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 46.04855,
+        "min": 45.784333,
+        "max": 46.312768,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 11.101753,
+        "min": 11.031437,
+        "max": 11.172069,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 11.243446,
+        "min": 11.181828,
+        "max": 11.305064,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 11.243898,
+        "min": 11.182471,
+        "max": 11.305326,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 2.084,
+        "min": 2.076,
+        "max": 2.092,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.084,
+        "min": 2.076,
+        "max": 2.092,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 69.45,
+        "min": 69.2,
+        "max": 69.7,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3320.5,
+        "min": 3314,
+        "max": 3327,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 22.096072,
+        "min": 22.05411,
+        "max": 22.138035,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 2.076,
+      "cores_per_pod_highest": 2.092,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.0,
+      "scaling_efficiency": 1.0
+    },
+    {
+      "replicas": 1,
+      "concurrency": 8,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 64,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.580608,
+        "min": 0.568908,
+        "max": 0.592307,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 74.317767,
+        "min": 72.820222,
+        "max": 75.815313,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 13.712625,
+        "min": 13.479196,
+        "max": 13.946054,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 13.986752,
+        "min": 13.607544,
+        "max": 14.365959,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 13.987493,
+        "min": 13.608599,
+        "max": 14.366387,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 2.135,
+        "min": 2.119,
+        "max": 2.151,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.135,
+        "min": 2.119,
+        "max": 2.151,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 71.15,
+        "min": 70.6,
+        "max": 71.7,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3325,
+        "min": 3321,
+        "max": 3329,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 34.805957,
+        "min": 34.365371,
+        "max": 35.246542,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 2.119,
+      "cores_per_pod_highest": 2.151,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.0,
+      "scaling_efficiency": 1.0
+    },
+    {
+      "replicas": 1,
+      "concurrency": 16,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 128,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.6898,
+        "min": 0.683214,
+        "max": 0.696386,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 88.294437,
+        "min": 87.451406,
+        "max": 89.137469,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 23.154589,
+        "min": 22.936048,
+        "max": 23.373131,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 23.49679,
+        "min": 23.18928,
+        "max": 23.8043,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 23.498492,
+        "min": 23.191004,
+        "max": 23.805979,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 2.309,
+        "min": 2.298,
+        "max": 2.32,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.309,
+        "min": 2.298,
+        "max": 2.32,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 76.95,
+        "min": 76.6,
+        "max": 77.3,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3348,
+        "min": 3343,
+        "max": 3353,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 38.238382,
+        "min": 38.055442,
+        "max": 38.421323,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 2.298,
+      "cores_per_pod_highest": 2.32,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.0,
+      "scaling_efficiency": 1.0
+    },
+    {
+      "replicas": 1,
+      "concurrency": 32,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 256,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.765224,
+        "min": 0.764618,
+        "max": 0.765829,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 97.948634,
+        "min": 97.871141,
+        "max": 98.026126,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 41.719566,
+        "min": 41.660803,
+        "max": 41.778329,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 42.305864,
+        "min": 42.226245,
+        "max": 42.385484,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 42.307502,
+        "min": 42.228217,
+        "max": 42.386787,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 2.43,
+        "min": 2.426,
+        "max": 2.434,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.43,
+        "min": 2.426,
+        "max": 2.434,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 81.0,
+        "min": 80.9,
+        "max": 81.1,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3385.5,
+        "min": 3375,
+        "max": 3396,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 40.308241,
+        "min": 40.21,
+        "max": 40.406482,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 2.426,
+      "cores_per_pod_highest": 2.434,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.0,
+      "scaling_efficiency": 1.0
+    },
+    {
+      "replicas": 1,
+      "concurrency": 48,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 384,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.763662,
+        "min": 0.756685,
+        "max": 0.770638,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 97.748686,
+        "min": 96.855743,
+        "max": 98.641629,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 45.548889,
+        "min": 45.059759,
+        "max": 46.03802,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 83.759438,
+        "min": 83.232676,
+        "max": 84.286199,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 83.776107,
+        "min": 83.23683,
+        "max": 84.315384,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 2.421,
+        "min": 2.41,
+        "max": 2.432,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.421,
+        "min": 2.41,
+        "max": 2.432,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 80.7,
+        "min": 80.3,
+        "max": 81.1,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3386,
+        "min": 3379,
+        "max": 3393,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 40.374493,
+        "min": 40.189105,
+        "max": 40.55988,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 2.41,
+      "cores_per_pod_highest": 2.432,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.0,
+      "scaling_efficiency": 1.0
+    },
+    {
+      "replicas": 2,
+      "concurrency": 1,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 32,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.093296,
+        "min": 0.09078,
+        "max": 0.095812,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 11.941859,
+        "min": 11.619823,
+        "max": 12.263894,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 10.726985,
+        "min": 10.4584,
+        "max": 10.995569,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 10.96216,
+        "min": 10.665114,
+        "max": 11.259207,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 10.977425,
+        "min": 10.675188,
+        "max": 11.279661,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 1.963,
+        "min": 1.951,
+        "max": 1.975,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 0.9815,
+        "min": 0.9755,
+        "max": 0.9875,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 32.725,
+        "min": 32.5,
+        "max": 32.95,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3376.5,
+        "min": 3344,
+        "max": 3409,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 6.082698,
+        "min": 5.955829,
+        "max": 6.209567,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 0.743,
+      "cores_per_pod_highest": 1.232,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 0.966697,
+      "scaling_efficiency": 0.483348
+    },
+    {
+      "replicas": 2,
+      "concurrency": 4,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 32,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.32135,
+        "min": 0.31555,
+        "max": 0.32715,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 41.132816,
+        "min": 40.390379,
+        "max": 41.875254,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 12.336679,
+        "min": 12.036897,
+        "max": 12.63646,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 13.224831,
+        "min": 13.142675,
+        "max": 13.306987,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 13.249834,
+        "min": 13.191618,
+        "max": 13.308051,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 3.8185,
+        "min": 3.8,
+        "max": 3.837,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.90925,
+        "min": 1.9,
+        "max": 1.9185,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 63.625,
+        "min": 63.3,
+        "max": 63.95,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3379,
+        "min": 3346,
+        "max": 3412,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 10.773178,
+        "min": 10.526552,
+        "max": 11.019804,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.882,
+      "cores_per_pod_highest": 1.935,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 0.893249,
+      "scaling_efficiency": 0.446624
+    },
+    {
+      "replicas": 2,
+      "concurrency": 8,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 64,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.544293,
+        "min": 0.524504,
+        "max": 0.564083,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 69.669546,
+        "min": 67.136461,
+        "max": 72.20263,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 13.624503,
+        "min": 13.401513,
+        "max": 13.847492,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 17.832958,
+        "min": 15.152048,
+        "max": 20.513867,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 17.839773,
+        "min": 15.164048,
+        "max": 20.515498,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 3.878,
+        "min": 3.834,
+        "max": 3.922,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.939,
+        "min": 1.917,
+        "max": 1.961,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 64.65,
+        "min": 63.9,
+        "max": 65.4,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3381,
+        "min": 3349,
+        "max": 3413,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 17.96023,
+        "min": 17.510814,
+        "max": 18.409646,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.914,
+      "cores_per_pod_highest": 1.97,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 0.937455,
+      "scaling_efficiency": 0.468727
+    },
+    {
+      "replicas": 2,
+      "concurrency": 16,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 128,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.797971,
+        "min": 0.76734,
+        "max": 0.828601,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 102.140278,
+        "min": 98.219573,
+        "max": 106.060984,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 17.978809,
+        "min": 17.342879,
+        "max": 18.61474,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 25.057347,
+        "min": 24.799789,
+        "max": 25.314904,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 25.143712,
+        "min": 24.970868,
+        "max": 25.316557,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 3.919,
+        "min": 3.787,
+        "max": 4.051,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.9595,
+        "min": 1.8935,
+        "max": 2.0255,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 65.325,
+        "min": 63.15,
+        "max": 67.5,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3388.5,
+        "min": 3358,
+        "max": 3419,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 26.058709,
+        "min": 25.935984,
+        "max": 26.181433,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.733,
+      "cores_per_pod_highest": 2.054,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.156814,
+      "scaling_efficiency": 0.578407
+    },
+    {
+      "replicas": 2,
+      "concurrency": 32,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 256,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 1.01847,
+        "min": 0.998883,
+        "max": 1.038057,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 130.364177,
+        "min": 127.857041,
+        "max": 132.871314,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 28.102375,
+        "min": 27.966624,
+        "max": 28.238127,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 36.350143,
+        "min": 35.978075,
+        "max": 36.722211,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 36.578635,
+        "min": 35.980433,
+        "max": 37.176836,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 4.318,
+        "min": 4.264,
+        "max": 4.372,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.159,
+        "min": 2.132,
+        "max": 2.186,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 72.0,
+        "min": 71.1,
+        "max": 72.9,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3403.5,
+        "min": 3372,
+        "max": 3435,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 30.202855,
+        "min": 29.24452,
+        "max": 31.16119,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 2.057,
+      "cores_per_pod_highest": 2.216,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.330944,
+      "scaling_efficiency": 0.665472
+    },
+    {
+      "replicas": 2,
+      "concurrency": 48,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 384,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 1.155432,
+        "min": 1.135642,
+        "max": 1.175223,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 147.895345,
+        "min": 145.362198,
+        "max": 150.428491,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 37.506314,
+        "min": 37.087141,
+        "max": 37.925488,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 50.058161,
+        "min": 46.769578,
+        "max": 53.346743,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 56.571372,
+        "min": 46.883096,
+        "max": 66.259648,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 4.556,
+        "min": 4.497,
+        "max": 4.615,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.278,
+        "min": 2.2485,
+        "max": 2.3075,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 75.925,
+        "min": 74.95,
+        "max": 76.9,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3416.5,
+        "min": 3394,
+        "max": 3439,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 32.459908,
+        "min": 32.32426,
+        "max": 32.595556,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 2.18,
+      "cores_per_pod_highest": 2.331,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.513016,
+      "scaling_efficiency": 0.756508
+    },
+    {
+      "replicas": 3,
+      "concurrency": 1,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 32,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.093181,
+        "min": 0.09166,
+        "max": 0.094702,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 11.927184,
+        "min": 11.73253,
+        "max": 12.121837,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 10.721503,
+        "min": 10.555096,
+        "max": 10.88791,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 11.022805,
+        "min": 10.727515,
+        "max": 11.318095,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 11.055853,
+        "min": 10.792753,
+        "max": 11.318954,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 1.985,
+        "min": 1.972,
+        "max": 1.998,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 0.661667,
+        "min": 0.657333,
+        "max": 0.666,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 22.05,
+        "min": 21.9,
+        "max": 22.2,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3450.5,
+        "min": 3413,
+        "max": 3488,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 6.008272,
+        "min": 5.949559,
+        "max": 6.066985,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 0.379,
+      "cores_per_pod_highest": 1.097,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 0.965509,
+      "scaling_efficiency": 0.321836
+    },
+    {
+      "replicas": 3,
+      "concurrency": 4,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 32,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.29108,
+        "min": 0.280826,
+        "max": 0.301334,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 37.258227,
+        "min": 35.945728,
+        "max": 38.570726,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 13.145557,
+        "min": 12.450118,
+        "max": 13.840995,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 16.028228,
+        "min": 15.38778,
+        "max": 16.668677,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 16.244918,
+        "min": 15.42582,
+        "max": 17.064017,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 4.482,
+        "min": 3.921,
+        "max": 5.043,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.494,
+        "min": 1.307,
+        "max": 1.681,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 49.8,
+        "min": 43.566667,
+        "max": 56.033333,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3452.5,
+        "min": 3414,
+        "max": 3491,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 8.482404,
+        "min": 7.127846,
+        "max": 9.836962,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 0.99,
+      "cores_per_pod_highest": 1.857,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 0.809107,
+      "scaling_efficiency": 0.269702
+    },
+    {
+      "replicas": 3,
+      "concurrency": 8,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 64,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.507078,
+        "min": 0.506175,
+        "max": 0.507981,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 64.905975,
+        "min": 64.790362,
+        "max": 65.021587,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 15.28503,
+        "min": 15.131453,
+        "max": 15.438608,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 16.5785,
+        "min": 16.238029,
+        "max": 16.918971,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 16.832824,
+        "min": 16.437142,
+        "max": 17.228506,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 5.3515,
+        "min": 5.08,
+        "max": 5.623,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.783833,
+        "min": 1.693333,
+        "max": 1.874333,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 59.483333,
+        "min": 56.466667,
+        "max": 62.5,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3452,
+        "min": 3415,
+        "max": 3489,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 12.158757,
+        "min": 11.563505,
+        "max": 12.754008,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.388,
+      "cores_per_pod_highest": 1.913,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 0.873357,
+      "scaling_efficiency": 0.291119
+    },
+    {
+      "replicas": 3,
+      "concurrency": 16,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 128,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 0.815301,
+        "min": 0.748548,
+        "max": 0.882054,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 104.358567,
+        "min": 95.814201,
+        "max": 112.902933,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 18.505922,
+        "min": 17.678208,
+        "max": 19.333637,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 24.220395,
+        "min": 20.331161,
+        "max": 28.109629,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 24.640092,
+        "min": 20.333341,
+        "max": 28.946843,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 5.64,
+        "min": 5.605,
+        "max": 5.675,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.88,
+        "min": 1.868333,
+        "max": 1.891667,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 62.666667,
+        "min": 62.266667,
+        "max": 63.066667,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3456.5,
+        "min": 3418,
+        "max": 3495,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 18.513406,
+        "min": 16.88356,
+        "max": 20.143253,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.753,
+      "cores_per_pod_highest": 1.934,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.181938,
+      "scaling_efficiency": 0.393979
+    },
+    {
+      "replicas": 3,
+      "concurrency": 32,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 256,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 1.026306,
+        "min": 1.013376,
+        "max": 1.039236,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 131.367121,
+        "min": 129.712069,
+        "max": 133.022174,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 30.899576,
+        "min": 30.379394,
+        "max": 31.419759,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 36.080484,
+        "min": 35.607246,
+        "max": 36.553722,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 36.869177,
+        "min": 36.556353,
+        "max": 37.182,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 5.7575,
+        "min": 5.697,
+        "max": 5.818,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 1.919167,
+        "min": 1.899,
+        "max": 1.939333,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 63.983333,
+        "min": 63.3,
+        "max": 64.666667,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3473,
+        "min": 3440,
+        "max": 3506,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 22.816194,
+        "min": 22.768487,
+        "max": 22.863901,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.797,
+      "cores_per_pod_highest": 2.063,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.341184,
+      "scaling_efficiency": 0.447061
+    },
+    {
+      "replicas": 3,
+      "concurrency": 48,
+      "runs": 2,
+      "repeats": [
+        1,
+        2
+      ],
+      "requests": 384,
+      "failed": 0,
+      "throughput_req_per_s": {
+        "mean": 1.20629,
+        "min": 1.200246,
+        "max": 1.212334,
+        "n": 2
+      },
+      "output_tokens_per_s": {
+        "mean": 154.405121,
+        "min": 153.631543,
+        "max": 155.178698,
+        "n": 2
+      },
+      "latency_p50_s": {
+        "mean": 36.723863,
+        "min": 36.538288,
+        "max": 36.909438,
+        "n": 2
+      },
+      "latency_p95_s": {
+        "mean": 48.456855,
+        "min": 48.126707,
+        "max": 48.787002,
+        "n": 2
+      },
+      "latency_p99_s": {
+        "mean": 48.712608,
+        "min": 48.636934,
+        "max": 48.788282,
+        "n": 2
+      },
+      "total_cores_used": {
+        "mean": 6.1475,
+        "min": 6.094,
+        "max": 6.201,
+        "n": 2
+      },
+      "cores_per_pod": {
+        "mean": 2.049167,
+        "min": 2.031333,
+        "max": 2.067,
+        "n": 2
+      },
+      "cpu_utilization_pct": {
+        "mean": 68.3,
+        "min": 67.7,
+        "max": 68.9,
+        "n": 2
+      },
+      "peak_working_set_mib": {
+        "mean": 3481,
+        "min": 3439,
+        "max": 3523,
+        "n": 2
+      },
+      "tokens_per_core_second": {
+        "mean": 25.117541,
+        "min": 25.024786,
+        "max": 25.210296,
+        "n": 2
+      },
+      "cores_per_pod_lowest": 1.918,
+      "cores_per_pod_highest": 2.138,
+      "cpu_limit_cores": 3.0,
+      "speedup_vs_1_node": 1.579613,
+      "scaling_efficiency": 0.526538
+    }
+  ],
+  "per_run_levels": [
+    {
+      "repeat": 1,
+      "replicas": 1,
+      "concurrency": 1,
+      "attempt": 1,
+      "throughput_req_per_s": 0.09576152063877996,
+      "output_tokens_per_s": 12.257474641763835,
+      "latency_p50_s": 10.364607667084783,
+      "latency_p95_s": 10.746553562348709,
+      "latency_p99_s": 10.800376112340018,
+      "total_cores_used": 1.97,
+      "cores_per_pod": 1.97,
+      "cores_per_pod_lowest": 1.97,
+      "cores_per_pod_highest": 1.97,
+      "cpu_utilization_pct": 65.7,
+      "peak_working_set_mib": 3323,
+      "tokens_per_core_second": 6.222068346073013,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.97
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 16
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 1,
+      "concurrency": 4,
+      "attempt": 1,
+      "throughput_req_per_s": 0.3618185032995673,
+      "output_tokens_per_s": 46.31276842234461,
+      "latency_p50_s": 11.031436916440725,
+      "latency_p95_s": 11.181828042143025,
+      "latency_p99_s": 11.182470642146654,
+      "total_cores_used": 2.092,
+      "cores_per_pod": 2.092,
+      "cores_per_pod_lowest": 2.092,
+      "cores_per_pod_highest": 2.092,
+      "cpu_utilization_pct": 69.7,
+      "peak_working_set_mib": 3327,
+      "tokens_per_core_second": 22.138034618711572,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.092
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 16
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 1,
+      "concurrency": 8,
+      "attempt": 1,
+      "throughput_req_per_s": 0.5689079843407864,
+      "output_tokens_per_s": 72.82022199562066,
+      "latency_p50_s": 13.946053833584301,
+      "latency_p95_s": 14.365959051740356,
+      "latency_p99_s": 14.36638720766874,
+      "total_cores_used": 2.119,
+      "cores_per_pod": 2.119,
+      "cores_per_pod_lowest": 2.119,
+      "cores_per_pod_highest": 2.119,
+      "cpu_utilization_pct": 70.6,
+      "peak_working_set_mib": 3329,
+      "tokens_per_core_second": 34.36537139953782,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.119
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 32,
+      "succeeded": 32,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 32
+      },
+      "served_check": {
+        "served_total": 32,
+        "succeeded": 32,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 1,
+      "concurrency": 16,
+      "attempt": 1,
+      "throughput_req_per_s": 0.6832141087903671,
+      "output_tokens_per_s": 87.451405925167,
+      "latency_p50_s": 23.373130541527644,
+      "latency_p95_s": 23.804300266038627,
+      "latency_p99_s": 23.805979383138475,
+      "total_cores_used": 2.298,
+      "cores_per_pod": 2.298,
+      "cores_per_pod_lowest": 2.298,
+      "cores_per_pod_highest": 2.298,
+      "cpu_utilization_pct": 76.6,
+      "peak_working_set_mib": 3353,
+      "tokens_per_core_second": 38.05544209102132,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.298
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 64,
+      "succeeded": 64,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 64
+      },
+      "served_check": {
+        "served_total": 64,
+        "succeeded": 64,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 1,
+      "concurrency": 32,
+      "attempt": 1,
+      "throughput_req_per_s": 0.7646182888411256,
+      "output_tokens_per_s": 97.87114097166408,
+      "latency_p50_s": 41.77832943748217,
+      "latency_p95_s": 42.22624531064648,
+      "latency_p99_s": 42.22821708381409,
+      "total_cores_used": 2.434,
+      "cores_per_pod": 2.434,
+      "cores_per_pod_lowest": 2.434,
+      "cores_per_pod_highest": 2.434,
+      "cpu_utilization_pct": 81.1,
+      "peak_working_set_mib": 3396,
+      "tokens_per_core_second": 40.21000039920463,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.434
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 128,
+      "succeeded": 128,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 128
+      },
+      "served_check": {
+        "served_total": 128,
+        "succeeded": 128,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 1,
+      "concurrency": 48,
+      "attempt": 1,
+      "throughput_req_per_s": 0.7566854960501668,
+      "output_tokens_per_s": 96.85574349442135,
+      "latency_p50_s": 46.0380195210455,
+      "latency_p95_s": 84.28619945026003,
+      "latency_p99_s": 84.31538388246204,
+      "total_cores_used": 2.41,
+      "cores_per_pod": 2.41,
+      "cores_per_pod_lowest": 2.41,
+      "cores_per_pod_highest": 2.41,
+      "cpu_utilization_pct": 80.3,
+      "peak_working_set_mib": 3393,
+      "tokens_per_core_second": 40.1891051844072,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.41
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 192,
+      "succeeded": 192,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 192
+      },
+      "served_check": {
+        "served_total": 192,
+        "succeeded": 192,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 2,
+      "concurrency": 1,
+      "attempt": 2,
+      "throughput_req_per_s": 0.0907798691038182,
+      "output_tokens_per_s": 11.61982324528873,
+      "latency_p50_s": 10.995569166028872,
+      "latency_p95_s": 11.259206635353621,
+      "latency_p99_s": 11.279661360650788,
+      "total_cores_used": 1.951,
+      "cores_per_pod": 0.9755,
+      "cores_per_pod_lowest": 0.856,
+      "cores_per_pod_highest": 1.095,
+      "cpu_utilization_pct": 32.5,
+      "peak_working_set_mib": 3409,
+      "tokens_per_core_second": 5.9558294440229265,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.095,
+        "kubeserve-mn-worker": 0.856
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker": 7,
+        "kubeserve-mn-worker3": 9
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 2,
+      "concurrency": 4,
+      "attempt": 1,
+      "throughput_req_per_s": 0.315549833003556,
+      "output_tokens_per_s": 40.39037862445517,
+      "latency_p50_s": 12.6364603334805,
+      "latency_p95_s": 13.306986916461028,
+      "latency_p99_s": 13.308050515991635,
+      "total_cores_used": 3.837,
+      "cores_per_pod": 1.9184999999999999,
+      "cores_per_pod_lowest": 1.902,
+      "cores_per_pod_highest": 1.935,
+      "cpu_utilization_pct": 63.95,
+      "peak_working_set_mib": 3412,
+      "tokens_per_core_second": 10.526551635250238,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.902,
+        "kubeserve-mn-worker": 1.935
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker": 9,
+        "kubeserve-mn-worker3": 7
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 2,
+      "concurrency": 8,
+      "attempt": 1,
+      "throughput_req_per_s": 0.5640830452560956,
+      "output_tokens_per_s": 72.20262979278024,
+      "latency_p50_s": 13.401513000018895,
+      "latency_p95_s": 15.152048331080005,
+      "latency_p99_s": 15.164047964359634,
+      "total_cores_used": 3.922,
+      "cores_per_pod": 1.9609999999999999,
+      "cores_per_pod_lowest": 1.952,
+      "cores_per_pod_highest": 1.97,
+      "cpu_utilization_pct": 65.4,
+      "peak_working_set_mib": 3413,
+      "tokens_per_core_second": 18.409645536149984,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.97,
+        "kubeserve-mn-worker": 1.952
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 32,
+      "succeeded": 32,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker": 16,
+        "kubeserve-mn-worker3": 16
+      },
+      "served_check": {
+        "served_total": 32,
+        "succeeded": 32,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 2,
+      "concurrency": 16,
+      "attempt": 1,
+      "throughput_req_per_s": 0.8286014350802412,
+      "output_tokens_per_s": 106.06098369027087,
+      "latency_p50_s": 17.342878707917407,
+      "latency_p95_s": 24.799789331341163,
+      "latency_p99_s": 24.970868018632753,
+      "total_cores_used": 4.051,
+      "cores_per_pod": 2.0255,
+      "cores_per_pod_lowest": 2.017,
+      "cores_per_pod_highest": 2.034,
+      "cpu_utilization_pct": 67.5,
+      "peak_working_set_mib": 3419,
+      "tokens_per_core_second": 26.181432656201153,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.034,
+        "kubeserve-mn-worker": 2.017
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 64,
+      "succeeded": 64,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker": 33,
+        "kubeserve-mn-worker3": 31
+      },
+      "served_check": {
+        "served_total": 64,
+        "succeeded": 64,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 2,
+      "concurrency": 32,
+      "attempt": 1,
+      "throughput_req_per_s": 0.9988831289895463,
+      "output_tokens_per_s": 127.85704051066193,
+      "latency_p50_s": 27.966623749467544,
+      "latency_p95_s": 36.72221074195113,
+      "latency_p99_s": 37.17683558816556,
+      "total_cores_used": 4.372,
+      "cores_per_pod": 2.186,
+      "cores_per_pod_lowest": 2.156,
+      "cores_per_pod_highest": 2.216,
+      "cpu_utilization_pct": 72.9,
+      "peak_working_set_mib": 3435,
+      "tokens_per_core_second": 29.24451978743411,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.156,
+        "kubeserve-mn-worker": 2.216
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 128,
+      "succeeded": 128,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker": 67,
+        "kubeserve-mn-worker3": 61
+      },
+      "served_check": {
+        "served_total": 128,
+        "succeeded": 128,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 2,
+      "concurrency": 48,
+      "attempt": 1,
+      "throughput_req_per_s": 1.13564216872585,
+      "output_tokens_per_s": 145.3621975969088,
+      "latency_p50_s": 37.92548812541645,
+      "latency_p95_s": 53.34674324339716,
+      "latency_p99_s": 66.25964813545812,
+      "total_cores_used": 4.497,
+      "cores_per_pod": 2.2485,
+      "cores_per_pod_lowest": 2.18,
+      "cores_per_pod_highest": 2.317,
+      "cpu_utilization_pct": 74.95,
+      "peak_working_set_mib": 3439,
+      "tokens_per_core_second": 32.324260083813385,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.317,
+        "kubeserve-mn-worker": 2.18
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 192,
+      "succeeded": 192,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker": 88,
+        "kubeserve-mn-worker3": 104
+      },
+      "served_check": {
+        "served_total": 192,
+        "succeeded": 192,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 3,
+      "concurrency": 1,
+      "attempt": 2,
+      "throughput_req_per_s": 0.09470185023058238,
+      "output_tokens_per_s": 12.121836829514544,
+      "latency_p50_s": 10.555096438038163,
+      "latency_p95_s": 10.727515155915171,
+      "latency_p99_s": 10.792753331083805,
+      "total_cores_used": 1.998,
+      "cores_per_pod": 0.666,
+      "cores_per_pod_lowest": 0.381,
+      "cores_per_pod_highest": 0.869,
+      "cpu_utilization_pct": 22.2,
+      "peak_working_set_mib": 3488,
+      "tokens_per_core_second": 6.06698540015743,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 0.748,
+        "kubeserve-mn-worker2": 0.869,
+        "kubeserve-mn-worker": 0.381
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 3,
+        "kubeserve-mn-worker2": 7,
+        "kubeserve-mn-worker3": 6
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-l55vl": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-l55vl": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 3,
+      "concurrency": 4,
+      "attempt": 1,
+      "throughput_req_per_s": 0.2808260012939807,
+      "output_tokens_per_s": 35.94572816562953,
+      "latency_p50_s": 13.840994791476987,
+      "latency_p95_s": 15.38778006262146,
+      "latency_p99_s": 15.425819812482223,
+      "total_cores_used": 5.043,
+      "cores_per_pod": 1.681,
+      "cores_per_pod_lowest": 1.386,
+      "cores_per_pod_highest": 1.857,
+      "cpu_utilization_pct": 56.03333333333333,
+      "peak_working_set_mib": 3491,
+      "tokens_per_core_second": 7.127846156182735,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.386,
+        "kubeserve-mn-worker2": 1.8,
+        "kubeserve-mn-worker": 1.857
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 6,
+        "kubeserve-mn-worker2": 6,
+        "kubeserve-mn-worker3": 4
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-l55vl": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-l55vl": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 3,
+      "concurrency": 8,
+      "attempt": 1,
+      "throughput_req_per_s": 0.5061747062042996,
+      "output_tokens_per_s": 64.79036239415035,
+      "latency_p50_s": 15.131452791858464,
+      "latency_p95_s": 16.918970520654693,
+      "latency_p99_s": 17.22850572614232,
+      "total_cores_used": 5.08,
+      "cores_per_pod": 1.6933333333333334,
+      "cores_per_pod_lowest": 1.388,
+      "cores_per_pod_highest": 1.913,
+      "cpu_utilization_pct": 56.46666666666666,
+      "peak_working_set_mib": 3489,
+      "tokens_per_core_second": 12.754008345305186,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.779,
+        "kubeserve-mn-worker2": 1.388,
+        "kubeserve-mn-worker": 1.913
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 32,
+      "succeeded": 32,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 18,
+        "kubeserve-mn-worker2": 6,
+        "kubeserve-mn-worker3": 8
+      },
+      "served_check": {
+        "served_total": 32,
+        "succeeded": 32,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-l55vl": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-l55vl": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 3,
+      "concurrency": 16,
+      "attempt": 1,
+      "throughput_req_per_s": 0.8820541626634315,
+      "output_tokens_per_s": 112.90293282091923,
+      "latency_p50_s": 17.67820772912819,
+      "latency_p95_s": 20.331161459791474,
+      "latency_p99_s": 20.33334079960594,
+      "total_cores_used": 5.605,
+      "cores_per_pod": 1.8683333333333332,
+      "cores_per_pod_lowest": 1.753,
+      "cores_per_pod_highest": 1.934,
+      "cpu_utilization_pct": 62.266666666666666,
+      "peak_working_set_mib": 3495,
+      "tokens_per_core_second": 20.14325295645303,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.934,
+        "kubeserve-mn-worker2": 1.753,
+        "kubeserve-mn-worker": 1.918
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 64,
+      "succeeded": 64,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 24,
+        "kubeserve-mn-worker2": 19,
+        "kubeserve-mn-worker3": 21
+      },
+      "served_check": {
+        "served_total": 64,
+        "succeeded": 64,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-l55vl": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-l55vl": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 3,
+      "concurrency": 32,
+      "attempt": 1,
+      "throughput_req_per_s": 1.0133755358310546,
+      "output_tokens_per_s": 129.71206858637498,
+      "latency_p50_s": 30.37939399993047,
+      "latency_p95_s": 35.60724583335686,
+      "latency_p99_s": 37.18199975201162,
+      "total_cores_used": 5.697,
+      "cores_per_pod": 1.899,
+      "cores_per_pod_lowest": 1.797,
+      "cores_per_pod_highest": 2.063,
+      "cpu_utilization_pct": 63.3,
+      "peak_working_set_mib": 3506,
+      "tokens_per_core_second": 22.768486674806912,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.837,
+        "kubeserve-mn-worker2": 1.797,
+        "kubeserve-mn-worker": 2.063
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 128,
+      "succeeded": 128,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 53,
+        "kubeserve-mn-worker2": 40,
+        "kubeserve-mn-worker3": 35
+      },
+      "served_check": {
+        "served_total": 128,
+        "succeeded": 128,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-l55vl": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-l55vl": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 1,
+      "replicas": 3,
+      "concurrency": 48,
+      "attempt": 1,
+      "throughput_req_per_s": 1.2002464329529663,
+      "output_tokens_per_s": 153.63154341797969,
+      "latency_p50_s": 36.90943756233901,
+      "latency_p95_s": 48.78700221463805,
+      "latency_p99_s": 48.788281947483775,
+      "total_cores_used": 6.094,
+      "cores_per_pod": 2.0313333333333334,
+      "cores_per_pod_lowest": 1.918,
+      "cores_per_pod_highest": 2.131,
+      "cpu_utilization_pct": 67.7,
+      "peak_working_set_mib": 3523,
+      "tokens_per_core_second": 25.210295933373757,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.045,
+        "kubeserve-mn-worker2": 2.131,
+        "kubeserve-mn-worker": 1.918
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 192,
+      "succeeded": 192,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 56,
+        "kubeserve-mn-worker2": 71,
+        "kubeserve-mn-worker3": 65
+      },
+      "served_check": {
+        "served_total": 192,
+        "succeeded": 192,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+        "vllm-5b6f494778-l55vl": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-vchkf": "1-3",
+        "vllm-5b6f494778-l55vl": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 3,
+      "concurrency": 1,
+      "attempt": 1,
+      "throughput_req_per_s": 0.09166039416546133,
+      "output_tokens_per_s": 11.73253045317905,
+      "latency_p50_s": 10.887910125078633,
+      "latency_p95_s": 11.318095364258625,
+      "latency_p99_s": 11.318953540106303,
+      "total_cores_used": 1.972,
+      "cores_per_pod": 0.6573333333333333,
+      "cores_per_pod_lowest": 0.379,
+      "cores_per_pod_highest": 1.097,
+      "cpu_utilization_pct": 21.9,
+      "peak_working_set_mib": 3413,
+      "tokens_per_core_second": 5.949559053336232,
+      "cores_per_node": {
+        "kubeserve-mn-worker": 0.496,
+        "kubeserve-mn-worker3": 0.379,
+        "kubeserve-mn-worker2": 1.097
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 4,
+        "kubeserve-mn-worker2": 9,
+        "kubeserve-mn-worker3": 3
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-4n8zl": "kubeserve-mn-worker",
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-4n8zl": "1-3",
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 3,
+      "concurrency": 4,
+      "attempt": 1,
+      "throughput_req_per_s": 0.3013337988916808,
+      "output_tokens_per_s": 38.570726258135146,
+      "latency_p50_s": 12.450118332984857,
+      "latency_p95_s": 16.668676510744262,
+      "latency_p99_s": 17.06401703568408,
+      "total_cores_used": 3.921,
+      "cores_per_pod": 1.307,
+      "cores_per_pod_lowest": 0.99,
+      "cores_per_pod_highest": 1.507,
+      "cpu_utilization_pct": 43.56666666666667,
+      "peak_working_set_mib": 3414,
+      "tokens_per_core_second": 9.836961555249975,
+      "cores_per_node": {
+        "kubeserve-mn-worker": 1.424,
+        "kubeserve-mn-worker3": 1.507,
+        "kubeserve-mn-worker2": 0.99
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 4,
+        "kubeserve-mn-worker2": 4,
+        "kubeserve-mn-worker3": 8
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-4n8zl": "kubeserve-mn-worker",
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-4n8zl": "1-3",
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 3,
+      "concurrency": 8,
+      "attempt": 1,
+      "throughput_req_per_s": 0.5079811483347055,
+      "output_tokens_per_s": 65.02158698684231,
+      "latency_p50_s": 15.4386081880657,
+      "latency_p95_s": 16.23802883280441,
+      "latency_p99_s": 16.43714198732283,
+      "total_cores_used": 5.623,
+      "cores_per_pod": 1.8743333333333334,
+      "cores_per_pod_lowest": 1.85,
+      "cores_per_pod_highest": 1.89,
+      "cpu_utilization_pct": 62.5,
+      "peak_working_set_mib": 3415,
+      "tokens_per_core_second": 11.563504710446791,
+      "cores_per_node": {
+        "kubeserve-mn-worker": 1.85,
+        "kubeserve-mn-worker3": 1.883,
+        "kubeserve-mn-worker2": 1.89
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 32,
+      "succeeded": 32,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 9,
+        "kubeserve-mn-worker2": 11,
+        "kubeserve-mn-worker3": 12
+      },
+      "served_check": {
+        "served_total": 32,
+        "succeeded": 32,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-4n8zl": "kubeserve-mn-worker",
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-4n8zl": "1-3",
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 3,
+      "concurrency": 16,
+      "attempt": 1,
+      "throughput_req_per_s": 0.748548448412717,
+      "output_tokens_per_s": 95.81420139682777,
+      "latency_p50_s": 19.333636542083696,
+      "latency_p95_s": 28.109628943854478,
+      "latency_p99_s": 28.946843400294892,
+      "total_cores_used": 5.675,
+      "cores_per_pod": 1.8916666666666666,
+      "cores_per_pod_lowest": 1.872,
+      "cores_per_pod_highest": 1.925,
+      "cpu_utilization_pct": 63.06666666666667,
+      "peak_working_set_mib": 3418,
+      "tokens_per_core_second": 16.883559717502692,
+      "cores_per_node": {
+        "kubeserve-mn-worker": 1.872,
+        "kubeserve-mn-worker3": 1.925,
+        "kubeserve-mn-worker2": 1.878
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 64,
+      "succeeded": 64,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 18,
+        "kubeserve-mn-worker2": 21,
+        "kubeserve-mn-worker3": 25
+      },
+      "served_check": {
+        "served_total": 64,
+        "succeeded": 64,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-4n8zl": "kubeserve-mn-worker",
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-4n8zl": "1-3",
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 3,
+      "concurrency": 32,
+      "attempt": 1,
+      "throughput_req_per_s": 1.0392357368805616,
+      "output_tokens_per_s": 133.02217432071188,
+      "latency_p50_s": 31.419758604373783,
+      "latency_p95_s": 36.55372169142356,
+      "latency_p99_s": 36.556353255561554,
+      "total_cores_used": 5.818,
+      "cores_per_pod": 1.9393333333333334,
+      "cores_per_pod_lowest": 1.868,
+      "cores_per_pod_highest": 2.061,
+      "cpu_utilization_pct": 64.66666666666667,
+      "peak_working_set_mib": 3440,
+      "tokens_per_core_second": 22.86390070826949,
+      "cores_per_node": {
+        "kubeserve-mn-worker": 2.061,
+        "kubeserve-mn-worker3": 1.868,
+        "kubeserve-mn-worker2": 1.889
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 128,
+      "succeeded": 128,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 50,
+        "kubeserve-mn-worker2": 39,
+        "kubeserve-mn-worker3": 39
+      },
+      "served_check": {
+        "served_total": 128,
+        "succeeded": 128,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-4n8zl": "kubeserve-mn-worker",
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-4n8zl": "1-3",
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 3,
+      "concurrency": 48,
+      "attempt": 1,
+      "throughput_req_per_s": 1.2123335775956168,
+      "output_tokens_per_s": 155.17869793223895,
+      "latency_p50_s": 36.538287583505735,
+      "latency_p95_s": 48.12670707675861,
+      "latency_p99_s": 48.63693369348533,
+      "total_cores_used": 6.201,
+      "cores_per_pod": 2.067,
+      "cores_per_pod_lowest": 1.98,
+      "cores_per_pod_highest": 2.138,
+      "cpu_utilization_pct": 68.9,
+      "peak_working_set_mib": 3439,
+      "tokens_per_core_second": 25.024785991330262,
+      "cores_per_node": {
+        "kubeserve-mn-worker": 1.98,
+        "kubeserve-mn-worker3": 2.083,
+        "kubeserve-mn-worker2": 2.138
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 192,
+      "succeeded": 192,
+      "failed": 0,
+      "pods_sampled": 3,
+      "served_per_node": {
+        "kubeserve-mn-worker": 56,
+        "kubeserve-mn-worker2": 69,
+        "kubeserve-mn-worker3": 67
+      },
+      "served_check": {
+        "served_total": 192,
+        "succeeded": 192,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-4n8zl": "kubeserve-mn-worker",
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-4n8zl": "1-3",
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 2,
+      "concurrency": 1,
+      "attempt": 1,
+      "throughput_req_per_s": 0.09581167102477472,
+      "output_tokens_per_s": 12.263893891171165,
+      "latency_p50_s": 10.45839991653338,
+      "latency_p95_s": 10.66511380195152,
+      "latency_p99_s": 10.675187926716172,
+      "total_cores_used": 1.975,
+      "cores_per_pod": 0.9875,
+      "cores_per_pod_lowest": 0.743,
+      "cores_per_pod_highest": 1.232,
+      "cpu_utilization_pct": 32.95,
+      "peak_working_set_mib": 3344,
+      "tokens_per_core_second": 6.209566527175273,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.232,
+        "kubeserve-mn-worker2": 0.743
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker2": 6,
+        "kubeserve-mn-worker3": 10
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 2,
+      "concurrency": 4,
+      "attempt": 1,
+      "throughput_req_per_s": 0.3271504188697979,
+      "output_tokens_per_s": 41.87525361533413,
+      "latency_p50_s": 12.036897291545756,
+      "latency_p95_s": 13.142674968810752,
+      "latency_p99_s": 13.191617793822662,
+      "total_cores_used": 3.8,
+      "cores_per_pod": 1.9,
+      "cores_per_pod_lowest": 1.882,
+      "cores_per_pod_highest": 1.918,
+      "cpu_utilization_pct": 63.3,
+      "peak_working_set_mib": 3346,
+      "tokens_per_core_second": 11.019803582982666,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.882,
+        "kubeserve-mn-worker2": 1.918
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker2": 8,
+        "kubeserve-mn-worker3": 8
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 2,
+      "concurrency": 8,
+      "attempt": 2,
+      "throughput_req_per_s": 0.5245036037626216,
+      "output_tokens_per_s": 67.13646128161557,
+      "latency_p50_s": 13.847492437576875,
+      "latency_p95_s": 20.513866918731946,
+      "latency_p99_s": 20.51549815303646,
+      "total_cores_used": 3.834,
+      "cores_per_pod": 1.9169999999999998,
+      "cores_per_pod_lowest": 1.914,
+      "cores_per_pod_highest": 1.92,
+      "cpu_utilization_pct": 63.9,
+      "peak_working_set_mib": 3349,
+      "tokens_per_core_second": 17.510814105794356,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.914,
+        "kubeserve-mn-worker2": 1.92
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 32,
+      "succeeded": 32,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker2": 17,
+        "kubeserve-mn-worker3": 15
+      },
+      "served_check": {
+        "served_total": 32,
+        "succeeded": 32,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 2,
+      "concurrency": 16,
+      "attempt": 1,
+      "throughput_req_per_s": 0.7673404124247826,
+      "output_tokens_per_s": 98.21957279037217,
+      "latency_p50_s": 18.614739625016227,
+      "latency_p95_s": 25.314904116129036,
+      "latency_p99_s": 25.3165569114103,
+      "total_cores_used": 3.787,
+      "cores_per_pod": 1.8935,
+      "cores_per_pod_lowest": 1.733,
+      "cores_per_pod_highest": 2.054,
+      "cpu_utilization_pct": 63.15,
+      "peak_working_set_mib": 3358,
+      "tokens_per_core_second": 25.93598436503094,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.733,
+        "kubeserve-mn-worker2": 2.054
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 64,
+      "succeeded": 64,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker2": 37,
+        "kubeserve-mn-worker3": 27
+      },
+      "served_check": {
+        "served_total": 64,
+        "succeeded": 64,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 2,
+      "concurrency": 32,
+      "attempt": 1,
+      "throughput_req_per_s": 1.038057141933246,
+      "output_tokens_per_s": 132.8713141674555,
+      "latency_p50_s": 28.238126500393264,
+      "latency_p95_s": 35.978074981214014,
+      "latency_p99_s": 35.980433452196884,
+      "total_cores_used": 4.264,
+      "cores_per_pod": 2.1319999999999997,
+      "cores_per_pod_lowest": 2.057,
+      "cores_per_pod_highest": 2.207,
+      "cpu_utilization_pct": 71.1,
+      "peak_working_set_mib": 3372,
+      "tokens_per_core_second": 31.161190001748473,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.057,
+        "kubeserve-mn-worker2": 2.207
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 128,
+      "succeeded": 128,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker2": 67,
+        "kubeserve-mn-worker3": 61
+      },
+      "served_check": {
+        "served_total": 128,
+        "succeeded": 128,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 2,
+      "concurrency": 48,
+      "attempt": 1,
+      "throughput_req_per_s": 1.1752225891633876,
+      "output_tokens_per_s": 150.42849141291362,
+      "latency_p50_s": 37.087140707997605,
+      "latency_p95_s": 46.76957793915644,
+      "latency_p99_s": 46.88309634196572,
+      "total_cores_used": 4.615,
+      "cores_per_pod": 2.3075,
+      "cores_per_pod_lowest": 2.284,
+      "cores_per_pod_highest": 2.331,
+      "cpu_utilization_pct": 76.9,
+      "peak_working_set_mib": 3394,
+      "tokens_per_core_second": 32.595556102473154,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.331,
+        "kubeserve-mn-worker2": 2.284
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 192,
+      "succeeded": 192,
+      "failed": 0,
+      "pods_sampled": 2,
+      "served_per_node": {
+        "kubeserve-mn-worker2": 96,
+        "kubeserve-mn-worker3": 96
+      },
+      "served_check": {
+        "served_total": 192,
+        "succeeded": 192,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-8nkqs": "kubeserve-mn-worker2",
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-8nkqs": "4-6",
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 1,
+      "concurrency": 1,
+      "attempt": 1,
+      "throughput_req_per_s": 0.09725821438110098,
+      "output_tokens_per_s": 12.449051440780925,
+      "latency_p50_s": 10.259103646036237,
+      "latency_p95_s": 10.606778198620304,
+      "latency_p99_s": 10.611543973302469,
+      "total_cores_used": 1.99,
+      "cores_per_pod": 1.99,
+      "cores_per_pod_lowest": 1.99,
+      "cores_per_pod_highest": 1.99,
+      "cpu_utilization_pct": 66.3,
+      "peak_working_set_mib": 3310,
+      "tokens_per_core_second": 6.255804744111018,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 1.99
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 16
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 1,
+      "concurrency": 4,
+      "attempt": 1,
+      "throughput_req_per_s": 0.3576900979162171,
+      "output_tokens_per_s": 45.78433253327579,
+      "latency_p50_s": 11.172068562475033,
+      "latency_p95_s": 11.305064270738512,
+      "latency_p99_s": 11.305325721297413,
+      "total_cores_used": 2.076,
+      "cores_per_pod": 2.076,
+      "cores_per_pod_lowest": 2.076,
+      "cores_per_pod_highest": 2.076,
+      "cpu_utilization_pct": 69.2,
+      "peak_working_set_mib": 3314,
+      "tokens_per_core_second": 22.054110083466178,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.076
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 16,
+      "succeeded": 16,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 16
+      },
+      "served_check": {
+        "served_total": 16,
+        "succeeded": 16,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 1,
+      "concurrency": 8,
+      "attempt": 1,
+      "throughput_req_per_s": 0.5923071302231996,
+      "output_tokens_per_s": 75.81531266856955,
+      "latency_p50_s": 13.47919602051843,
+      "latency_p95_s": 13.607544387492817,
+      "latency_p99_s": 13.6085994788236,
+      "total_cores_used": 2.151,
+      "cores_per_pod": 2.151,
+      "cores_per_pod_lowest": 2.151,
+      "cores_per_pod_highest": 2.151,
+      "cpu_utilization_pct": 71.7,
+      "peak_working_set_mib": 3321,
+      "tokens_per_core_second": 35.246542384272225,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.151
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 32,
+      "succeeded": 32,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 32
+      },
+      "served_check": {
+        "served_total": 32,
+        "succeeded": 32,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 1,
+      "concurrency": 16,
+      "attempt": 1,
+      "throughput_req_per_s": 0.6963864751767913,
+      "output_tokens_per_s": 89.13746882262929,
+      "latency_p50_s": 22.936047958559357,
+      "latency_p95_s": 23.18928012314718,
+      "latency_p99_s": 23.19100382653065,
+      "total_cores_used": 2.32,
+      "cores_per_pod": 2.32,
+      "cores_per_pod_lowest": 2.32,
+      "cores_per_pod_highest": 2.32,
+      "cpu_utilization_pct": 77.3,
+      "peak_working_set_mib": 3343,
+      "tokens_per_core_second": 38.421322768374694,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.32
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 64,
+      "succeeded": 64,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 64
+      },
+      "served_check": {
+        "served_total": 64,
+        "succeeded": 64,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 1,
+      "concurrency": 32,
+      "attempt": 2,
+      "throughput_req_per_s": 0.7658291125313665,
+      "output_tokens_per_s": 98.02612640401492,
+      "latency_p50_s": 41.660802770988084,
+      "latency_p95_s": 42.38548368394841,
+      "latency_p99_s": 42.38678717567818,
+      "total_cores_used": 2.426,
+      "cores_per_pod": 2.426,
+      "cores_per_pod_lowest": 2.426,
+      "cores_per_pod_highest": 2.426,
+      "cpu_utilization_pct": 80.9,
+      "peak_working_set_mib": 3375,
+      "tokens_per_core_second": 40.406482441885785,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.426
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 128,
+      "succeeded": 128,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 128
+      },
+      "served_check": {
+        "served_total": 128,
+        "succeeded": 128,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    },
+    {
+      "repeat": 2,
+      "replicas": 1,
+      "concurrency": 48,
+      "attempt": 1,
+      "throughput_req_per_s": 0.7706377263652548,
+      "output_tokens_per_s": 98.64162897475262,
+      "latency_p50_s": 45.05975858354941,
+      "latency_p95_s": 83.23267613115021,
+      "latency_p99_s": 83.23683041258249,
+      "total_cores_used": 2.432,
+      "cores_per_pod": 2.432,
+      "cores_per_pod_lowest": 2.432,
+      "cores_per_pod_highest": 2.432,
+      "cpu_utilization_pct": 81.1,
+      "peak_working_set_mib": 3379,
+      "tokens_per_core_second": 40.55988033501342,
+      "cores_per_node": {
+        "kubeserve-mn-worker3": 2.432
+      },
+      "cpu_limit_cores": 3.0,
+      "requests": 192,
+      "succeeded": 192,
+      "failed": 0,
+      "pods_sampled": 1,
+      "served_per_node": {
+        "kubeserve-mn-worker3": 192
+      },
+      "served_check": {
+        "served_total": 192,
+        "succeeded": 192,
+        "match": true,
+        "non_200_per_pod": {}
+      },
+      "pod_warnings": [],
+      "skipped_ticks": 0,
+      "placement": {
+        "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3"
+      },
+      "pod_cpusets": {
+        "vllm-5b6f494778-7l7rx": "7-9"
+      }
+    }
+  ],
+  "original_single_node": {
+    "file": "results/results.json",
+    "generated_utc": "2026-10-08T04:48:44+00:00",
+    "vllm_runs": 2,
+    "cluster": {
+      "nodes": 1,
+      "node_cpu_capacity": "9",
+      "node_memory_capacity": "9130396Ki",
+      "kubelet_version": "v1.37.0"
+    },
+    "per_pod_resources": {
+      "limits": {
+        "cpu": "3",
+        "memory": "3840Mi"
+      },
+      "requests": {
+        "cpu": "3",
+        "memory": "3840Mi"
+      }
+    },
+    "levels": [
+      {
+        "concurrency": 1,
+        "runs": 2,
+        "requests": 32,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.083,
+          "min": 0.081,
+          "max": 0.085
+        },
+        "output_tokens_per_s": {
+          "mean": 10.605,
+          "min": 10.34,
+          "max": 10.87
+        },
+        "latency_p50_s": {
+          "mean": 11.689,
+          "min": 11.064,
+          "max": 12.315
+        },
+        "latency_p95_s": {
+          "mean": 14.232,
+          "min": 14.133,
+          "max": 14.331
+        },
+        "avg_cores_used": {
+          "mean": 1.893,
+          "min": 1.881,
+          "max": 1.905
+        }
+      },
+      {
+        "concurrency": 4,
+        "runs": 2,
+        "requests": 32,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.327,
+          "min": 0.317,
+          "max": 0.338
+        },
+        "output_tokens_per_s": {
+          "mean": 41.865,
+          "min": 40.51,
+          "max": 43.22
+        },
+        "latency_p50_s": {
+          "mean": 12.229,
+          "min": 11.745,
+          "max": 12.713
+        },
+        "latency_p95_s": {
+          "mean": 12.681,
+          "min": 12.298,
+          "max": 13.063
+        },
+        "avg_cores_used": {
+          "mean": 1.999,
+          "min": 1.997,
+          "max": 2.001
+        }
+      },
+      {
+        "concurrency": 8,
+        "runs": 2,
+        "requests": 64,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.553,
+          "min": 0.545,
+          "max": 0.561
+        },
+        "output_tokens_per_s": {
+          "mean": 70.795,
+          "min": 69.71,
+          "max": 71.88
+        },
+        "latency_p50_s": {
+          "mean": 14.437,
+          "min": 14.223,
+          "max": 14.65
+        },
+        "latency_p95_s": {
+          "mean": 14.828,
+          "min": 14.364,
+          "max": 15.292
+        },
+        "avg_cores_used": {
+          "mean": 2.085,
+          "min": 2.082,
+          "max": 2.089
+        }
+      },
+      {
+        "concurrency": 16,
+        "runs": 2,
+        "requests": 128,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.623,
+          "min": 0.603,
+          "max": 0.643
+        },
+        "output_tokens_per_s": {
+          "mean": 79.8,
+          "min": 77.24,
+          "max": 82.36
+        },
+        "latency_p50_s": {
+          "mean": 25.666,
+          "min": 24.846,
+          "max": 26.486
+        },
+        "latency_p95_s": {
+          "mean": 27.053,
+          "min": 25.09,
+          "max": 29.016
+        },
+        "avg_cores_used": {
+          "mean": 2.207,
+          "min": 2.2,
+          "max": 2.214
+        }
+      }
+    ]
+  },
+  "comparison_vs_original": [
+    {
+      "concurrency": 1,
+      "original": {
+        "concurrency": 1,
+        "runs": 2,
+        "requests": 32,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.083,
+          "min": 0.081,
+          "max": 0.085
+        },
+        "output_tokens_per_s": {
+          "mean": 10.605,
+          "min": 10.34,
+          "max": 10.87
+        },
+        "latency_p50_s": {
+          "mean": 11.689,
+          "min": 11.064,
+          "max": 12.315
+        },
+        "latency_p95_s": {
+          "mean": 14.232,
+          "min": 14.133,
+          "max": 14.331
+        },
+        "avg_cores_used": {
+          "mean": 1.893,
+          "min": 1.881,
+          "max": 1.905
+        }
+      },
+      "multinode": {
+        "1": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 12.353263,
+            "min": 12.257475,
+            "max": 12.449051,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.09651,
+            "min": 0.095762,
+            "max": 0.097258,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 10.311856,
+            "min": 10.259104,
+            "max": 10.364608,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 10.676666,
+            "min": 10.606778,
+            "max": 10.746554,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 1.98,
+            "min": 1.97,
+            "max": 1.99,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.164853
+        },
+        "2": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 11.941859,
+            "min": 11.619823,
+            "max": 12.263894,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.093296,
+            "min": 0.09078,
+            "max": 0.095812,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 10.726985,
+            "min": 10.4584,
+            "max": 10.995569,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 10.96216,
+            "min": 10.665114,
+            "max": 11.259207,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 1.963,
+            "min": 1.951,
+            "max": 1.975,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.126059
+        },
+        "3": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 11.927184,
+            "min": 11.73253,
+            "max": 12.121837,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.093181,
+            "min": 0.09166,
+            "max": 0.094702,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 10.721503,
+            "min": 10.555096,
+            "max": 10.88791,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 11.022805,
+            "min": 10.727515,
+            "max": 11.318095,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 1.985,
+            "min": 1.972,
+            "max": 1.998,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.124676
+        }
+      }
+    },
+    {
+      "concurrency": 4,
+      "original": {
+        "concurrency": 4,
+        "runs": 2,
+        "requests": 32,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.327,
+          "min": 0.317,
+          "max": 0.338
+        },
+        "output_tokens_per_s": {
+          "mean": 41.865,
+          "min": 40.51,
+          "max": 43.22
+        },
+        "latency_p50_s": {
+          "mean": 12.229,
+          "min": 11.745,
+          "max": 12.713
+        },
+        "latency_p95_s": {
+          "mean": 12.681,
+          "min": 12.298,
+          "max": 13.063
+        },
+        "avg_cores_used": {
+          "mean": 1.999,
+          "min": 1.997,
+          "max": 2.001
+        }
+      },
+      "multinode": {
+        "1": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 46.04855,
+            "min": 45.784333,
+            "max": 46.312768,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.359754,
+            "min": 0.35769,
+            "max": 0.361819,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 11.101753,
+            "min": 11.031437,
+            "max": 11.172069,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 11.243446,
+            "min": 11.181828,
+            "max": 11.305064,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 2.084,
+            "min": 2.076,
+            "max": 2.092,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.09993
+        },
+        "2": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 41.132816,
+            "min": 40.390379,
+            "max": 41.875254,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.32135,
+            "min": 0.31555,
+            "max": 0.32715,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 12.336679,
+            "min": 12.036897,
+            "max": 12.63646,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 13.224831,
+            "min": 13.142675,
+            "max": 13.306987,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 3.8185,
+            "min": 3.8,
+            "max": 3.837,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 0.982511
+        },
+        "3": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 37.258227,
+            "min": 35.945728,
+            "max": 38.570726,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.29108,
+            "min": 0.280826,
+            "max": 0.301334,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 13.145557,
+            "min": 12.450118,
+            "max": 13.840995,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 16.028228,
+            "min": 15.38778,
+            "max": 16.668677,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 4.482,
+            "min": 3.921,
+            "max": 5.043,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 0.889961
+        }
+      }
+    },
+    {
+      "concurrency": 8,
+      "original": {
+        "concurrency": 8,
+        "runs": 2,
+        "requests": 64,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.553,
+          "min": 0.545,
+          "max": 0.561
+        },
+        "output_tokens_per_s": {
+          "mean": 70.795,
+          "min": 69.71,
+          "max": 71.88
+        },
+        "latency_p50_s": {
+          "mean": 14.437,
+          "min": 14.223,
+          "max": 14.65
+        },
+        "latency_p95_s": {
+          "mean": 14.828,
+          "min": 14.364,
+          "max": 15.292
+        },
+        "avg_cores_used": {
+          "mean": 2.085,
+          "min": 2.082,
+          "max": 2.089
+        }
+      },
+      "multinode": {
+        "1": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 74.317767,
+            "min": 72.820222,
+            "max": 75.815313,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.580608,
+            "min": 0.568908,
+            "max": 0.592307,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 13.712625,
+            "min": 13.479196,
+            "max": 13.946054,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 13.986752,
+            "min": 13.607544,
+            "max": 14.365959,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 2.135,
+            "min": 2.119,
+            "max": 2.151,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.04976
+        },
+        "2": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 69.669546,
+            "min": 67.136461,
+            "max": 72.20263,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.544293,
+            "min": 0.524504,
+            "max": 0.564083,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 13.624503,
+            "min": 13.401513,
+            "max": 13.847492,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 17.832958,
+            "min": 15.152048,
+            "max": 20.513867,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 3.878,
+            "min": 3.834,
+            "max": 3.922,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 0.984103
+        },
+        "3": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 64.905975,
+            "min": 64.790362,
+            "max": 65.021587,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.507078,
+            "min": 0.506175,
+            "max": 0.507981,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 15.28503,
+            "min": 15.131453,
+            "max": 15.438608,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 16.5785,
+            "min": 16.238029,
+            "max": 16.918971,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 5.3515,
+            "min": 5.08,
+            "max": 5.623,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 0.916816
+        }
+      }
+    },
+    {
+      "concurrency": 16,
+      "original": {
+        "concurrency": 16,
+        "runs": 2,
+        "requests": 128,
+        "failed": 0,
+        "throughput_req_per_s": {
+          "mean": 0.623,
+          "min": 0.603,
+          "max": 0.643
+        },
+        "output_tokens_per_s": {
+          "mean": 79.8,
+          "min": 77.24,
+          "max": 82.36
+        },
+        "latency_p50_s": {
+          "mean": 25.666,
+          "min": 24.846,
+          "max": 26.486
+        },
+        "latency_p95_s": {
+          "mean": 27.053,
+          "min": 25.09,
+          "max": 29.016
+        },
+        "avg_cores_used": {
+          "mean": 2.207,
+          "min": 2.2,
+          "max": 2.214
+        }
+      },
+      "multinode": {
+        "1": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 88.294437,
+            "min": 87.451406,
+            "max": 89.137469,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.6898,
+            "min": 0.683214,
+            "max": 0.696386,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 23.154589,
+            "min": 22.936048,
+            "max": 23.373131,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 23.49679,
+            "min": 23.18928,
+            "max": 23.8043,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 2.309,
+            "min": 2.298,
+            "max": 2.32,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.106447
+        },
+        "2": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 102.140278,
+            "min": 98.219573,
+            "max": 106.060984,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.797971,
+            "min": 0.76734,
+            "max": 0.828601,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 17.978809,
+            "min": 17.342879,
+            "max": 18.61474,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 25.057347,
+            "min": 24.799789,
+            "max": 25.314904,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 3.919,
+            "min": 3.787,
+            "max": 4.051,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.279953
+        },
+        "3": {
+          "runs": 2,
+          "output_tokens_per_s": {
+            "mean": 104.358567,
+            "min": 95.814201,
+            "max": 112.902933,
+            "n": 2
+          },
+          "throughput_req_per_s": {
+            "mean": 0.815301,
+            "min": 0.748548,
+            "max": 0.882054,
+            "n": 2
+          },
+          "latency_p50_s": {
+            "mean": 18.505922,
+            "min": 17.678208,
+            "max": 19.333637,
+            "n": 2
+          },
+          "latency_p95_s": {
+            "mean": 24.220395,
+            "min": 20.331161,
+            "max": 28.109629,
+            "n": 2
+          },
+          "total_cores_used": {
+            "mean": 5.64,
+            "min": 5.605,
+            "max": 5.675,
+            "n": 2
+          },
+          "tokens_per_s_vs_original": 1.307751
+        }
+      }
+    }
+  ],
+  "scaling_curve": {
+    "top_concurrency": 48,
+    "per_replicas": [
+      {
+        "replicas": 1,
+        "sweep_complete": true,
+        "concurrency_levels_measured": [
+          1,
+          4,
+          8,
+          16,
+          32,
+          48
+        ],
+        "at_top": {
+          "concurrency": 48,
+          "output_tokens_per_s": 97.748686,
+          "runs": 2,
+          "speedup_vs_1_node": 1.0,
+          "scaling_efficiency": 1.0,
+          "ideal_linear_tokens_per_s": 97.75
+        },
+        "best": {
+          "concurrency": 32,
+          "output_tokens_per_s": 97.948634,
+          "runs": 2,
+          "speedup_vs_1_node": 1.0,
+          "scaling_efficiency": 1.0,
+          "ideal_linear_tokens_per_s": 97.95
+        }
+      },
+      {
+        "replicas": 2,
+        "sweep_complete": true,
+        "concurrency_levels_measured": [
+          1,
+          4,
+          8,
+          16,
+          32,
+          48
+        ],
+        "at_top": {
+          "concurrency": 48,
+          "output_tokens_per_s": 147.895345,
+          "runs": 2,
+          "speedup_vs_1_node": 1.513016,
+          "scaling_efficiency": 0.756508,
+          "ideal_linear_tokens_per_s": 195.5
+        },
+        "best": {
+          "concurrency": 48,
+          "output_tokens_per_s": 147.895345,
+          "runs": 2,
+          "speedup_vs_1_node": 1.509928,
+          "scaling_efficiency": 0.754964,
+          "ideal_linear_tokens_per_s": 195.9
+        }
+      },
+      {
+        "replicas": 3,
+        "sweep_complete": true,
+        "concurrency_levels_measured": [
+          1,
+          4,
+          8,
+          16,
+          32,
+          48
+        ],
+        "at_top": {
+          "concurrency": 48,
+          "output_tokens_per_s": 154.405121,
+          "runs": 2,
+          "speedup_vs_1_node": 1.579613,
+          "scaling_efficiency": 0.526538,
+          "ideal_linear_tokens_per_s": 293.25
+        },
+        "best": {
+          "concurrency": 48,
+          "output_tokens_per_s": 154.405121,
+          "runs": 2,
+          "speedup_vs_1_node": 1.576389,
+          "scaling_efficiency": 0.525463,
+          "ideal_linear_tokens_per_s": 293.85
+        }
+      }
+    ]
+  },
+  "distribution": {
+    "levels": [
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 1,
+        "served_per_node": {
+          "kubeserve-mn-worker": 7,
+          "kubeserve-mn-worker3": 9
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.4375,
+          "kubeserve-mn-worker3": 0.5625
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 6.2,
+        "chi2": 0.25,
+        "df": 1,
+        "p_value": 0.6171
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 4,
+        "served_per_node": {
+          "kubeserve-mn-worker": 9,
+          "kubeserve-mn-worker3": 7
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.5625,
+          "kubeserve-mn-worker3": 0.4375
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 6.2,
+        "chi2": 0.25,
+        "df": 1,
+        "p_value": 0.6171
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 8,
+        "served_per_node": {
+          "kubeserve-mn-worker": 16,
+          "kubeserve-mn-worker3": 16
+        },
+        "served_total": 32,
+        "client_succeeded": 32,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.5,
+          "kubeserve-mn-worker3": 0.5
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 0.0,
+        "chi2": 0.0,
+        "df": 1,
+        "p_value": 1.0
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 16,
+        "served_per_node": {
+          "kubeserve-mn-worker": 33,
+          "kubeserve-mn-worker3": 31
+        },
+        "served_total": 64,
+        "client_succeeded": 64,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.5156,
+          "kubeserve-mn-worker3": 0.4844
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 1.6,
+        "chi2": 0.062,
+        "df": 1,
+        "p_value": 0.8026
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 32,
+        "served_per_node": {
+          "kubeserve-mn-worker": 67,
+          "kubeserve-mn-worker3": 61
+        },
+        "served_total": 128,
+        "client_succeeded": 128,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.5234,
+          "kubeserve-mn-worker3": 0.4766
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 2.3,
+        "chi2": 0.281,
+        "df": 1,
+        "p_value": 0.5959
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 48,
+        "served_per_node": {
+          "kubeserve-mn-worker": 88,
+          "kubeserve-mn-worker3": 104
+        },
+        "served_total": 192,
+        "client_succeeded": 192,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.4583,
+          "kubeserve-mn-worker3": 0.5417
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 4.2,
+        "chi2": 1.333,
+        "df": 1,
+        "p_value": 0.2482
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 1,
+        "served_per_node": {
+          "kubeserve-mn-worker": 3,
+          "kubeserve-mn-worker2": 7,
+          "kubeserve-mn-worker3": 6
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.1875,
+          "kubeserve-mn-worker2": 0.4375,
+          "kubeserve-mn-worker3": 0.375
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 14.6,
+        "chi2": 1.625,
+        "df": 2,
+        "p_value": 0.4437
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 4,
+        "served_per_node": {
+          "kubeserve-mn-worker": 6,
+          "kubeserve-mn-worker2": 6,
+          "kubeserve-mn-worker3": 4
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.375,
+          "kubeserve-mn-worker2": 0.375,
+          "kubeserve-mn-worker3": 0.25
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 8.3,
+        "chi2": 0.5,
+        "df": 2,
+        "p_value": 0.7788
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 8,
+        "served_per_node": {
+          "kubeserve-mn-worker": 18,
+          "kubeserve-mn-worker2": 6,
+          "kubeserve-mn-worker3": 8
+        },
+        "served_total": 32,
+        "client_succeeded": 32,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.5625,
+          "kubeserve-mn-worker2": 0.1875,
+          "kubeserve-mn-worker3": 0.25
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 22.9,
+        "chi2": 7.75,
+        "df": 2,
+        "p_value": 0.0208
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 16,
+        "served_per_node": {
+          "kubeserve-mn-worker": 24,
+          "kubeserve-mn-worker2": 19,
+          "kubeserve-mn-worker3": 21
+        },
+        "served_total": 64,
+        "client_succeeded": 64,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.375,
+          "kubeserve-mn-worker2": 0.2969,
+          "kubeserve-mn-worker3": 0.3281
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 4.2,
+        "chi2": 0.594,
+        "df": 2,
+        "p_value": 0.7431
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 32,
+        "served_per_node": {
+          "kubeserve-mn-worker": 53,
+          "kubeserve-mn-worker2": 40,
+          "kubeserve-mn-worker3": 35
+        },
+        "served_total": 128,
+        "client_succeeded": 128,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.4141,
+          "kubeserve-mn-worker2": 0.3125,
+          "kubeserve-mn-worker3": 0.2734
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 8.1,
+        "chi2": 4.047,
+        "df": 2,
+        "p_value": 0.1322
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 48,
+        "served_per_node": {
+          "kubeserve-mn-worker": 56,
+          "kubeserve-mn-worker2": 71,
+          "kubeserve-mn-worker3": 65
+        },
+        "served_total": 192,
+        "client_succeeded": 192,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.2917,
+          "kubeserve-mn-worker2": 0.3698,
+          "kubeserve-mn-worker3": 0.3385
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 4.2,
+        "chi2": 1.781,
+        "df": 2,
+        "p_value": 0.4104
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 1,
+        "served_per_node": {
+          "kubeserve-mn-worker2": 6,
+          "kubeserve-mn-worker3": 10
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker2": 0.375,
+          "kubeserve-mn-worker3": 0.625
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 12.5,
+        "chi2": 1.0,
+        "df": 1,
+        "p_value": 0.3173
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 4,
+        "served_per_node": {
+          "kubeserve-mn-worker2": 8,
+          "kubeserve-mn-worker3": 8
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker2": 0.5,
+          "kubeserve-mn-worker3": 0.5
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 0.0,
+        "chi2": 0.0,
+        "df": 1,
+        "p_value": 1.0
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 8,
+        "served_per_node": {
+          "kubeserve-mn-worker2": 17,
+          "kubeserve-mn-worker3": 15
+        },
+        "served_total": 32,
+        "client_succeeded": 32,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker2": 0.5312,
+          "kubeserve-mn-worker3": 0.4688
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 3.1,
+        "chi2": 0.125,
+        "df": 1,
+        "p_value": 0.7237
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 16,
+        "served_per_node": {
+          "kubeserve-mn-worker2": 37,
+          "kubeserve-mn-worker3": 27
+        },
+        "served_total": 64,
+        "client_succeeded": 64,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker2": 0.5781,
+          "kubeserve-mn-worker3": 0.4219
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 7.8,
+        "chi2": 1.562,
+        "df": 1,
+        "p_value": 0.2113
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 32,
+        "served_per_node": {
+          "kubeserve-mn-worker2": 67,
+          "kubeserve-mn-worker3": 61
+        },
+        "served_total": 128,
+        "client_succeeded": 128,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker2": 0.5234,
+          "kubeserve-mn-worker3": 0.4766
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 2.3,
+        "chi2": 0.281,
+        "df": 1,
+        "p_value": 0.5959
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 48,
+        "served_per_node": {
+          "kubeserve-mn-worker2": 96,
+          "kubeserve-mn-worker3": 96
+        },
+        "served_total": 192,
+        "client_succeeded": 192,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker2": 0.5,
+          "kubeserve-mn-worker3": 0.5
+        },
+        "even_share": 0.5,
+        "max_deviation_pp": 0.0,
+        "chi2": 0.0,
+        "df": 1,
+        "p_value": 1.0
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 1,
+        "served_per_node": {
+          "kubeserve-mn-worker": 4,
+          "kubeserve-mn-worker2": 9,
+          "kubeserve-mn-worker3": 3
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.25,
+          "kubeserve-mn-worker2": 0.5625,
+          "kubeserve-mn-worker3": 0.1875
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 22.9,
+        "chi2": 3.875,
+        "df": 2,
+        "p_value": 0.1441
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 4,
+        "served_per_node": {
+          "kubeserve-mn-worker": 4,
+          "kubeserve-mn-worker2": 4,
+          "kubeserve-mn-worker3": 8
+        },
+        "served_total": 16,
+        "client_succeeded": 16,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.25,
+          "kubeserve-mn-worker2": 0.25,
+          "kubeserve-mn-worker3": 0.5
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 16.7,
+        "chi2": 2.0,
+        "df": 2,
+        "p_value": 0.3679
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 8,
+        "served_per_node": {
+          "kubeserve-mn-worker": 9,
+          "kubeserve-mn-worker2": 11,
+          "kubeserve-mn-worker3": 12
+        },
+        "served_total": 32,
+        "client_succeeded": 32,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.2812,
+          "kubeserve-mn-worker2": 0.3438,
+          "kubeserve-mn-worker3": 0.375
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 5.2,
+        "chi2": 0.438,
+        "df": 2,
+        "p_value": 0.8035
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 16,
+        "served_per_node": {
+          "kubeserve-mn-worker": 18,
+          "kubeserve-mn-worker2": 21,
+          "kubeserve-mn-worker3": 25
+        },
+        "served_total": 64,
+        "client_succeeded": 64,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.2812,
+          "kubeserve-mn-worker2": 0.3281,
+          "kubeserve-mn-worker3": 0.3906
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 5.7,
+        "chi2": 1.156,
+        "df": 2,
+        "p_value": 0.5609
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 32,
+        "served_per_node": {
+          "kubeserve-mn-worker": 50,
+          "kubeserve-mn-worker2": 39,
+          "kubeserve-mn-worker3": 39
+        },
+        "served_total": 128,
+        "client_succeeded": 128,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.3906,
+          "kubeserve-mn-worker2": 0.3047,
+          "kubeserve-mn-worker3": 0.3047
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 5.7,
+        "chi2": 1.891,
+        "df": 2,
+        "p_value": 0.3886
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 48,
+        "served_per_node": {
+          "kubeserve-mn-worker": 56,
+          "kubeserve-mn-worker2": 69,
+          "kubeserve-mn-worker3": 67
+        },
+        "served_total": 192,
+        "client_succeeded": 192,
+        "served_check_match": true,
+        "shares": {
+          "kubeserve-mn-worker": 0.2917,
+          "kubeserve-mn-worker2": 0.3594,
+          "kubeserve-mn-worker3": 0.349
+        },
+        "even_share": 0.3333,
+        "max_deviation_pp": 4.2,
+        "chi2": 1.531,
+        "df": 2,
+        "p_value": 0.465
+      }
+    ],
+    "tests": 24,
+    "below_threshold": 1,
+    "expected_below_threshold_by_chance": 1.2,
+    "p_threshold": 0.05,
+    "min_p_value": 0.0208,
+    "worst_deviation": {
+      "repeat": 1,
+      "replicas": 3,
+      "concurrency": 8,
+      "max_deviation_pp": 22.9,
+      "p_value": 0.0208,
+      "served_total": 32
+    }
+  },
+  "host_guard": {
+    "per_run": [
+      {
+        "run": 1,
+        "levels_accepted": 18,
+        "levels_accepted_after_retry": 2,
+        "swap_limit_mib": 64.0,
+        "sleep_limit_s": 5.0,
+        "max_swapped_out_mb": 33.8,
+        "swap_used_mb": {
+          "mean": 4121.2,
+          "min": 3923.5,
+          "max": 4569.7,
+          "n": 36
+        },
+        "load1_after": {
+          "mean": 4.86,
+          "min": 2.69,
+          "max": 8.29,
+          "n": 18
+        },
+        "rejected_attempts": 2,
+        "rejected_by_kind": {
+          "host_swapped": 2
+        },
+        "rejected": [
+          {
+            "repeat": 1,
+            "replicas": 2,
+            "concurrency": 1,
+            "attempt": 1,
+            "kind": "host_swapped",
+            "reason": "the host swapped out 111 MiB during this run (limit 64 MiB), so its numbers are invalid; free memory on the host and re-run",
+            "t_utc": "2026-11-02T23:27:19+00:00"
+          },
+          {
+            "repeat": 1,
+            "replicas": 3,
+            "concurrency": 1,
+            "attempt": 1,
+            "kind": "host_swapped",
+            "reason": "the host swapped out 102 MiB during this run (limit 64 MiB), so its numbers are invalid; free memory on the host and re-run",
+            "t_utc": "2026-11-02T23:43:00+00:00"
+          }
+        ]
+      },
+      {
+        "run": 2,
+        "levels_accepted": 18,
+        "levels_accepted_after_retry": 2,
+        "swap_limit_mib": 64.0,
+        "sleep_limit_s": 5.0,
+        "max_swapped_out_mb": 0.0,
+        "swap_used_mb": {
+          "mean": 4545.9,
+          "min": 4108.6,
+          "max": 5483.8,
+          "n": 36
+        },
+        "load1_after": {
+          "mean": 4.87,
+          "min": 2.23,
+          "max": 9.4,
+          "n": 18
+        },
+        "rejected_attempts": 2,
+        "rejected_by_kind": {
+          "host_swapped": 2
+        },
+        "rejected": [
+          {
+            "repeat": 2,
+            "replicas": 2,
+            "concurrency": 8,
+            "attempt": 1,
+            "kind": "host_swapped",
+            "reason": "the host swapped out 564 MiB during this run (limit 64 MiB), so its numbers are invalid; free memory on the host and re-run",
+            "t_utc": "2026-11-03T00:29:33+00:00"
+          },
+          {
+            "repeat": 2,
+            "replicas": 1,
+            "concurrency": 32,
+            "attempt": 1,
+            "kind": "host_swapped",
+            "reason": "the host swapped out 987 MiB during this run (limit 64 MiB), so its numbers are invalid; free memory on the host and re-run",
+            "t_utc": "2026-11-03T00:47:13+00:00"
+          }
+        ]
+      }
+    ],
+    "rejected_attempts_total": 4,
+    "max_swapped_out_mb": 33.8,
+    "levels": [
+      {
+        "repeat": 1,
+        "replicas": 1,
+        "concurrency": 1,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4569.69,
+        "swap_used_mb_after": 4409.62,
+        "load1_before": 2.15,
+        "load1_after": 2.69
+      },
+      {
+        "repeat": 1,
+        "replicas": 1,
+        "concurrency": 4,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4354.88,
+        "swap_used_mb_after": 4290.88,
+        "load1_before": 2.55,
+        "load1_after": 3.47
+      },
+      {
+        "repeat": 1,
+        "replicas": 1,
+        "concurrency": 8,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4290.88,
+        "swap_used_mb_after": 4218.88,
+        "load1_before": 3.43,
+        "load1_after": 3.93
+      },
+      {
+        "repeat": 1,
+        "replicas": 1,
+        "concurrency": 16,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4218.88,
+        "swap_used_mb_after": 4082.88,
+        "load1_before": 3.7,
+        "load1_after": 3.12
+      },
+      {
+        "repeat": 1,
+        "replicas": 1,
+        "concurrency": 32,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4082.88,
+        "swap_used_mb_after": 3994.88,
+        "load1_before": 3.19,
+        "load1_after": 3.94
+      },
+      {
+        "repeat": 1,
+        "replicas": 1,
+        "concurrency": 48,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 3986.88,
+        "swap_used_mb_after": 3938.88,
+        "load1_before": 3.7,
+        "load1_after": 5.51
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 1,
+        "attempt": 2,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4253.56,
+        "swap_used_mb_after": 4221.56,
+        "load1_before": 2.53,
+        "load1_after": 2.86
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 4,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4221.56,
+        "swap_used_mb_after": 4213.56,
+        "load1_before": 2.71,
+        "load1_after": 4.1
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 8,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4213.56,
+        "swap_used_mb_after": 4165.56,
+        "load1_before": 3.93,
+        "load1_after": 4.15
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 16,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4165.56,
+        "swap_used_mb_after": 4125.56,
+        "load1_before": 3.82,
+        "load1_after": 5.35
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 32,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4125.56,
+        "swap_used_mb_after": 4085.56,
+        "load1_before": 5.24,
+        "load1_after": 5.91
+      },
+      {
+        "repeat": 1,
+        "replicas": 2,
+        "concurrency": 48,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4085.56,
+        "swap_used_mb_after": 4069.56,
+        "load1_before": 5.44,
+        "load1_after": 5.83
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 1,
+        "attempt": 2,
+        "swapped_out_mb": 33.8,
+        "swap_used_mb_before": 4009.69,
+        "swap_used_mb_after": 4035.5,
+        "load1_before": 3.9,
+        "load1_after": 3.62
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 4,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4035.5,
+        "swap_used_mb_after": 4011.5,
+        "load1_before": 3.41,
+        "load1_after": 5.42
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 8,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4011.5,
+        "swap_used_mb_after": 4011.5,
+        "load1_before": 5.23,
+        "load1_after": 6.5
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 16,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4011.5,
+        "swap_used_mb_after": 3995.5,
+        "load1_before": 5.98,
+        "load1_after": 6.51
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 32,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 3995.5,
+        "swap_used_mb_after": 3971.5,
+        "load1_before": 6.15,
+        "load1_after": 6.21
+      },
+      {
+        "repeat": 1,
+        "replicas": 3,
+        "concurrency": 48,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 3963.5,
+        "swap_used_mb_after": 3923.5,
+        "load1_before": 6.12,
+        "load1_after": 8.29
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 1,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4188.75,
+        "swap_used_mb_after": 4148.75,
+        "load1_before": 3.48,
+        "load1_after": 2.54
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 4,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4132.62,
+        "swap_used_mb_after": 4108.62,
+        "load1_before": 2.34,
+        "load1_after": 3.89
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 8,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4108.62,
+        "swap_used_mb_after": 4108.62,
+        "load1_before": 3.58,
+        "load1_after": 6.26
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 16,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4108.62,
+        "swap_used_mb_after": 4108.62,
+        "load1_before": 6.0,
+        "load1_after": 7.4
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 32,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4108.62,
+        "swap_used_mb_after": 4108.62,
+        "load1_before": 6.89,
+        "load1_after": 9.4
+      },
+      {
+        "repeat": 2,
+        "replicas": 3,
+        "concurrency": 48,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4108.62,
+        "swap_used_mb_after": 4108.62,
+        "load1_before": 8.72,
+        "load1_after": 7.93
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 1,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4412.88,
+        "swap_used_mb_after": 4388.88,
+        "load1_before": 5.31,
+        "load1_after": 2.7
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 4,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4388.88,
+        "swap_used_mb_after": 4372.88,
+        "load1_before": 2.49,
+        "load1_after": 4.52
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 8,
+        "attempt": 2,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4897.25,
+        "swap_used_mb_after": 4785.25,
+        "load1_before": 6.53,
+        "load1_after": 7.22
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 16,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4785.25,
+        "swap_used_mb_after": 4753.25,
+        "load1_before": 6.72,
+        "load1_after": 5.06
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 32,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4753.25,
+        "swap_used_mb_after": 4689.25,
+        "load1_before": 4.74,
+        "load1_after": 5.0
+      },
+      {
+        "repeat": 2,
+        "replicas": 2,
+        "concurrency": 48,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4689.25,
+        "swap_used_mb_after": 4665.25,
+        "load1_before": 4.68,
+        "load1_after": 6.6
+      },
+      {
+        "repeat": 2,
+        "replicas": 1,
+        "concurrency": 1,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4641.25,
+        "swap_used_mb_after": 4601.19,
+        "load1_before": 4.96,
+        "load1_after": 3.63
+      },
+      {
+        "repeat": 2,
+        "replicas": 1,
+        "concurrency": 4,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4601.19,
+        "swap_used_mb_after": 4601.19,
+        "load1_before": 3.42,
+        "load1_after": 2.7
+      },
+      {
+        "repeat": 2,
+        "replicas": 1,
+        "concurrency": 8,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4601.19,
+        "swap_used_mb_after": 4593.19,
+        "load1_before": 2.48,
+        "load1_after": 2.23
+      },
+      {
+        "repeat": 2,
+        "replicas": 1,
+        "concurrency": 16,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 4593.19,
+        "swap_used_mb_after": 4593.19,
+        "load1_before": 2.21,
+        "load1_after": 3.68
+      },
+      {
+        "repeat": 2,
+        "replicas": 1,
+        "concurrency": 32,
+        "attempt": 2,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 5483.81,
+        "swap_used_mb_after": 5451.81,
+        "load1_before": 3.48,
+        "load1_after": 3.31
+      },
+      {
+        "repeat": 2,
+        "replicas": 1,
+        "concurrency": 48,
+        "attempt": 1,
+        "swapped_out_mb": 0.0,
+        "swap_used_mb_before": 5451.81,
+        "swap_used_mb_after": 5411.81,
+        "load1_before": 3.21,
+        "load1_after": 3.53
+      }
+    ]
+  },
+  "data_checks": {
+    "served_check_mismatches": [],
+    "non_200_responses": [],
+    "pod_warnings": [],
+    "levels_missing_pod_samples": [],
+    "levels_with_failed_requests": [],
+    "skipped_cpu_sample_ticks": 0,
+    "replica_setup_problems": []
+  },
+  "failure_tests": {
+    "status": "run",
+    "scenarios": [
+      {
+        "name": "node-kill",
+        "dir": "multinode/results/failure/node-kill",
+        "error": null,
+        "scenario": "node-kill",
+        "retry": false,
+        "replicas": 2,
+        "concurrency": 8,
+        "timeout_s": 60.0,
+        "started_at": "2026-11-02T18:54:55-05:00",
+        "victim": {
+          "pod": "vllm-5b6f494778-vchkf",
+          "node": "kubeserve-mn-worker"
+        },
+        "fault_command": "docker kill kubeserve-mn-worker",
+        "crash_method": null,
+        "valid": true,
+        "invalid_reasons": [],
+        "warnings": [],
+        "headline": "22 of 156 requests failed",
+        "recovered": true,
+        "recovered_after_s": 113.4,
+        "key_times_s_after_fault": {
+          "fault": 0.0,
+          "node_not_ready": 48.2,
+          "node_unreachable_taint": 48.2,
+          "victim_pod_not_ready": 48.2,
+          "victim_endpoint_removed": 48.2,
+          "ready_endpoints_below_R": 48.2,
+          "victim_pod_deletion": 78.3,
+          "replacement_created": 78.3,
+          "replacement_scheduled": 78.3,
+          "replacement_running": 78.3,
+          "replacement_ready": 113.4,
+          "ready_endpoints_back_to_R": 113.4,
+          "recovered": 113.4,
+          "load_stopped": 203.4,
+          "docker_start": 212.7,
+          "node_ready_again": 215.5,
+          "victim_pod_gone": 217.5
+        },
+        "replacement_pod": {
+          "pod": "vllm-5b6f494778-47h62",
+          "node": "kubeserve-mn-worker2"
+        },
+        "requests_total": 156,
+        "requests_succeeded": 134,
+        "requests_failed": 22,
+        "by_class": {
+          "ok": 134,
+          "failed_in_flight": 2,
+          "failed_after_fault": 20,
+          "failed_before_fault": 0
+        },
+        "error_categories_by_class": {
+          "failed_in_flight": {
+            "RemoteProtocolError": 2
+          },
+          "failed_after_fault": {
+            "RemoteProtocolError": 19,
+            "ReadTimeout": 1
+          }
+        },
+        "failed_attempt_latency_by_category": {
+          "ReadTimeout": {
+            "attempts": 1,
+            "median_s": 60.0,
+            "max_s": 60.0
+          },
+          "RemoteProtocolError": {
+            "attempts": 21,
+            "median_s": 6.15,
+            "max_s": 36.65
+          }
+        },
+        "failures_first_end_s": 0.2,
+        "failures_last_end_s": 69.6,
+        "overall": {
+          "output_tokens_per_s": 62.91,
+          "latency_p50_s": 13.953,
+          "latency_p95_s": 18.383,
+          "wall_time_s": 272.65
+        },
+        "phases": [
+          {
+            "phase": "pre_fault",
+            "from_s": -60.0,
+            "to_s": 0.0,
+            "duration_s": 60.0,
+            "started": 40,
+            "succeeded": 38,
+            "failed": 2,
+            "failed_in_flight_at_fault": 2,
+            "success_rate": 0.95,
+            "output_tokens_per_s": 73.3,
+            "latency_p50_s": 13.86,
+            "latency_p95_s": 15.12
+          },
+          {
+            "phase": "detection",
+            "from_s": 0.0,
+            "to_s": 48.2,
+            "duration_s": 48.2,
+            "started": 32,
+            "succeeded": 12,
+            "failed": 20,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 0.375,
+            "output_tokens_per_s": 34.9,
+            "latency_p50_s": 12.31,
+            "latency_p95_s": 13.15
+          },
+          {
+            "phase": "degraded",
+            "from_s": 48.2,
+            "to_s": 113.4,
+            "duration_s": 65.2,
+            "started": 35,
+            "succeeded": 35,
+            "failed": 0,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 1.0,
+            "output_tokens_per_s": 62.6,
+            "latency_p50_s": 14.71,
+            "latency_p95_s": 19.83
+          },
+          {
+            "phase": "post_recovery",
+            "from_s": 113.4,
+            "to_s": 203.4,
+            "duration_s": 90.0,
+            "started": 49,
+            "succeeded": 49,
+            "failed": 0,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 1.0,
+            "output_tokens_per_s": 72.6,
+            "latency_p50_s": 13.79,
+            "latency_p95_s": 15.19
+          }
+        ],
+        "retry_stats": null,
+        "served_per_node_from_access_logs": {
+          "kubeserve-mn-worker2": 24,
+          "kubeserve-mn-worker3": 94,
+          "kubeserve-mn-worker": 16
+        },
+        "access_log_200_total": 134,
+        "client_successful_attempts": 134,
+        "host_swapped_out_mb": 0.0,
+        "has_summary_md": true,
+        "has_chart": true
+      },
+      {
+        "name": "process-crash",
+        "dir": "multinode/results/failure/process-crash",
+        "error": null,
+        "scenario": "process-crash",
+        "retry": false,
+        "replicas": 2,
+        "concurrency": 8,
+        "timeout_s": 60.0,
+        "started_at": "2026-11-02T19:00:37-05:00",
+        "victim": {
+          "pod": "vllm-5b6f494778-47h62",
+          "node": "kubeserve-mn-worker2"
+        },
+        "fault_command": "docker exec kubeserve-mn-worker2 pkill -9 -f 'vllm serve'",
+        "crash_method": "pkill",
+        "valid": true,
+        "invalid_reasons": [],
+        "warnings": [],
+        "headline": "7 of 115 requests failed",
+        "recovered": true,
+        "recovered_after_s": 33.1,
+        "key_times_s_after_fault": {
+          "fault": 0.0,
+          "victim_pod_not_ready": 2.1,
+          "victim_endpoint_removed": 2.1,
+          "ready_endpoints_below_R": 2.1,
+          "victim_pod_deletion": null,
+          "container_restart_observed": 2.1,
+          "victim_ready_again": 33.1,
+          "ready_endpoints_back_to_R": 33.1,
+          "recovered": 33.1,
+          "load_stopped": 123.1,
+          "victim_pod_gone": null
+        },
+        "replacement_pod": {},
+        "requests_total": 115,
+        "requests_succeeded": 108,
+        "requests_failed": 7,
+        "by_class": {
+          "ok": 108,
+          "failed_in_flight": 5,
+          "failed_after_fault": 2,
+          "failed_before_fault": 0
+        },
+        "error_categories_by_class": {
+          "failed_in_flight": {
+            "RemoteProtocolError": 5
+          },
+          "failed_after_fault": {
+            "RemoteProtocolError": 2
+          }
+        },
+        "failed_attempt_latency_by_category": {
+          "RemoteProtocolError": {
+            "attempts": 7,
+            "median_s": 3.9,
+            "max_s": 7.05
+          }
+        },
+        "failures_first_end_s": 0.1,
+        "failures_last_end_s": 0.1,
+        "overall": {
+          "output_tokens_per_s": 70.77,
+          "latency_p50_s": 13.753,
+          "latency_p95_s": 15.636,
+          "wall_time_s": 195.32
+        },
+        "phases": [
+          {
+            "phase": "pre_fault",
+            "from_s": -60.1,
+            "to_s": 0.0,
+            "duration_s": 60.1,
+            "started": 40,
+            "succeeded": 35,
+            "failed": 5,
+            "failed_in_flight_at_fault": 5,
+            "success_rate": 0.875,
+            "output_tokens_per_s": 70.1,
+            "latency_p50_s": 13.75,
+            "latency_p95_s": 15.28
+          },
+          {
+            "phase": "detection",
+            "from_s": 0.0,
+            "to_s": 2.1,
+            "duration_s": 2.1,
+            "started": 7,
+            "succeeded": 5,
+            "failed": 2,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 0.7143,
+            "output_tokens_per_s": 67.6,
+            "latency_p50_s": 14.67,
+            "latency_p95_s": 14.67
+          },
+          {
+            "phase": "degraded",
+            "from_s": 2.1,
+            "to_s": 33.1,
+            "duration_s": 31.0,
+            "started": 16,
+            "succeeded": 16,
+            "failed": 0,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 1.0,
+            "output_tokens_per_s": 67.5,
+            "latency_p50_s": 15.3,
+            "latency_p95_s": 15.93
+          },
+          {
+            "phase": "post_recovery",
+            "from_s": 33.1,
+            "to_s": 123.1,
+            "duration_s": 90.0,
+            "started": 52,
+            "succeeded": 52,
+            "failed": 0,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 1.0,
+            "output_tokens_per_s": 75.5,
+            "latency_p50_s": 13.5,
+            "latency_p95_s": 14.36
+          }
+        ],
+        "retry_stats": null,
+        "served_per_node_from_access_logs": {
+          "kubeserve-mn-worker2": 51,
+          "kubeserve-mn-worker3": 57
+        },
+        "access_log_200_total": 108,
+        "client_successful_attempts": 108,
+        "host_swapped_out_mb": 0.0,
+        "has_summary_md": true,
+        "has_chart": true
+      },
+      {
+        "name": "node-kill-retry",
+        "dir": "multinode/results/failure/node-kill-retry",
+        "error": null,
+        "scenario": "node-kill",
+        "retry": true,
+        "replicas": 2,
+        "concurrency": 8,
+        "timeout_s": 60.0,
+        "started_at": "2026-11-02T19:06:19-05:00",
+        "victim": {
+          "pod": "vllm-5b6f494778-47h62",
+          "node": "kubeserve-mn-worker2"
+        },
+        "fault_command": "docker kill kubeserve-mn-worker2",
+        "crash_method": null,
+        "valid": true,
+        "invalid_reasons": [],
+        "warnings": [],
+        "headline": "5 of 141 requests failed after one client retry (15 retried, 10 of them succeeded)",
+        "recovered": true,
+        "recovered_after_s": 106.3,
+        "key_times_s_after_fault": {
+          "fault": 0.0,
+          "node_not_ready": 45.2,
+          "node_unreachable_taint": 45.2,
+          "victim_pod_not_ready": 45.2,
+          "victim_endpoint_removed": 45.2,
+          "ready_endpoints_below_R": 45.2,
+          "victim_pod_deletion": 75.2,
+          "replacement_created": 75.2,
+          "replacement_scheduled": 75.2,
+          "replacement_running": 76.2,
+          "replacement_ready": 106.3,
+          "ready_endpoints_back_to_R": 106.3,
+          "recovered": 106.3,
+          "load_stopped": 196.3,
+          "docker_start": 206.7,
+          "node_ready_again": 209.4,
+          "victim_pod_gone": 211.4
+        },
+        "replacement_pod": {
+          "pod": "vllm-5b6f494778-4n8zl",
+          "node": "kubeserve-mn-worker"
+        },
+        "requests_total": 141,
+        "requests_succeeded": 136,
+        "requests_failed": 5,
+        "by_class": {
+          "ok": 136,
+          "failed_in_flight": 0,
+          "failed_after_fault": 5,
+          "failed_before_fault": 0
+        },
+        "error_categories_by_class": {
+          "failed_after_fault": {
+            "RemoteProtocolError": 5
+          }
+        },
+        "failed_attempt_latency_by_category": {
+          "RemoteProtocolError": {
+            "attempts": 20,
+            "median_s": 3.07,
+            "max_s": 39.07
+          }
+        },
+        "failures_first_end_s": 34.2,
+        "failures_last_end_s": 40.4,
+        "overall": {
+          "output_tokens_per_s": 65.29,
+          "latency_p50_s": 14.369,
+          "latency_p95_s": 18.136,
+          "wall_time_s": 266.63
+        },
+        "phases": [
+          {
+            "phase": "pre_fault",
+            "from_s": -60.0,
+            "to_s": 0.0,
+            "duration_s": 60.0,
+            "started": 36,
+            "succeeded": 36,
+            "failed": 0,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 1.0,
+            "output_tokens_per_s": 66.6,
+            "latency_p50_s": 14.85,
+            "latency_p95_s": 18.7
+          },
+          {
+            "phase": "detection",
+            "from_s": 0.0,
+            "to_s": 45.2,
+            "duration_s": 45.2,
+            "started": 22,
+            "succeeded": 17,
+            "failed": 5,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 0.7727,
+            "output_tokens_per_s": 46.9,
+            "latency_p50_s": 13.34,
+            "latency_p95_s": 51.03
+          },
+          {
+            "phase": "degraded",
+            "from_s": 45.2,
+            "to_s": 106.3,
+            "duration_s": 61.1,
+            "started": 31,
+            "succeeded": 31,
+            "failed": 0,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 1.0,
+            "output_tokens_per_s": 68.1,
+            "latency_p50_s": 15.18,
+            "latency_p95_s": 15.95
+          },
+          {
+            "phase": "post_recovery",
+            "from_s": 106.3,
+            "to_s": 196.3,
+            "duration_s": 90.0,
+            "started": 52,
+            "succeeded": 52,
+            "failed": 0,
+            "failed_in_flight_at_fault": 0,
+            "success_rate": 1.0,
+            "output_tokens_per_s": 73.2,
+            "latency_p50_s": 13.88,
+            "latency_p95_s": 14.72
+          }
+        ],
+        "retry_stats": {
+          "total_attempts": 156,
+          "first_attempt_failures": 15,
+          "requests_retried": 15,
+          "succeeded_on_retry": 10,
+          "failed_after_retry": 5,
+          "failed_not_retryable": 0,
+          "attempts_by_class": {
+            "ok": 136,
+            "failed_in_flight": 3,
+            "failed_after_fault": 17,
+            "failed_before_fault": 0
+          },
+          "retry_attempt_failure_categories": {
+            "RemoteProtocolError": 5
+          },
+          "time_lost_by_masked_requests_s": {
+            "median": 3.07,
+            "max": 39.07
+          }
+        },
+        "served_per_node_from_access_logs": {
+          "kubeserve-mn-worker2": 12,
+          "kubeserve-mn-worker": 25,
+          "kubeserve-mn-worker3": 99
+        },
+        "access_log_200_total": 136,
+        "client_successful_attempts": 136,
+        "host_swapped_out_mb": 0.0,
+        "has_summary_md": true,
+        "has_chart": true
+      }
+    ],
+    "retry_comparison": [
+      {
+        "retry": "node-kill-retry",
+        "no_retry": "node-kill"
+      }
+    ]
+  },
+  "charts": {
+    "throughput": "multinode/results/throughput_vs_concurrency.png",
+    "scaling": "multinode/results/scaling_curve.png",
+    "distribution": "multinode/results/request_distribution.png"
+  }
+}

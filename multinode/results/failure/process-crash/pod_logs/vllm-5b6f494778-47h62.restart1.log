@@ -1,0 +1,159 @@
+2026-11-03T00:02:01.576570789Z W1103 00:02:01.576000 1 torch/_library/triton.py:53] Triton not available, find_triton_kernels = []
+2026-11-03T00:02:01.723791515Z (APIServer pid=1) INFO 11-03 00:02:01 [api_utils.py:347] 
+2026-11-03T00:02:01.723862895Z (APIServer pid=1) INFO 11-03 00:02:01 [api_utils.py:347]        █     █     █▄   ▄█
+2026-11-03T00:02:01.723869104Z (APIServer pid=1) INFO 11-03 00:02:01 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.31.0
+2026-11-03T00:02:01.723871563Z (APIServer pid=1) INFO 11-03 00:02:01 [api_utils.py:347]   █▄█▀ █     █     █     █  model   /models/Qwen2.5-0.5B-Instruct
+2026-11-03T00:02:01.723876147Z (APIServer pid=1) INFO 11-03 00:02:01 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+2026-11-03T00:02:01.723878063Z (APIServer pid=1) INFO 11-03 00:02:01 [api_utils.py:347] 
+2026-11-03T00:02:01.727607366Z (APIServer pid=1) INFO 11-03 00:02:01 [api_utils.py:286] non-default args: {'model_tag': '/models/Qwen2.5-0.5B-Instruct', 'host': '0.0.0.0', 'model': '/models/Qwen2.5-0.5B-Instruct', 'dtype': 'bfloat16', 'max_model_len': 2048, 'enforce_eager': True, 'served_model_name': ['qwen2.5-0.5b-instruct'], 'generation_config': 'vllm', 'kv_cache_memory_bytes': 268435456, 'max_num_seqs': 32, 'shutdown_timeout': 60}
+2026-11-03T00:02:01.732281120Z (APIServer pid=1) WARNING 11-03 00:02:01 [arg_utils.py:1910] The global random seed is set to 0. Since VLLM_ENABLE_V1_MULTIPROCESSING is set to False, this may affect the random state of the Python process that launched vLLM.
+2026-11-03T00:02:06.831831622Z (APIServer pid=1) INFO 11-03 00:02:06 [model.py:699] Resolved architecture: Qwen2ForCausalLM
+2026-11-03T00:02:06.831855208Z (APIServer pid=1) INFO 11-03 00:02:06 [model.py:2109] Using max model len 2048
+2026-11-03T00:02:06.839782961Z (APIServer pid=1) WARNING 11-03 00:02:06 [vllm.py:1706] Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+2026-11-03T00:02:06.839802963Z (APIServer pid=1) WARNING 11-03 00:02:06 [vllm.py:1715] TORCH_COMPILE_DISABLE is set, disabling torch.compile. This is equivalent to setting -cc.mode=none
+2026-11-03T00:02:06.840573861Z (APIServer pid=1) WARNING 11-03 00:02:06 [vllm.py:1750] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+2026-11-03T00:02:06.840587946Z (APIServer pid=1) INFO 11-03 00:02:06 [kernel.py:408] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+2026-11-03T00:02:06.840741042Z (APIServer pid=1) WARNING 11-03 00:02:06 [vllm.py:747] Model Runner V2 requires Triton; using the V1 model runner instead.
+2026-11-03T00:02:06.840863594Z (APIServer pid=1) INFO 11-03 00:02:06 [compilation.py:331] Enabled custom fusions: norm_quant, act_quant
+2026-11-03T00:02:12.097017064Z (EngineCore pid=39) INFO 11-03 00:02:12 [core.py:129] Initializing a V1 LLM engine (v0.31.0) with config: model='/models/Qwen2.5-0.5B-Instruct', speculative_config=None, tokenizer='/models/Qwen2.5-0.5B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=None, quantization_config=None, enforce_eager=True, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cpu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=qwen2.5-0.5b-instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.NONE: 0>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['all', '+gelu', '+gelu_tanh', '+gelu_and_mul'], 'ir_enable_torch_wrap': False, 'splitting_ops': [], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.NONE: 0>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=False, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+2026-11-03T00:02:12.168788769Z /opt/venv/lib/python3.12/site-packages/vllm/triton_utils/dispatcher.py:138: FutureWarning: `torch.distributed.reduce_op` is deprecated, please use `torch.distributed.ReduceOp` instead
+2026-11-03T00:02:12.168807183Z   if hasattr(value, "__dict__"):
+2026-11-03T00:02:12.168815016Z /opt/venv/lib/python3.12/site-packages/vllm/triton_utils/dispatcher.py:139: FutureWarning: `torch.distributed.reduce_op` is deprecated, please use `torch.distributed.ReduceOp` instead
+2026-11-03T00:02:12.168816307Z   wrapper = lookup(vars(value).get("kernel"))
+2026-11-03T00:02:12.265285433Z W1103 00:02:12.264000 39 torch/_library/triton.py:53] Triton not available, find_triton_kernels = []
+2026-11-03T00:02:12.481801906Z (EngineCore pid=39) WARNING 11-03 00:02:12 [indexer_topk.py:35] Failed to import the DeepSelect extension (vllm._deepselect_C): No module named 'vllm._deepselect_C'
+2026-11-03T00:02:12.965039386Z [W1103 00:02:12.904912380 utils.cpp:68] Warning: NUMA binding: Using MEMBIND policy for memory allocation on the NUMA nodes (0). Memory allocations will be strictly bound to these NUMA nodes. (function init_cpu_memory_env)
+2026-11-03T00:02:12.970640882Z (EngineCore pid=39) WARNING 11-03 00:02:12 [vllm.py:747] Model Runner V2 requires Triton; using the V1 model runner instead.
+2026-11-03T00:02:12.970801322Z (EngineCore pid=39) INFO 11-03 00:02:12 [parallel_state.py:1825] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_ab8be17c0cc3465d9a376f22769ccab0 backend=gloo
+2026-11-03T00:02:12.984322621Z (EngineCore pid=39) INFO 11-03 00:02:12 [parallel_state.py:2269] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+2026-11-03T00:02:12.994823448Z (EngineCore pid=39) INFO 11-03 00:02:12 [cpu_model_runner.py:69] Starting to load model /models/Qwen2.5-0.5B-Instruct...
+2026-11-03T00:02:13.073163792Z (EngineCore pid=39) WARNING 11-03 00:02:13 [compilation.py:1350] Op 'gelu' not present in model, enabling with '+gelu' has no effect
+2026-11-03T00:02:13.073208578Z (EngineCore pid=39) WARNING 11-03 00:02:13 [compilation.py:1350] Op 'gelu_tanh' not present in model, enabling with '+gelu_tanh' has no effect
+2026-11-03T00:02:13.073755849Z (EngineCore pid=39) WARNING 11-03 00:02:13 [compilation.py:1350] Op 'gelu_and_mul' not present in model, enabling with '+gelu_and_mul' has no effect
+2026-11-03T00:02:13.219892268Z (EngineCore pid=39) INFO 11-03 00:02:13 [weight_utils.py:1063] Filesystem type for checkpoints: VIRTIOFS. Checkpoint size: 0.92 GiB. Available RAM: 2.12 GiB.
+2026-11-03T00:02:13.219932638Z (EngineCore pid=39) INFO 11-03 00:02:13 [weight_utils.py:1086] Auto-prefetch is disabled because the filesystem (VIRTIOFS) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+2026-11-03T00:02:13.220515863Z Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+2026-11-03T00:02:14.695703014Z Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.47s/it]
+2026-11-03T00:02:14.695831917Z Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:01<00:00,  1.48s/it]
+2026-11-03T00:02:14.695837083Z 
+2026-11-03T00:02:14.718976916Z (EngineCore pid=39) INFO 11-03 00:02:14 [default_loader.py:484] Loading weights took 1.50 seconds
+2026-11-03T00:02:15.313138769Z (EngineCore pid=39) INFO 11-03 00:02:15 [torch_utils.py:286] Reducing Torch threads from 10 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+2026-11-03T00:02:15.313184390Z (EngineCore pid=39) WARNING 11-03 00:02:15 [cpu_worker.py:140] CPU backend doesn't allow to use `torch.set_num_threads` after the thread binding, skip it.
+2026-11-03T00:02:15.314069591Z (EngineCore pid=39) INFO 11-03 00:02:15 [utils.py:343] Using LBHNC KV cache layout.
+2026-11-03T00:02:15.324810572Z (EngineCore pid=39) INFO 11-03 00:02:15 [cpu_worker.py:260] Explicitly set (0.25/3.75) GiB for KV cache on node 0.
+2026-11-03T00:02:15.325878546Z (EngineCore pid=39) INFO 11-03 00:02:15 [kv_cache_utils.py:2464] CPU KV cache size: 21,760 tokens, Maximum concurrency for 2,048 tokens per request: 10.62x
+2026-11-03T00:02:15.364266818Z (EngineCore pid=39) INFO 11-03 00:02:15 [core.py:380] init engine (profile, create kv cache, warmup model) took 0.05 s
+2026-11-03T00:02:15.917975459Z (EngineCore pid=39) WARNING 11-03 00:02:15 [vllm.py:1706] Enforce eager set, disabling torch.compile, CUDAGraphs, and JIT kernel warmup. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none and --kernel_config.enable_jit_warmup=False
+2026-11-03T00:02:15.918040244Z (EngineCore pid=39) WARNING 11-03 00:02:15 [vllm.py:1715] TORCH_COMPILE_DISABLE is set, disabling torch.compile. This is equivalent to setting -cc.mode=none
+2026-11-03T00:02:15.918067950Z (EngineCore pid=39) WARNING 11-03 00:02:15 [vllm.py:1750] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.
+2026-11-03T00:02:15.918866285Z (EngineCore pid=39) INFO 11-03 00:02:15 [kernel.py:408] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['native'])
+2026-11-03T00:02:15.918871451Z (EngineCore pid=39) INFO 11-03 00:02:15 [compilation.py:331] Enabled custom fusions: norm_quant, act_quant
+2026-11-03T00:02:15.923445482Z (APIServer pid=1) INFO 11-03 00:02:15 [entry.py:132] Supported tasks: ['generate']
+2026-11-03T00:02:16.252519042Z (APIServer pid=1) INFO 11-03 00:02:16 [factories.py:76] Scale-out endpoints are disabled. Set --enable-scale-out to enable them.
+2026-11-03T00:02:16.502941287Z (APIServer pid=1) INFO 11-03 00:02:16 [hf.py:646] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+2026-11-03T00:02:16.556059666Z (APIServer pid=1) INFO 11-03 00:02:16 [entry.py:136] Starting vLLM server on http://0.0.0.0:8000
+2026-11-03T00:02:16.556355304Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:60] Available routes are:
+2026-11-03T00:02:16.556373719Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /openapi.json, Methods: HEAD, GET
+2026-11-03T00:02:16.556378593Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /docs, Methods: HEAD, GET
+2026-11-03T00:02:16.556380843Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /docs/oauth2-redirect, Methods: HEAD, GET
+2026-11-03T00:02:16.556381551Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /redoc, Methods: HEAD, GET
+2026-11-03T00:02:16.556382218Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /load, Methods: GET
+2026-11-03T00:02:16.556382843Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /version, Methods: GET
+2026-11-03T00:02:16.556387801Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /kv_event_sources, Methods: GET
+2026-11-03T00:02:16.556388759Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /health, Methods: GET
+2026-11-03T00:02:16.556390884Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /metrics, Methods: GET
+2026-11-03T00:02:16.556398591Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /tokenize, Methods: POST
+2026-11-03T00:02:16.556399549Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /detokenize, Methods: POST
+2026-11-03T00:02:16.556400174Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/models, Methods: GET
+2026-11-03T00:02:16.556400799Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /ping, Methods: GET
+2026-11-03T00:02:16.556402549Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /ping, Methods: POST
+2026-11-03T00:02:16.556406340Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /invocations, Methods: POST
+2026-11-03T00:02:16.556408090Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/chat/completions, Methods: POST
+2026-11-03T00:02:16.556408882Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/chat/completions/batch, Methods: POST
+2026-11-03T00:02:16.557393286Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/responses, Methods: POST
+2026-11-03T00:02:16.557419242Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/responses/{response_id}, Methods: GET
+2026-11-03T00:02:16.557424950Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/responses/{response_id}/cancel, Methods: POST
+2026-11-03T00:02:16.557429824Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/completions, Methods: POST
+2026-11-03T00:02:16.557433574Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/messages, Methods: POST
+2026-11-03T00:02:16.557439323Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /v1/messages/count_tokens, Methods: POST
+2026-11-03T00:02:16.557446489Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /generative_scoring, Methods: POST
+2026-11-03T00:02:16.557455488Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /scale_elastic_ep, Methods: POST
+2026-11-03T00:02:16.557461946Z (APIServer pid=1) INFO 11-03 00:02:16 [launcher.py:69] Route: /is_scaling_elastic_ep, Methods: POST
+2026-11-03T00:02:16.632363416Z INFO:     Started server process [1]
+2026-11-03T00:02:16.632393622Z INFO:     Waiting for application startup.
+2026-11-03T00:02:17.087441843Z INFO:     Application startup complete.
+2026-11-03T00:02:19.422164571Z INFO:     10.244.3.1:50556 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:19.424837310Z INFO:     10.244.3.1:50558 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:24.426710654Z INFO:     10.244.3.1:50574 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:27.087842123Z (APIServer pid=1) INFO 11-03 00:02:27 [loggers.py:320] Engine 000: Avg prompt throughput: 3.8 tokens/s, Avg generation throughput: 0.4 tokens/s, Running: 1 reqs, Waiting: 0 reqs, CPU KV cache usage: 0.6%, Prefix cache hit rate: 0.0%
+2026-11-03T00:02:29.420755973Z INFO:     10.244.3.1:33190 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:29.424992174Z INFO:     10.244.3.1:33196 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:34.425113621Z INFO:     10.244.3.1:33210 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:37.087940368Z (APIServer pid=1) INFO 11-03 00:02:37 [loggers.py:320] Engine 000: Avg prompt throughput: 12.0 tokens/s, Avg generation throughput: 29.8 tokens/s, Running: 4 reqs, Waiting: 0 reqs, CPU KV cache usage: 3.6%, Prefix cache hit rate: 0.0%
+2026-11-03T00:02:39.029336455Z INFO:     172.18.0.5:11329 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:39.420222281Z INFO:     10.244.3.1:53178 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:39.426010507Z INFO:     10.244.3.1:53194 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:40.684841506Z INFO:     172.18.0.5:64069 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:44.424724029Z INFO:     10.244.3.1:53198 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:45.025449862Z INFO:     172.18.0.5:58643 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:45.025745071Z INFO:     172.18.0.5:43621 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:47.089170998Z (APIServer pid=1) INFO 11-03 00:02:47 [loggers.py:320] Engine 000: Avg prompt throughput: 21.7 tokens/s, Avg generation throughput: 41.4 tokens/s, Running: 5 reqs, Waiting: 0 reqs, CPU KV cache usage: 3.0%, Prefix cache hit rate: 0.0%
+2026-11-03T00:02:49.419702046Z INFO:     10.244.3.1:58044 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:49.424488846Z INFO:     10.244.3.1:58054 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:52.605616671Z INFO:     172.18.0.5:50816 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:54.290875142Z INFO:     172.18.0.5:31688 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:54.424843260Z INFO:     10.244.3.1:58070 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:55.046652850Z INFO:     172.18.0.5:27686 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:57.089453818Z (APIServer pid=1) INFO 11-03 00:02:57 [loggers.py:320] Engine 000: Avg prompt throughput: 12.4 tokens/s, Avg generation throughput: 47.7 tokens/s, Running: 5 reqs, Waiting: 0 reqs, CPU KV cache usage: 4.1%, Prefix cache hit rate: 0.0%
+2026-11-03T00:02:59.385680890Z INFO:     172.18.0.5:63496 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:59.386021191Z INFO:     172.18.0.5:20394 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:02:59.419498359Z INFO:     10.244.3.1:39868 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:02:59.424971211Z INFO:     10.244.3.1:39870 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:04.425340238Z INFO:     10.244.3.1:39884 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:06.712961558Z INFO:     172.18.0.5:5150 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:07.090358349Z (APIServer pid=1) INFO 11-03 00:03:07 [loggers.py:320] Engine 000: Avg prompt throughput: 12.9 tokens/s, Avg generation throughput: 55.8 tokens/s, Running: 5 reqs, Waiting: 0 reqs, CPU KV cache usage: 5.3%, Prefix cache hit rate: 0.0%
+2026-11-03T00:03:08.420796602Z INFO:     172.18.0.5:52315 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:09.194191026Z INFO:     172.18.0.5:1026 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:09.419993583Z INFO:     10.244.3.1:51342 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:09.424865434Z INFO:     10.244.3.1:51354 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:12.087834837Z INFO:     172.18.0.5:7149 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:12.188202570Z INFO:     172.18.0.5:1672 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:13.487082073Z INFO:     172.18.0.5:50351 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:14.426393141Z INFO:     10.244.3.1:51358 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:17.091465266Z (APIServer pid=1) INFO 11-03 00:03:17 [loggers.py:320] Engine 000: Avg prompt throughput: 24.7 tokens/s, Avg generation throughput: 55.7 tokens/s, Running: 6 reqs, Waiting: 0 reqs, CPU KV cache usage: 4.1%, Prefix cache hit rate: 0.0%
+2026-11-03T00:03:19.419972403Z INFO:     10.244.3.1:35274 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:19.424924923Z INFO:     10.244.3.1:35288 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:20.873256497Z INFO:     172.18.0.5:18013 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:22.657056767Z INFO:     172.18.0.5:34740 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:23.147367625Z INFO:     172.18.0.5:27218 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:23.239657792Z INFO:     172.18.0.5:45258 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:24.431972658Z INFO:     10.244.3.1:35302 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:24.711333245Z INFO:     172.18.0.5:16549 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:27.092324170Z (APIServer pid=1) INFO 11-03 00:03:27 [loggers.py:320] Engine 000: Avg prompt throughput: 17.5 tokens/s, Avg generation throughput: 49.2 tokens/s, Running: 5 reqs, Waiting: 0 reqs, CPU KV cache usage: 3.6%, Prefix cache hit rate: 0.0%
+2026-11-03T00:03:27.295122746Z INFO:     172.18.0.5:2502 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:29.419648215Z INFO:     10.244.3.1:58956 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:29.424690603Z INFO:     10.244.3.1:58970 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:34.427073260Z INFO:     10.244.3.1:58976 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:34.628572883Z INFO:     172.18.0.5:32749 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:36.800539059Z INFO:     172.18.0.5:40380 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:37.093563675Z (APIServer pid=1) INFO 11-03 00:03:37 [loggers.py:320] Engine 000: Avg prompt throughput: 8.3 tokens/s, Avg generation throughput: 49.1 tokens/s, Running: 4 reqs, Waiting: 0 reqs, CPU KV cache usage: 4.1%, Prefix cache hit rate: 0.0%
+2026-11-03T00:03:38.468830335Z INFO:     172.18.0.5:19748 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:38.469150686Z INFO:     172.18.0.5:16792 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:39.426839672Z INFO:     10.244.3.1:34072 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:39.426959388Z INFO:     10.244.3.1:34082 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:41.074883465Z INFO:     172.18.0.5:24453 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:44.425716755Z INFO:     10.244.3.1:34090 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:47.094469687Z (APIServer pid=1) INFO 11-03 00:03:47 [loggers.py:320] Engine 000: Avg prompt throughput: 13.3 tokens/s, Avg generation throughput: 41.2 tokens/s, Running: 4 reqs, Waiting: 0 reqs, CPU KV cache usage: 4.1%, Prefix cache hit rate: 0.0%
+2026-11-03T00:03:47.855654486Z INFO:     172.18.0.5:43846 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:49.419305766Z INFO:     10.244.3.1:34026 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:49.425204495Z INFO:     10.244.3.1:34040 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:51.763614814Z INFO:     172.18.0.5:49374 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:51.982440654Z INFO:     172.18.0.5:53444 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:51.982856388Z INFO:     172.18.0.5:57025 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:03:54.425023899Z INFO:     10.244.3.1:34044 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:57.095053780Z (APIServer pid=1) INFO 11-03 00:03:57 [loggers.py:320] Engine 000: Avg prompt throughput: 12.2 tokens/s, Avg generation throughput: 35.8 tokens/s, Running: 3 reqs, Waiting: 0 reqs, CPU KV cache usage: 1.8%, Prefix cache hit rate: 0.0%
+2026-11-03T00:03:59.419311718Z INFO:     10.244.3.1:57630 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:03:59.426647549Z INFO:     10.244.3.1:57636 - "GET /health HTTP/1.1" 200 OK
+2026-11-03T00:04:01.731151523Z INFO:     172.18.0.5:32104 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:04:01.809215785Z INFO:     172.18.0.5:9683 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-03T00:04:01.896395825Z INFO:     172.18.0.5:7805 - "POST /v1/chat/completions HTTP/1.1" 200 OK

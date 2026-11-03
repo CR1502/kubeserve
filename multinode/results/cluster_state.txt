@@ -1,0 +1,42 @@
+# Cluster state recorded after all runs (2026-11-03T01:09:31Z)
+
+## Where every pod runs (kubectl get pods -A, custom columns)
+NAMESPACE            POD                                                  NODE                         RESTARTS
+kube-system          coredns-6565759cd4-sggqz                             kubeserve-mn-control-plane   0
+kube-system          coredns-6565759cd4-zkpqs                             kubeserve-mn-control-plane   0
+kube-system          etcd-kubeserve-mn-control-plane                      kubeserve-mn-control-plane   0
+kube-system          kindnet-4n56f                                        kubeserve-mn-worker          2
+kube-system          kindnet-5w8sm                                        kubeserve-mn-worker3         0
+kube-system          kindnet-jq9gc                                        kubeserve-mn-control-plane   0
+kube-system          kindnet-tt5wq                                        kubeserve-mn-worker2         2
+kube-system          kube-apiserver-kubeserve-mn-control-plane            kubeserve-mn-control-plane   0
+kube-system          kube-controller-manager-kubeserve-mn-control-plane   kubeserve-mn-control-plane   1
+kube-system          kube-proxy-4gdkb                                     kubeserve-mn-control-plane   0
+kube-system          kube-proxy-rjftd                                     kubeserve-mn-worker3         0
+kube-system          kube-proxy-smcnr                                     kubeserve-mn-worker2         2
+kube-system          kube-proxy-tx6ns                                     kubeserve-mn-worker          2
+kube-system          kube-scheduler-kubeserve-mn-control-plane            kubeserve-mn-control-plane   1
+kube-system          metrics-server-774c57c895-8k6b9                      kubeserve-mn-control-plane   0
+kubeserve            vllm-5b6f494778-7l7rx                                kubeserve-mn-worker3         0
+local-path-storage   local-path-provisioner-75f7fc7dc5-klsjp              kubeserve-mn-control-plane   0
+
+## vLLM image in each worker node (crictl) and in the VM's Docker
+# Docker 29's containerd store reports the OCI index digest (223f...) while crictl reports the config digest (2ce7...);
+# both refer to the image built 2026-10-07 for the single-node project, which was not rebuilt for this extension.
+kubeserve-mn-worker: docker.io/library/kubeserve-vllm:v1 sha256:2ce7aa1564d3828af17535592204645e9549f60fb6b82722005e0f0d0d4175e9
+kubeserve-mn-worker2: docker.io/library/kubeserve-vllm:v1 sha256:2ce7aa1564d3828af17535592204645e9549f60fb6b82722005e0f0d0d4175e9
+kubeserve-mn-worker3: docker.io/library/kubeserve-vllm:v1 sha256:2ce7aa1564d3828af17535592204645e9549f60fb6b82722005e0f0d0d4175e9
+docker: kubeserve-vllm:v1 id=sha256:223f623ead42839b265a0b7d9570c89505efedd0ce53081bf37efb49e49ad338 created=2026-10-07T21:40:17.492097137-04:00
+
+## Node container CPU pinning (docker inspect)
+kubeserve-mn-control-plane cpuset=0
+kubeserve-mn-worker cpuset=1-3
+kubeserve-mn-worker2 cpuset=4-6
+kubeserve-mn-worker3 cpuset=7-9
+
+## Note on the control-plane restarts above
+kube-controller-manager and kube-scheduler each restarted once, at 2026-11-03T01:03Z ("leaderelection lost",
+API server briefly unreachable on the 1-vCPU control-plane node). That is after every measurement:
+scaling run 2 ended at about 00:54Z and the last failure test at about 00:10Z. The kindnet/kube-proxy
+restart counts of 2 on worker and worker2 are the node kills (one dry run without load plus one failure
+test on each of those nodes).

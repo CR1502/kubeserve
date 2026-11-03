@@ -1,0 +1,29 @@
+# metrics-server for the multi-node cluster: the root project's metrics-server
+# (v0.9.0 + --kubelet-insecure-tls for kind's self-signed kubelet certs) as the base,
+# pinned to the control-plane node so the inference workers run nothing but vLLM
+# (plus the per-node kube-proxy/kindnet DaemonSets) and a worker failure never takes
+# the metrics API down.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../k8s/metrics-server
+patches:
+  - target:
+      kind: Deployment
+      name: metrics-server
+      namespace: kube-system
+    patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: metrics-server
+        namespace: kube-system
+      spec:
+        template:
+          spec:
+            nodeSelector:
+              node-role.kubernetes.io/control-plane: ""
+            tolerations:
+              - key: node-role.kubernetes.io/control-plane
+                operator: Exists
+                effect: NoSchedule

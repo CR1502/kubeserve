@@ -1,0 +1,663 @@
+{
+  "run": {
+    "scenario": "node-kill",
+    "retry": false,
+    "replicas": 2,
+    "concurrency": 8,
+    "timeout_s": 60.0,
+    "max_tokens": 128,
+    "url": "http://localhost:30080",
+    "pre_s": 60,
+    "post_s": 90,
+    "recovery_cap_s": 600,
+    "crash_method": null,
+    "started_at": "2026-11-02T18:54:55-05:00",
+    "victim": {
+      "pod": "vllm-5b6f494778-vchkf",
+      "node": "kubeserve-mn-worker"
+    },
+    "spare_nodes": [
+      "kubeserve-mn-worker2"
+    ],
+    "pods_before": {
+      "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3",
+      "vllm-5b6f494778-vchkf": "kubeserve-mn-worker"
+    },
+    "t_watch_start": 1793663716.318023,
+    "host_before": {
+      "t": 1793663718.3423302,
+      "swapouts_pages": 167849470,
+      "page_size": 16384,
+      "swap_used_mb": 4431.5,
+      "load1": 5.55
+    },
+    "load_start": 1793663718.3423948,
+    "t_fault": 1793663778.3440661,
+    "pre_fault_pods": [
+      "vllm-5b6f494778-7l7rx",
+      "vllm-5b6f494778-vchkf"
+    ],
+    "victim_restarts_before": 0,
+    "fault": {
+      "t_attempted": 1793663778.3440661,
+      "command": "docker kill kubeserve-mn-worker",
+      "returncode": 0,
+      "output": "kubeserve-mn-worker",
+      "cmd_duration_s": 0.509,
+      "ok": true,
+      "node_container_5s_after": "exited restarts=0"
+    },
+    "t_recovered_live": 1793663891.763917,
+    "t_stop_load": 1793663981.7648551,
+    "load_end": 1793663990.9942963,
+    "host_after": {
+      "t": 1793663991.005551,
+      "swapouts_pages": 167849470,
+      "page_size": 16384,
+      "swap_used_mb": 4199.5,
+      "load1": 5.2
+    },
+    "host_compare": {
+      "swapped_out_mb": 0.0,
+      "swap_used_mb_before": 4431.5,
+      "swap_used_mb_after": 4199.5,
+      "load1_before": 5.55,
+      "load1_after": 5.2
+    },
+    "restore": {
+      "node_container_before_restore": "exited restarts=0",
+      "t_docker_start": 1793663991.068279,
+      "docker_start": {
+        "returncode": 0,
+        "output": "kubeserve-mn-worker"
+      },
+      "pin_node_cpus": {
+        "returncode": 0,
+        "output": "kubeserve-mn-control-plane   want=0    config_before=0      effective=0         ok\nkubeserve-mn-worker          want=1-3  config_before=1-3    effective=1-3       ok\nkubeserve-mn-worker2         want=4-6  config_before=4-6    effective=4-6       ok\nkubeserve-mn-worker3         want=7-9  config_before=7-9    effective=7-9       ok"
+      },
+      "t_node_ready_again": 1793663993.8641338,
+      "t_exactly_R_ready": 1793663995.836603,
+      "restored": true
+    },
+    "watcher_errors": 0,
+    "watcher_error_samples": []
+  },
+  "valid": true,
+  "invalid_reasons": [],
+  "warnings": [],
+  "headline": "22 of 156 requests failed",
+  "recovered": true,
+  "recovered_after_s": 113.4,
+  "key_times_s_after_fault": {
+    "fault": 0.0,
+    "node_not_ready": 48.2,
+    "node_unreachable_taint": 48.2,
+    "victim_pod_not_ready": 48.2,
+    "victim_endpoint_removed": 48.2,
+    "ready_endpoints_below_R": 48.2,
+    "victim_pod_deletion": 78.3,
+    "replacement_created": 78.3,
+    "replacement_scheduled": 78.3,
+    "replacement_running": 78.3,
+    "replacement_ready": 113.4,
+    "ready_endpoints_back_to_R": 113.4,
+    "recovered": 113.4,
+    "load_stopped": 203.4,
+    "docker_start": 212.7,
+    "node_ready_again": 215.5,
+    "victim_pod_gone": 217.5
+  },
+  "replacement_pod": {
+    "pod": "vllm-5b6f494778-47h62",
+    "node": "kubeserve-mn-worker2"
+  },
+  "victim_last_terminated": null,
+  "requests": {
+    "total": 156,
+    "succeeded": 134,
+    "failed": 22,
+    "by_class": {
+      "ok": 134,
+      "failed_in_flight": 2,
+      "failed_after_fault": 20,
+      "failed_before_fault": 0
+    },
+    "error_categories_by_class": {
+      "failed_in_flight": {
+        "RemoteProtocolError": 2
+      },
+      "failed_after_fault": {
+        "RemoteProtocolError": 19,
+        "ReadTimeout": 1
+      }
+    },
+    "failed_attempt_latency_by_category": {
+      "ReadTimeout": {
+        "attempts": 1,
+        "median_s": 60.0,
+        "max_s": 60.0
+      },
+      "RemoteProtocolError": {
+        "attempts": 21,
+        "median_s": 6.15,
+        "max_s": 36.65
+      }
+    },
+    "failures_first_end_s": 0.2,
+    "failures_last_end_s": 69.6,
+    "overall": {
+      "requests": 156,
+      "succeeded": 134,
+      "failed": 22,
+      "wall_time_s": 272.65,
+      "throughput_req_per_s": 0.4915,
+      "output_tokens_per_s": 62.91,
+      "latency_p50_s": 13.953,
+      "latency_p95_s": 18.383,
+      "latency_p99_s": 19.843,
+      "latency_mean_s": 14.103,
+      "latency_max_s": 19.854,
+      "mean_prompt_tokens": 42.664,
+      "mean_completion_tokens": 128.0
+    },
+    "failed_requests": [
+      {
+        "index": 37,
+        "class": "failed_in_flight",
+        "category": "RemoteProtocolError",
+        "start_s": -4.4,
+        "end_s": 0.2,
+        "latency_s": 4.57,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 39,
+        "class": "failed_in_flight",
+        "category": "RemoteProtocolError",
+        "start_s": -3.7,
+        "end_s": 0.2,
+        "latency_s": 3.88,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 40,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 0.2,
+        "end_s": 0.2,
+        "latency_s": 0.0,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 41,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 0.2,
+        "end_s": 0.2,
+        "latency_s": 0.0,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 42,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 0.2,
+        "end_s": 0.2,
+        "latency_s": 0.0,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 59,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 34.8,
+        "end_s": 41.9,
+        "latency_s": 7.15,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 58,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 29.7,
+        "end_s": 41.9,
+        "latency_s": 12.22,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 55,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 21.3,
+        "end_s": 41.9,
+        "latency_s": 20.6,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 54,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 20.6,
+        "end_s": 41.9,
+        "latency_s": 21.33,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 60,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 41.9,
+        "end_s": 45.0,
+        "latency_s": 3.07,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 62,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 41.9,
+        "end_s": 45.0,
+        "latency_s": 3.07,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 48,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 9.0,
+        "end_s": 45.0,
+        "latency_s": 35.97,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 47,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 8.4,
+        "end_s": 45.0,
+        "latency_s": 36.65,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 63,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 41.9,
+        "end_s": 45.0,
+        "latency_s": 3.07,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 61,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 41.9,
+        "end_s": 45.0,
+        "latency_s": 3.07,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 57,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 24.6,
+        "end_s": 45.0,
+        "latency_s": 20.36,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 66,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 45.0,
+        "end_s": 48.1,
+        "latency_s": 3.07,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 70,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 45.0,
+        "end_s": 51.2,
+        "latency_s": 6.15,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 69,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 45.0,
+        "end_s": 51.2,
+        "latency_s": 6.15,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 67,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 45.0,
+        "end_s": 51.2,
+        "latency_s": 6.15,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 65,
+        "class": "failed_after_fault",
+        "category": "RemoteProtocolError",
+        "start_s": 45.0,
+        "end_s": 51.2,
+        "latency_s": 6.15,
+        "error": "RemoteProtocolError: Server disconnected without sending a response."
+      },
+      {
+        "index": 50,
+        "class": "failed_after_fault",
+        "category": "ReadTimeout",
+        "start_s": 9.6,
+        "end_s": 69.6,
+        "latency_s": 60.0,
+        "error": "ReadTimeout: "
+      }
+    ]
+  },
+  "retry": null,
+  "phases": [
+    {
+      "phase": "pre_fault",
+      "from_s": -60.0,
+      "to_s": 0.0,
+      "duration_s": 60.0,
+      "started": 40,
+      "succeeded": 38,
+      "failed": 2,
+      "failed_in_flight_at_fault": 2,
+      "success_rate": 0.95,
+      "output_tokens_per_s": 73.3,
+      "latency_p50_s": 13.86,
+      "latency_p95_s": 15.12
+    },
+    {
+      "phase": "detection",
+      "from_s": 0.0,
+      "to_s": 48.2,
+      "duration_s": 48.2,
+      "started": 32,
+      "succeeded": 12,
+      "failed": 20,
+      "failed_in_flight_at_fault": 0,
+      "success_rate": 0.375,
+      "output_tokens_per_s": 34.9,
+      "latency_p50_s": 12.31,
+      "latency_p95_s": 13.15
+    },
+    {
+      "phase": "degraded",
+      "from_s": 48.2,
+      "to_s": 113.4,
+      "duration_s": 65.2,
+      "started": 35,
+      "succeeded": 35,
+      "failed": 0,
+      "failed_in_flight_at_fault": 0,
+      "success_rate": 1.0,
+      "output_tokens_per_s": 62.6,
+      "latency_p50_s": 14.71,
+      "latency_p95_s": 19.83
+    },
+    {
+      "phase": "post_recovery",
+      "from_s": 113.4,
+      "to_s": 203.4,
+      "duration_s": 90.0,
+      "started": 49,
+      "succeeded": 49,
+      "failed": 0,
+      "failed_in_flight_at_fault": 0,
+      "success_rate": 1.0,
+      "output_tokens_per_s": 72.6,
+      "latency_p50_s": 13.79,
+      "latency_p95_s": 15.19
+    }
+  ],
+  "windows": [
+    {
+      "from_s": -60.0,
+      "finished": 0,
+      "succeeded": 0,
+      "first_attempts_finished": 0,
+      "first_attempts_succeeded": 0,
+      "tokens_per_s": 71.3
+    },
+    {
+      "from_s": -50.0,
+      "finished": 8,
+      "succeeded": 8,
+      "first_attempts_finished": 8,
+      "first_attempts_succeeded": 8,
+      "tokens_per_s": 73.0
+    },
+    {
+      "from_s": -40.0,
+      "finished": 8,
+      "succeeded": 8,
+      "first_attempts_finished": 8,
+      "first_attempts_succeeded": 8,
+      "tokens_per_s": 75.3
+    },
+    {
+      "from_s": -30.0,
+      "finished": 1,
+      "succeeded": 1,
+      "first_attempts_finished": 1,
+      "first_attempts_succeeded": 1,
+      "tokens_per_s": 76.5
+    },
+    {
+      "from_s": -20.0,
+      "finished": 7,
+      "succeeded": 7,
+      "first_attempts_finished": 7,
+      "first_attempts_succeeded": 7,
+      "tokens_per_s": 76.9
+    },
+    {
+      "from_s": -10.0,
+      "finished": 8,
+      "succeeded": 8,
+      "first_attempts_finished": 8,
+      "first_attempts_succeeded": 8,
+      "tokens_per_s": 66.8
+    },
+    {
+      "from_s": 0.0,
+      "finished": 11,
+      "succeeded": 6,
+      "first_attempts_finished": 11,
+      "first_attempts_succeeded": 6,
+      "tokens_per_s": 71.3
+    },
+    {
+      "from_s": 10.0,
+      "finished": 3,
+      "succeeded": 3,
+      "first_attempts_finished": 3,
+      "first_attempts_succeeded": 3,
+      "tokens_per_s": 53.3
+    },
+    {
+      "from_s": 20.0,
+      "finished": 5,
+      "succeeded": 5,
+      "first_attempts_finished": 5,
+      "first_attempts_succeeded": 5,
+      "tokens_per_s": 31.2
+    },
+    {
+      "from_s": 30.0,
+      "finished": 1,
+      "succeeded": 1,
+      "first_attempts_finished": 1,
+      "first_attempts_succeeded": 1,
+      "tokens_per_s": 6.0
+    },
+    {
+      "from_s": 40.0,
+      "finished": 12,
+      "succeeded": 0,
+      "first_attempts_finished": 12,
+      "first_attempts_succeeded": 0,
+      "tokens_per_s": 12.0
+    },
+    {
+      "from_s": 50.0,
+      "finished": 6,
+      "succeeded": 2,
+      "first_attempts_finished": 6,
+      "first_attempts_succeeded": 2,
+      "tokens_per_s": 62.5
+    },
+    {
+      "from_s": 60.0,
+      "finished": 6,
+      "succeeded": 5,
+      "first_attempts_finished": 6,
+      "first_attempts_succeeded": 5,
+      "tokens_per_s": 64.9
+    },
+    {
+      "from_s": 70.0,
+      "finished": 7,
+      "succeeded": 7,
+      "first_attempts_finished": 7,
+      "first_attempts_succeeded": 7,
+      "tokens_per_s": 72.1
+    },
+    {
+      "from_s": 80.0,
+      "finished": 4,
+      "succeeded": 4,
+      "first_attempts_finished": 4,
+      "first_attempts_succeeded": 4,
+      "tokens_per_s": 69.7
+    },
+    {
+      "from_s": 90.0,
+      "finished": 5,
+      "succeeded": 5,
+      "first_attempts_finished": 5,
+      "first_attempts_succeeded": 5,
+      "tokens_per_s": 62.0
+    },
+    {
+      "from_s": 100.0,
+      "finished": 3,
+      "succeeded": 3,
+      "first_attempts_finished": 3,
+      "first_attempts_succeeded": 3,
+      "tokens_per_s": 53.5
+    },
+    {
+      "from_s": 110.0,
+      "finished": 5,
+      "succeeded": 5,
+      "first_attempts_finished": 5,
+      "first_attempts_succeeded": 5,
+      "tokens_per_s": 58.9
+    },
+    {
+      "from_s": 120.0,
+      "finished": 7,
+      "succeeded": 7,
+      "first_attempts_finished": 7,
+      "first_attempts_succeeded": 7,
+      "tokens_per_s": 71.1
+    },
+    {
+      "from_s": 130.0,
+      "finished": 4,
+      "succeeded": 4,
+      "first_attempts_finished": 4,
+      "first_attempts_succeeded": 4,
+      "tokens_per_s": 75.5
+    },
+    {
+      "from_s": 140.0,
+      "finished": 7,
+      "succeeded": 7,
+      "first_attempts_finished": 7,
+      "first_attempts_succeeded": 7,
+      "tokens_per_s": 74.0
+    },
+    {
+      "from_s": 150.0,
+      "finished": 6,
+      "succeeded": 6,
+      "first_attempts_finished": 6,
+      "first_attempts_succeeded": 6,
+      "tokens_per_s": 74.4
+    },
+    {
+      "from_s": 160.0,
+      "finished": 6,
+      "succeeded": 6,
+      "first_attempts_finished": 6,
+      "first_attempts_succeeded": 6,
+      "tokens_per_s": 71.6
+    },
+    {
+      "from_s": 170.0,
+      "finished": 5,
+      "succeeded": 5,
+      "first_attempts_finished": 5,
+      "first_attempts_succeeded": 5,
+      "tokens_per_s": 70.4
+    },
+    {
+      "from_s": 180.0,
+      "finished": 5,
+      "succeeded": 5,
+      "first_attempts_finished": 5,
+      "first_attempts_succeeded": 5,
+      "tokens_per_s": 74.3
+    },
+    {
+      "from_s": 190.0,
+      "finished": 7,
+      "succeeded": 7,
+      "first_attempts_finished": 7,
+      "first_attempts_succeeded": 7,
+      "tokens_per_s": 75.0
+    }
+  ],
+  "served_per_pod_from_access_logs": {
+    "vllm-5b6f494778-47h62": {
+      "200": 24
+    },
+    "vllm-5b6f494778-7l7rx": {
+      "200": 94
+    },
+    "vllm-5b6f494778-vchkf": {
+      "200": 16
+    }
+  },
+  "served_per_node_from_access_logs": {
+    "kubeserve-mn-worker2": 24,
+    "kubeserve-mn-worker3": 94,
+    "kubeserve-mn-worker": 16
+  },
+  "pod_nodes": {
+    "vllm-5b6f494778-7l7rx": "kubeserve-mn-worker3",
+    "vllm-5b6f494778-vchkf": "kubeserve-mn-worker",
+    "vllm-5b6f494778-47h62": "kubeserve-mn-worker2"
+  },
+  "access_log_200_total": 134,
+  "client_successful_attempts": 134,
+  "host": {
+    "swapped_out_mb": 0.0,
+    "swap_used_mb_before": 4431.5,
+    "swap_used_mb_after": 4199.5,
+    "load1_before": 5.55,
+    "load1_after": 5.2
+  }
+}

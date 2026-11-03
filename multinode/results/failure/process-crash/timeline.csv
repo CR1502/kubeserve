@@ -1,0 +1,51 @@
+t,t_rel_fault_s,t_prev_poll,kind,name,field,old,new
+1793664044.5412369,-62.12,,node,kubeserve-mn-control-plane,exists,,yes
+1793664044.5412369,-62.12,,node,kubeserve-mn-control-plane,ready,,True
+1793664044.5412369,-62.12,,node,kubeserve-mn-control-plane,taints,,node-role.kubernetes.io/control-plane:NoSchedule
+1793664044.5412369,-62.12,,node,kubeserve-mn-control-plane,ready_reason,,KubeletReady
+1793664044.5412369,-62.12,,node,kubeserve-mn-control-plane,ready_since,,2026-11-02T22:25:28Z
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker,exists,,yes
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker,ready,,True
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker,ready_reason,,KubeletReady
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker,ready_since,,2026-11-02T23:59:53Z
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker2,exists,,yes
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker2,ready,,True
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker2,ready_reason,,KubeletReady
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker2,ready_since,,2026-11-02T23:02:56Z
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker3,exists,,yes
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker3,ready,,True
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker3,ready_reason,,KubeletReady
+1793664044.5412369,-62.12,,node,kubeserve-mn-worker3,ready_since,,2026-11-02T22:25:35Z
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,exists,,yes
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,node,,kubeserve-mn-worker2
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,phase,,Running
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,ready,,True
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,restarts,,0
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,container,,running since 2026-11-02T23:57:36Z
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,ready_since,,2026-11-02T23:58:11Z
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-47h62,created,,2026-11-02T23:57:36Z
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,exists,,yes
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,node,,kubeserve-mn-worker3
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,phase,,Running
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,ready,,True
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,restarts,,0
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,container,,running since 2026-11-02T22:55:20Z
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,ready_since,,2026-11-02T22:55:55Z
+1793664044.5412369,-62.12,,pod,vllm-5b6f494778-7l7rx,created,,2026-11-02T22:55:19Z
+1793664044.5412369,-62.12,,endpoint,vllm-5b6f494778-47h62,state,,ready
+1793664044.5412369,-62.12,,endpoint,vllm-5b6f494778-7l7rx,state,,ready
+1793664044.5412369,-62.12,,service,vllm,ready_count,,2
+1793664044.5412369,-62.12,,service,vllm,ready_pods,,vllm-5b6f494778-47h62;vllm-5b6f494778-7l7rx
+1793664108.758223,2.1,1793664107.6667578,pod,vllm-5b6f494778-47h62,ready,True,False
+1793664108.758223,2.1,1793664107.6667578,pod,vllm-5b6f494778-47h62,restarts,0,1
+1793664108.758223,2.1,1793664107.6667578,pod,vllm-5b6f494778-47h62,container,running since 2026-11-02T23:57:36Z,running since 2026-11-03T00:01:47Z
+1793664108.758223,2.1,1793664107.6667578,pod,vllm-5b6f494778-47h62,last_terminated,,terminated: Error exit 137 at 2026-11-03T00:01:46Z
+1793664108.758223,2.1,1793664107.6667578,pod,vllm-5b6f494778-47h62,ready_since,2026-11-02T23:58:11Z,2026-11-03T00:01:47Z
+1793664108.758223,2.1,1793664107.6667578,endpoint,vllm-5b6f494778-47h62,state,ready,not-ready
+1793664108.758223,2.1,1793664107.6667578,service,vllm,ready_count,2,1
+1793664108.758223,2.1,1793664107.6667578,service,vllm,ready_pods,vllm-5b6f494778-47h62;vllm-5b6f494778-7l7rx,vllm-5b6f494778-7l7rx
+1793664139.7632902,33.1,1793664138.715981,pod,vllm-5b6f494778-47h62,ready,False,True
+1793664139.7632902,33.1,1793664138.715981,pod,vllm-5b6f494778-47h62,ready_since,2026-11-03T00:01:47Z,2026-11-03T00:02:19Z
+1793664139.7632902,33.1,1793664138.715981,endpoint,vllm-5b6f494778-47h62,state,not-ready,ready
+1793664139.7632902,33.1,1793664138.715981,service,vllm,ready_count,1,2
+1793664139.7632902,33.1,1793664138.715981,service,vllm,ready_pods,vllm-5b6f494778-7l7rx,vllm-5b6f494778-47h62;vllm-5b6f494778-7l7rx

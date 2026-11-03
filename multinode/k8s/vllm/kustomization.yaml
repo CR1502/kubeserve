@@ -1,0 +1,8 @@
+# vLLM on the multi-node cluster: Deployment (one replica per inference worker) and a
+# NodePort Service. No HPA here: the benchmark harness sets replica counts explicitly.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - service.yaml

@@ -1,0 +1,70 @@
+$ kubectl get events -n kubeserve --sort-by=.lastTimestamp
+LAST SEEN   TYPE      REASON                 OBJECT                       MESSAGE
+61m         Warning   FailedMount            pod/vllm-5b6f494778-k465d    MountVolume.SetUp failed for volume "kube-api-access-ndnw4" : object "kubeserve"/"kube-root-ca.crt" not registered
+60m         Normal    Scheduled              pod/vllm-5b6f494778-p67n4    Successfully assigned kubeserve/vllm-5b6f494778-p67n4 to kubeserve-mn-worker2
+60m         Normal    SuccessfulCreate       replicaset/vllm-5b6f494778   Created pod: vllm-5b6f494778-p67n4
+60m         Normal    Started                pod/vllm-5b6f494778-p67n4    Container started
+60m         Normal    Created                pod/vllm-5b6f494778-p67n4    Container created
+60m         Normal    Pulled                 pod/vllm-5b6f494778-p67n4    Container image "kubeserve-vllm:v1" already present on machine and can be accessed by the pod
+60m         Warning   Unhealthy              pod/vllm-5b6f494778-p67n4    Startup probe failed: Get "http://10.244.3.2:8000/health": dial tcp 10.244.3.2:8000: connect: connection refused
+58m         Normal    Killing                pod/vllm-5b6f494778-p67n4    Stopping container vllm
+58m         Normal    Killing                pod/vllm-5b6f494778-nfgs5    Stopping container vllm
+58m         Normal    ScalingReplicaSet      deployment/vllm              Scaled down replica set vllm-5b6f494778 from 3 to 1
+58m         Normal    SuccessfulDelete       replicaset/vllm-5b6f494778   Deleted pod: vllm-5b6f494778-nfgs5
+58m         Normal    SuccessfulDelete       replicaset/vllm-5b6f494778   Deleted pod: vllm-5b6f494778-p67n4
+41m         Normal    Started                pod/vllm-5b6f494778-vchkf    Container started
+41m         Normal    Scheduled              pod/vllm-5b6f494778-vchkf    Successfully assigned kubeserve/vllm-5b6f494778-vchkf to kubeserve-mn-worker
+41m         Normal    ScalingReplicaSet      deployment/vllm              Scaled up replica set vllm-5b6f494778 from 1 to 2
+41m         Normal    SuccessfulCreate       replicaset/vllm-5b6f494778   Created pod: vllm-5b6f494778-vchkf
+41m         Normal    Created                pod/vllm-5b6f494778-vchkf    Container created
+41m         Normal    Pulled                 pod/vllm-5b6f494778-vchkf    Container image "kubeserve-vllm:v1" already present on machine and can be accessed by the pod
+40m         Warning   Unhealthy              pod/vllm-5b6f494778-vchkf    Startup probe failed: Get "http://10.244.1.3:8000/health": dial tcp 10.244.1.3:8000: connect: connection refused
+25m         Normal    SuccessfulCreate       replicaset/vllm-5b6f494778   Created pod: vllm-5b6f494778-l55vl
+25m         Normal    Scheduled              pod/vllm-5b6f494778-l55vl    Successfully assigned kubeserve/vllm-5b6f494778-l55vl to kubeserve-mn-worker2
+25m         Normal    ScalingReplicaSet      deployment/vllm              Scaled up replica set vllm-5b6f494778 from 2 to 3
+25m         Normal    Created                pod/vllm-5b6f494778-l55vl    Container created
+25m         Normal    Started                pod/vllm-5b6f494778-l55vl    Container started
+25m         Normal    Pulled                 pod/vllm-5b6f494778-l55vl    Container image "kubeserve-vllm:v1" already present on machine and can be accessed by the pod
+24m         Warning   Unhealthy              pod/vllm-5b6f494778-l55vl    Startup probe failed: Get "http://10.244.3.3:8000/health": dial tcp 10.244.3.3:8000: connect: connection refused
+9m9s        Normal    SuccessfulDelete       replicaset/vllm-5b6f494778   Deleted pod: vllm-5b6f494778-l55vl
+9m9s        Normal    Killing                pod/vllm-5b6f494778-l55vl    Stopping container vllm
+9m9s        Normal    ScalingReplicaSet      deployment/vllm              Scaled down replica set vllm-5b6f494778 from 3 to 2
+6m59s       Warning   NodeNotReady           pod/vllm-5b6f494778-vchkf    Node is not ready
+6m29s       Normal    TaintManagerEviction   pod/vllm-5b6f494778-vchkf    Marking for deletion Pod kubeserve/vllm-5b6f494778-vchkf
+6m28s       Normal    Scheduled              pod/vllm-5b6f494778-47h62    Successfully assigned kubeserve/vllm-5b6f494778-47h62 to kubeserve-mn-worker2
+6m28s       Normal    SuccessfulCreate       replicaset/vllm-5b6f494778   Created pod: vllm-5b6f494778-47h62
+4m10s       Warning   FailedMount            pod/vllm-5b6f494778-vchkf    MountVolume.SetUp failed for volume "kube-api-access-cxfzh" : object "kubeserve"/"kube-root-ca.crt" not registered
+2m17s       Normal    Pulled                 pod/vllm-5b6f494778-47h62    Container image "kubeserve-vllm:v1" already present on machine and can be accessed by the pod
+2m17s       Normal    Started                pod/vllm-5b6f494778-47h62    Container started
+2m17s       Normal    Created                pod/vllm-5b6f494778-47h62    Container created
+110s        Warning   Unhealthy              pod/vllm-5b6f494778-47h62    Startup probe failed: Get "http://10.244.3.4:8000/health": dial tcp 10.244.3.4:8000: connect: connection refused
+
+$ kubectl get events -A --field-selector involvedObject.kind=Node --sort-by=.lastTimestamp
+NAMESPACE   LAST SEEN   TYPE     REASON                    OBJECT                      MESSAGE
+default     61m         Normal   Starting                  node/kubeserve-mn-worker2   
+default     4m9s        Normal   Starting                  node/kubeserve-mn-worker    
+default     61m         Normal   NodeAllocatableEnforced   node/kubeserve-mn-worker2   Updated Node Allocatable limit across pods
+default     61m         Normal   NodeReady                 node/kubeserve-mn-worker2   Node kubeserve-mn-worker2 status is now: NodeReady
+default     61m         Normal   NodeHasSufficientPID      node/kubeserve-mn-worker2   Node kubeserve-mn-worker2 status is now: NodeHasSufficientPID
+default     61m         Normal   NodeHasNoDiskPressure     node/kubeserve-mn-worker2   Node kubeserve-mn-worker2 status is now: NodeHasNoDiskPressure
+default     61m         Normal   NodeHasSufficientMemory   node/kubeserve-mn-worker2   Node kubeserve-mn-worker2 status is now: NodeHasSufficientMemory
+default     61m         Normal   Starting                  node/kubeserve-mn-worker2   Starting kubelet.
+default     6m59s       Normal   NodeNotReady              node/kubeserve-mn-worker    Node kubeserve-mn-worker status is now: NodeNotReady
+default     4m11s       Normal   NodeHasSufficientMemory   node/kubeserve-mn-worker    Node kubeserve-mn-worker status is now: NodeHasSufficientMemory
+default     4m11s       Normal   NodeReady                 node/kubeserve-mn-worker    Node kubeserve-mn-worker status is now: NodeReady
+default     4m11s       Normal   NodeHasSufficientPID      node/kubeserve-mn-worker    Node kubeserve-mn-worker status is now: NodeHasSufficientPID
+default     4m11s       Normal   NodeHasNoDiskPressure     node/kubeserve-mn-worker    Node kubeserve-mn-worker status is now: NodeHasNoDiskPressure
+default     4m11s       Normal   NodeAllocatableEnforced   node/kubeserve-mn-worker    Updated Node Allocatable limit across pods
+default     4m11s       Normal   Starting                  node/kubeserve-mn-worker    Starting kubelet.
+
+$ kubectl get nodes -o wide
+NAME                         STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION              CONTAINER-RUNTIME
+kubeserve-mn-control-plane   Ready    control-plane   98m   v1.37.0   172.18.0.5    <none>        Debian GNU/Linux 13 (trixie)   6.8.0-117-generic (arm64)   containerd://2.3.4
+kubeserve-mn-worker          Ready    <none>          98m   v1.37.0   172.18.0.4    <none>        Debian GNU/Linux 13 (trixie)   6.8.0-117-generic (arm64)   containerd://2.3.4
+kubeserve-mn-worker2         Ready    <none>          98m   v1.37.0   172.18.0.2    <none>        Debian GNU/Linux 13 (trixie)   6.8.0-117-generic (arm64)   containerd://2.3.4
+kubeserve-mn-worker3         Ready    <none>          98m   v1.37.0   172.18.0.3    <none>        Debian GNU/Linux 13 (trixie)   6.8.0-117-generic (arm64)   containerd://2.3.4
+
+$ kubectl get pods -n kubeserve -o wide
+NAME                    READY   STATUS    RESTARTS        AGE     IP           NODE                   NOMINATED NODE   READINESS GATES
+vllm-5b6f494778-47h62   1/1     Running   1 (2m18s ago)   6m28s   10.244.3.4   kubeserve-mn-worker2   <none>           <none>
+vllm-5b6f494778-7l7rx   1/1     Running   0               68m     10.244.2.3   kubeserve-mn-worker3   <none>           <none>

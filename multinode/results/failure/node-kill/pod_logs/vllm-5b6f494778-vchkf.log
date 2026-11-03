@@ -1,0 +1,40 @@
+2026-11-02T23:55:18.581767994Z INFO:     10.244.1.1:37460 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:23.521245102Z (APIServer pid=1) INFO 11-02 23:55:23 [loggers.py:320] Engine 000: Avg prompt throughput: 13.5 tokens/s, Avg generation throughput: 12.4 tokens/s, Running: 3 reqs, Waiting: 0 reqs, CPU KV cache usage: 1.8%, Prefix cache hit rate: 0.0%
+2026-11-02T23:55:23.567563574Z INFO:     10.244.1.1:55796 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:23.578006060Z INFO:     10.244.1.1:55810 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:28.577883440Z INFO:     10.244.1.1:55826 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:31.518243444Z INFO:     172.18.0.5:14611 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:55:31.606580096Z INFO:     172.18.0.5:2801 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:55:31.606947224Z INFO:     172.18.0.5:17775 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:55:33.522148044Z (APIServer pid=1) INFO 11-02 23:55:33 [loggers.py:320] Engine 000: Avg prompt throughput: 4.2 tokens/s, Avg generation throughput: 27.6 tokens/s, Running: 1 reqs, Waiting: 0 reqs, CPU KV cache usage: 0.6%, Prefix cache hit rate: 0.0%
+2026-11-02T23:55:33.569110039Z INFO:     10.244.1.1:48200 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:33.578089435Z INFO:     10.244.1.1:48214 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:38.578318410Z INFO:     10.244.1.1:48228 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:43.522963822Z (APIServer pid=1) INFO 11-02 23:55:43 [loggers.py:320] Engine 000: Avg prompt throughput: 8.3 tokens/s, Avg generation throughput: 30.0 tokens/s, Running: 3 reqs, Waiting: 0 reqs, CPU KV cache usage: 3.6%, Prefix cache hit rate: 0.0%
+2026-11-02T23:55:43.568230988Z INFO:     10.244.1.1:50982 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:43.577995852Z INFO:     10.244.1.1:50990 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:44.493705027Z INFO:     172.18.0.5:32686 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:55:46.367121618Z INFO:     172.18.0.5:36753 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:55:46.467956788Z INFO:     172.18.0.5:54492 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:55:48.578104174Z INFO:     10.244.1.1:51000 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:53.523786612Z (APIServer pid=1) INFO 11-02 23:55:53 [loggers.py:320] Engine 000: Avg prompt throughput: 16.6 tokens/s, Avg generation throughput: 33.9 tokens/s, Running: 4 reqs, Waiting: 0 reqs, CPU KV cache usage: 2.4%, Prefix cache hit rate: 0.0%
+2026-11-02T23:55:53.567866285Z INFO:     10.244.1.1:47768 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:53.577802279Z INFO:     10.244.1.1:47774 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:55:57.847740355Z INFO:     172.18.0.5:36165 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:55:58.577747204Z INFO:     10.244.1.1:47784 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:56:00.111663040Z INFO:     172.18.0.5:21820 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:00.210749539Z INFO:     172.18.0.5:6129 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:01.442350212Z INFO:     172.18.0.5:14553 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:03.531398648Z (APIServer pid=1) INFO 11-02 23:56:03 [loggers.py:320] Engine 000: Avg prompt throughput: 26.3 tokens/s, Avg generation throughput: 38.5 tokens/s, Running: 6 reqs, Waiting: 0 reqs, CPU KV cache usage: 3.6%, Prefix cache hit rate: 0.0%
+2026-11-02T23:56:03.568002985Z INFO:     10.244.1.1:34116 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:56:03.576978266Z INFO:     10.244.1.1:34118 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:56:08.577962602Z INFO:     10.244.1.1:34124 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:56:12.285633599Z INFO:     172.18.0.5:13933 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:13.183404395Z INFO:     172.18.0.5:12595 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:13.531919709Z (APIServer pid=1) INFO 11-02 23:56:13 [loggers.py:320] Engine 000: Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 59.7 tokens/s, Running: 4 reqs, Waiting: 0 reqs, CPU KV cache usage: 4.7%, Prefix cache hit rate: 0.0%
+2026-11-02T23:56:13.567804553Z INFO:     10.244.1.1:55784 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:56:13.577950431Z INFO:     10.244.1.1:55798 - "GET /health HTTP/1.1" 200 OK
+2026-11-02T23:56:13.924748230Z INFO:     172.18.0.5:5889 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:14.015421162Z INFO:     172.18.0.5:21884 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:14.015446746Z INFO:     172.18.0.5:38006 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+2026-11-02T23:56:14.703173611Z INFO:     172.18.0.5:51318 - "POST /v1/chat/completions HTTP/1.1" 200 OK

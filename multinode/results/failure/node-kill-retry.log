@@ -1,0 +1,63 @@
+precondition: scaling deployment/vllm to 2 and waiting for 2 Ready pods on distinct workers
+  ok: pods {'vllm-5b6f494778-47h62': 'kubeserve-mn-worker2', 'vllm-5b6f494778-7l7rx': 'kubeserve-mn-worker3'}; victim vllm-5b6f494778-47h62 on kubeserve-mn-worker2; spare ['kubeserve-mn-worker']
+  19:06:26  node     kubeserve-mn-control-plane  exists: - -> yes
+  19:06:26  node     kubeserve-mn-control-plane  ready: - -> True
+  19:06:26  node     kubeserve-mn-control-plane  taints: - -> node-role.kubernetes.io/control-plane:NoSchedule
+  19:06:26  node     kubeserve-mn-worker  exists: - -> yes
+  19:06:26  node     kubeserve-mn-worker  ready: - -> True
+  19:06:26  node     kubeserve-mn-worker2  exists: - -> yes
+  19:06:26  node     kubeserve-mn-worker2  ready: - -> True
+  19:06:26  node     kubeserve-mn-worker3  exists: - -> yes
+  19:06:26  node     kubeserve-mn-worker3  ready: - -> True
+  19:06:26  pod      vllm-5b6f494778-47h62  exists: - -> yes
+  19:06:26  pod      vllm-5b6f494778-47h62  node: - -> kubeserve-mn-worker2
+  19:06:26  pod      vllm-5b6f494778-47h62  phase: - -> Running
+  19:06:26  pod      vllm-5b6f494778-47h62  ready: - -> True
+  19:06:26  pod      vllm-5b6f494778-47h62  restarts: - -> 1
+  19:06:26  pod      vllm-5b6f494778-47h62  container: - -> running since 2026-11-03T00:01:47Z
+  19:06:26  pod      vllm-5b6f494778-7l7rx  exists: - -> yes
+  19:06:26  pod      vllm-5b6f494778-7l7rx  node: - -> kubeserve-mn-worker3
+  19:06:26  pod      vllm-5b6f494778-7l7rx  phase: - -> Running
+  19:06:26  pod      vllm-5b6f494778-7l7rx  ready: - -> True
+  19:06:26  pod      vllm-5b6f494778-7l7rx  restarts: - -> 0
+  19:06:26  pod      vllm-5b6f494778-7l7rx  container: - -> running since 2026-11-02T22:55:20Z
+  19:06:26  endpoint vllm-5b6f494778-47h62  state: - -> ready
+  19:06:26  endpoint vllm-5b6f494778-7l7rx  state: - -> ready
+  19:06:26  service  vllm  ready_count: - -> 2
+load: 8 closed-loop clients, timeout 60s, retry=once
+fault: node-kill on kubeserve-mn-worker2 (pod vllm-5b6f494778-47h62)
+waiting for recovery (cap 600s)
+  19:08:13  node     kubeserve-mn-worker2  ready: True -> Unknown
+  19:08:13  node     kubeserve-mn-worker2  taints: - -> node.kubernetes.io/unreachable:NoExecute,node.kubernetes.io/unreachable:NoSchedule
+  19:08:13  pod      vllm-5b6f494778-47h62  ready: True -> False
+  19:08:13  endpoint vllm-5b6f494778-47h62  state: ready -> not-ready
+  19:08:13  service  vllm  ready_count: 2 -> 1
+  19:08:43  pod      vllm-5b6f494778-47h62  deleting: - -> 2026-11-03T00:10:13Z
+  19:08:43  pod      vllm-5b6f494778-4n8zl  exists: - -> yes
+  19:08:43  pod      vllm-5b6f494778-4n8zl  node: - -> kubeserve-mn-worker
+  19:08:43  pod      vllm-5b6f494778-4n8zl  phase: - -> Pending
+  19:08:43  pod      vllm-5b6f494778-4n8zl  ready: - -> False
+  19:08:43  pod      vllm-5b6f494778-4n8zl  restarts: - -> 0
+  19:08:43  pod      vllm-5b6f494778-4n8zl  container: - -> waiting: ContainerCreating
+  19:08:43  endpoint vllm-5b6f494778-47h62  state: not-ready -> terminating
+  19:08:44  pod      vllm-5b6f494778-4n8zl  phase: Pending -> Running
+  19:08:44  pod      vllm-5b6f494778-4n8zl  container: waiting: ContainerCreating -> running since 2026-11-03T00:08:43Z
+  19:08:44  endpoint vllm-5b6f494778-4n8zl  state: - -> not-ready
+  19:09:14  pod      vllm-5b6f494778-4n8zl  ready: False -> True
+  19:09:14  endpoint vllm-5b6f494778-4n8zl  state: not-ready -> ready
+  19:09:14  service  vllm  ready_count: 1 -> 2
+  recovered after 106.3s; 90s more of load
+load: stopping, waiting for in-flight requests
+restore: docker start kubeserve-mn-worker2
+restore: waiting for kubeserve-mn-worker2 to be Ready
+  19:10:57  node     kubeserve-mn-worker2  ready: Unknown -> True
+  19:10:57  node     kubeserve-mn-worker2  taints: node.kubernetes.io/unreachable:NoExecute,node.kubernetes.io/unreachable:NoSchedule -> node.kubernetes.io/unreachable:NoExecute
+  19:10:57  pod      vllm-5b6f494778-47h62  container: running since 2026-11-03T00:01:47Z -> terminated: Unknown exit 255 at 2026-11-03T00:10:55Z
+  19:10:57  endpoint vllm-5b6f494778-47h62  state: terminating -> absent
+restore: waiting for exactly 2 Ready vLLM pods
+  19:10:58  node     kubeserve-mn-worker2  taints: node.kubernetes.io/unreachable:NoExecute -> 
+  19:10:58  pod      vllm-5b6f494778-47h62  phase: Running -> Failed
+  19:10:59  pod      vllm-5b6f494778-47h62  exists: yes -> gone
+
+5 of 141 requests failed after one client retry (15 retried, 10 of them succeeded); recovered: True (106.3 s)
+wrote multinode/results/failure/node-kill-retry/
