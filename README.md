@@ -166,11 +166,10 @@ cores for PyTorch (3 threads). vLLM's compute is confined to the same 3 cores bu
 engine-core process instead of being launched as its own process, and vLLM's OpenMP auto-binding
 (applied when it launches a worker process) is not applied, so PyTorch keeps one intra-op thread per VM CPU
 (9 threads in this VM) on the pod's 3 cores, and a loaded pod uses about 2–2.2 of them. If
-anything this handicaps vLLM in the comparison. *(Corrected later: an earlier version said vLLM
-binds 2 OpenMP threads and keeps a core for its scheduler. That came from a test in multiprocessing
-mode, not the deployed configuration. The log line `CPU backend doesn't allow to use
-torch.set_num_threads after the thread binding, skip it` and per-thread `top -H` in a pod with the
-same image and settings show what actually runs.)*
+anything this handicaps vLLM in the comparison. Evidence: the vLLM log line `CPU backend doesn't
+allow to use torch.set_num_threads after the thread binding, skip it` (after "Reducing Torch
+threads from 9 to 1"), and `top -H` in a pod with the same image and settings in the multi-node
+extension's 10-CPU VM, which shows 10 busy compute threads on the pod's 3 CPUs.
 
 **Same model, same work per request.** Both serve the same weights in bfloat16 (the VM's CPU
 exposes `bf16`/`i8mm`). Both use greedy decoding with no repetition penalty (vLLM runs with
@@ -204,8 +203,7 @@ take 10+ seconds, so the connection setup cost is negligible.
 
 ## Problems hit and how they were fixed
 
-These came up during the build. Each was diagnosed from logs and measurements, and each
-makes a useful interview story.
+These came up during the build. Each was diagnosed from logs and measurements.
 
 1. **Host memory thrashing invalidated the first measurements.** With a 1.5B model and a 13 GB
    VM on an 18 GB laptop, macOS swapped the VM (21.8 of 22.5 GB swap used). Plain
@@ -241,6 +239,14 @@ makes a useful interview story.
    ("DarkWake" in `pmset -g log`) and the request timeline shows no gap. On battery a closed lid still
    sleeps the Mac, which is why the baseline has one complete sweep instead of two. The rejected runs and their logs are in
    [`results/rejected/`](results/rejected/).
+8. **Known issue, not fixed in this deployment: non-greedy requests can OOM-kill the vLLM pod.**
+   Found later, while building the multi-node extension. A request with `temperature > 0` (or
+   logprobs) makes vLLM's CPU backend `torch.compile` its sampler at runtime, and the compile step
+   pushed the pod to about 4.35 GiB (measured with the limit temporarily raised), over its 3.75 GiB
+   limit, so it was OOM-killed (exit code 137). Every benchmark and
+   demo request here is greedy (`temperature: 0`) and never reaches that path, so the results are
+   unaffected. The fix is one environment variable, `TORCH_COMPILE_DISABLE=1`, which the
+   [multi-node deployment](multinode/k8s/vllm/deployment.yaml) sets; this deployment does not.
 
 ## Reproduce it
 
@@ -292,41 +298,3 @@ curl -s localhost:30080/v1/chat/completions -H 'content-type: application/json' 
 | Patched vendor code | one build-time patch to vLLM's cgroup memory check | upstream the fix, or pin a release that has it |
 | Observability | scripts that read cgroup counters and `kubectl` | Prometheus + Grafana dashboards, alerts, tracing |
 | Load testing | one client process on the same laptop | distributed load generators, open-loop arrivals, streaming time-to-first-token |
-
-## Representing this on a resume
-
-Your original description needs one change: it says **GPU** utilisation, and no GPU was used.
-A version that matches what was built and measured:
-
-> Deployed an open-source LLM (Qwen2.5-0.5B-Instruct) behind vLLM's OpenAI-compatible server on a
-> single-node local Kubernetes cluster (kind), with CPU-based HPA autoscaling (1→2 replicas under
-> load) and zero-downtime rolling updates (0 of 68 in-flight requests dropped across an update and a
-> rollback). Benchmarked throughput, p50/p95 latency and CPU utilisation against a FastAPI +
-> Hugging Face transformers baseline on identical 3-core pods: **8.4× higher token throughput and
-> 8.2× lower p95 latency at 16 concurrent requests** (CPU-only).
-
-Shorter: *"Served an LLM with vLLM on a single-node kind Kubernetes cluster (HPA, zero-downtime
-rolling updates); measured 8.4× throughput and 8.2× lower p95 latency vs. a FastAPI baseline on
-identical CPU-only pods."*
-
-Things to avoid saying:
-- "GPU", "GPU utilisation" or "GPU inference". Everything ran on CPU.
-- "Production", "multi-node", or "cluster" without "single-node local".
-- Absolute throughput as if it were impressive. 80 tok/s from a 0.5B model on 3 CPU cores is slow;
-  the claim is the **relative** gain on identical resources.
-- That autoscaling doubled capacity. On one laptop, 2 replicas gave 1.36× ([why](#autoscaling-demo-hpa-scales-1--2--1)).
-- That the speed-up holds at any load. At 1 request in flight it is 1.10×; the gain comes from batching
-  concurrent requests.
-
-Be ready to explain:
-- **Why continuous batching wins.** The baseline runs one `generate()` at a time, so extra requests
-  only queue (flat ~9.5 tok/s, latency growing with the queue). vLLM puts every in-flight sequence
-  into each forward pass, so throughput grows with concurrency on the same cores.
-- **Why it's ~1× at concurrency 1.** Same weights, similar kernels, one sequence: nothing to batch.
-- **What makes the rollout zero-drop.** Readiness gate + `maxUnavailable: 0`, preStop sleep for
-  endpoint propagation, vLLM `--shutdown-timeout` to drain, grace period above both.
-- **Why CPU-based HPA is a weak signal for GPU inference**, and what to scale on instead (queue
-  depth or KV-cache usage via custom metrics).
-- **Why keep-alive connections defeat Service load balancing** (L4, per connection).
-- **The cgroup page-cache bug** ([problem 3](#problems-hit-and-how-they-were-fixed)): how it was
-  diagnosed from `memory.stat` and why the working set is the right measure.

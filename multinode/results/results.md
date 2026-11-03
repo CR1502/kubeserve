@@ -1,6 +1,6 @@
 # Multi-node scaling results: vLLM on 1, 2 and 3 kind worker nodes
 
-_Generated 2026-11-03T01:11:27+00:00 by `multinode/bench/report.py` from `multinode/results/raw/scaling-run*.json`, `results/results.json` and `multinode/results/failure/*/summary.json`. Do not edit by hand._
+_Generated 2026-11-03T01:26:28+00:00 by `multinode/bench/report.py` from `multinode/results/raw/scaling-run*.json`, `results/results.json` and `multinode/results/failure/*/summary.json`. Do not edit by hand._
 
 > All nodes are containers in one VM on one laptop (CPU only, no GPU). They have separate kubelets, IPs and CPU sets, but share the laptop's physical CPU, memory and memory bandwidth. See [`../README.md`](../README.md) for the scope.
 
